@@ -5,6 +5,27 @@ from pathlib import Path
 ENTITY_RE = re.compile(r'^&[^;]+;$')
 HEX_RE = re.compile(r'\+([0-9A-Fa-f]{4,6})(?:;|$)')
 
+# Exact GlyphWiki component glyphs for the remaining non-Unicode IDS entities in
+# the current HT source. These names are the actual subglyphs referenced by the
+# Japanese parent glyphs in GlyphWiki/KAGE, not semantic look-alikes and not
+# KanjiVG-derived crops.
+#
+# Examples:
+#   図  u56f3-j -> u2ff6-u3405-u2e80-var-001
+#   参  u53c2-j -> u2ff1-u53b6-u5927-03
+#   陥  u9665   -> u81fd-02-var-001
+#   揺  u63fa-j -> u4343-02-var-001
+#   徳/聴       -> u226f3-var-001
+#   掲/渇       -> u66f7-02-var-002
+GLYPHWIKI_EXACT_ALIASES = {
+    '&GT-K00822;': ['u2ff6-u3405-u2e80-var-001'],
+    '&GT-K01085;': ['u2ff1-u53b6-u5927-03'],
+    '&GT-K03318;': ['u81fd-02-var-001'],
+    '&GT-36228;': ['u4343-02-var-001'],
+    '&HD-TK-01032130;': ['u226f3-var-001', 'toki-01032130'],
+    '&MJ013489;': ['u66f7-02-var-002', 'jmj-013489'],
+}
+
 
 def collect_targets(master, courses):
     """Collect only component keys the builder can actually render."""
@@ -76,6 +97,14 @@ def candidates(entity, preferred=None):
         x=x.strip().lower()
         if x and x not in vals: vals.append(x)
     add(preferred.get(entity,''))
+    for alias in GLYPHWIKI_EXACT_ALIASES.get(entity, ()):
+        add(alias)
+    # Generic database aliases are useful for entities whose database prefix is
+    # known even when the HT master does not carry glyphwiki_name metadata.
+    m_mj=re.fullmatch(r'MJ(\d{6})',raw,re.I)
+    if m_mj: add('jmj-'+m_mj.group(1))
+    m_hd=re.fullmatch(r'HD-TK-(\d+)',raw,re.I)
+    if m_hd: add('toki-'+m_hd.group(1))
     add(raw)
     # CHISE wrappers are often not part of the GlyphWiki glyph name.
     stripped=re.sub(r'^(?:a-|g2-|o-)+','',raw,flags=re.I)
@@ -139,5 +168,7 @@ def main():
     hmin=sum(1 for x in manifest.values() if x.get('status')=='hanamin')
     miss=[k for k,v in manifest.items() if v.get('status') not in ('ok','hanamin')]
     print(json.dumps({'targets':len(manifest),'hanamin':hmin,'glyphwiki_ok':ok,'glyphwiki_missing':miss},ensure_ascii=False,indent=2))
+    if miss:
+        raise SystemExit('Glyph coverage incomplete: '+', '.join(miss))
 
 if __name__=='__main__':main()

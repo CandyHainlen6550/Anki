@@ -26,12 +26,18 @@ python3 builder/build_anki.py \
   --output "dist/HT Joyo 2136.apkg" \
   > dist/builder_report.json
 
-python3 scripts/verify_build.py \
+if ! python3 scripts/verify_build.py \
   --apkg "dist/HT Joyo 2136.apkg" \
   --sc1 "$SC1" \
   --sc2 "$SC2" \
   --builder-report dist/builder_report.json \
-  --output dist/QA.json
+  --output dist/QA.json; then
+  echo 'Build verification failed. QA follows:' >&2
+  cat dist/QA.json >&2 || true
+  echo 'Builder report follows:' >&2
+  cat dist/builder_report.json >&2 || true
+  exit 1
+fi
 
 python3 scripts/make_snapshot.py \
   --master data/master/joyo2136_learning_bundle.json \
