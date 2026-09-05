@@ -1,0 +1,5 @@
+/build/
+*.collection.anki2
+__pycache__/
+*.pyc
+.DS_Store

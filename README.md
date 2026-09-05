@@ -1,14 +1,14 @@
 # HT Joyo 2136 Anki
 
-Source-of-truth repository for the **HT Joyo 2136** Anki deck.
+Source repository for the **HT Joyo 2136** Anki deck.
 
-## Permanent package name
+## Permanent package identity
 
-The downloadable deck is always:
+The deck file is always:
 
 `dist/HT Joyo 2136.apkg`
 
-**Do not add version numbers, suffixes, or alternate APKG names.** The stable filename, deck IDs, model ID, and root deck name are intentional so users can import a newer package as an update instead of chasing renamed releases.
+Do **not** add version numbers or suffixes to the APKG, root deck, or note type. Stable deck/model IDs are also intentional so users can import a newer package as an update.
 
 ## Deck structure
 
@@ -28,48 +28,89 @@ HT Joyo 2136
     └── 03 Viết Kanji
 ```
 
-- **Sơ cấp 1 — 400:** exact `data/course/sc1.json` order.
-- **Sơ cấp 2 — 800:** exact `data/course/sc2.json` order.
-- **All — 2136:** full Jōyō master source.
-- 3 modes per course: recognition, reverse recall, and handwriting-gated writing.
+Sơ cấp 1 and Sơ cấp 2 are fetched from the pinned `CandyHainlen6550/HT` revision and keep the exact repo order. They are not slices of the 2136 master list.
+
+## Component glyph strategy
+
+KanjiVG is **stroke-order data only**. It is never used to guess/substitute an unresolved component glyph.
+
+At build time:
+
+1. Normal Unicode components use ordinary text rendering.
+2. Rare/supplementary Unicode components (for example `𠦏`) are outlined from **HanaMinA/HanaMinB** with fontTools and embedded as inline SVG.
+3. Named non-Unicode entities (GT/MJ/CDP/CHISE-style IDs, for example `&GT-K00822;`) are fetched from **GlyphWiki** at build time and embedded into the APKG as SVG data URIs.
+4. The verifier fails if a learner-facing entity falls back to a code label, so broken square/X placeholders cannot silently ship.
+
+HanaMin itself is built from GlyphWiki glyphs and provides broad CJK coverage. The TTF files are build dependencies only; they are not committed to this repository and are not bundled into the APKG.
 
 ## Current card behavior
 
-- Hán-Việt reverse/writing fronts always show the Vietnamese meaning, so homophones remain distinguishable.
-- Furigana is stored in Anki ruby syntax and rendered with the native `{{furigana:Furigana}}` filter.
+- Hán-Việt reverse/writing fronts always show Vietnamese meaning for homophone disambiguation.
+- Furigana uses Anki ruby syntax and native `{{furigana:Furigana}}` rendering.
+- Formation/origin field is removed from the note type.
 - Answer side includes readings, meaning, mnemonic, components, and stroke order.
-- The old formation/origin field is removed from the note type and is not rendered.
-- KanjiVG stroke data and inline SVG are embedded for offline use; there is no runtime KanjiVG fetch.
-- Stroke order auto-animates with per-stroke colors and replay.
-- Stable Writer handles pointer capture, lost-pointer recovery, wrong-stroke cleanup, and throttled drawing.
-- AnkiMobile writing areas are `tappable`, and a completed writing card uses the native bridge to show the answer automatically.
-- Early manual flips keep the real answer locked and let the user continue writing on the back.
-- Composite/unresolved IDS components are resolved generically; learner cards do not show broken square/X placeholders.
+- KanjiVG stroke paths are embedded in every generated note; no runtime KanjiVG fetch.
+- Colored stroke-order animation + replay.
+- Stable Writer: pointer capture, lost-pointer recovery, wrong-stroke cleanup, requestAnimationFrame rendering.
+- AnkiMobile writer is `tappable`; completing the final correct stroke invokes the native answer bridge.
+- Early manual flip keeps the real answer locked until writing is complete.
+
+## Upstream sources
+
+Pinned revisions are in `SOURCE_REFS.env`.
+
+The build fetches:
+
+- `CandyHainlen6550/HT` — exact Sơ cấp 1 / Sơ cấp 2 data.
+- `KanjiVG/kanjivg` — stroke-order SVG source.
+- `googlefonts/chinese` — HanaMinA/HanaMinB build-time fonts.
+- GlyphWiki SVG endpoint — only the small set of named unresolved component entities needed by the deck.
+
+The repository intentionally does **not** store duplicate KanjiVG ZIPs, HanaMin TTFs, or copied SC1/SC2 JSON files.
 
 ## Build
 
-Requirements: Python 3.10+ and Node.js.
+Requirements: Git, Python 3.10+, Node.js.
 
 ```bash
+python -m pip install -r requirements.txt
 bash scripts/build.sh
 ```
 
-The build verifies exact 400/800 order, card JavaScript syntax, stable deck/model identity, native Furigana rendering, embedded stroke data, component rendering, and note/card counts.
+`build.sh` fetches the pinned upstreams, embeds glyph/stroke assets, builds `dist/HT Joyo 2136.apkg`, and runs QA.
+
+## QA gates
+
+A release fails unless all of these pass:
+
+- 3336 notes / 10008 cards.
+- Sơ cấp 1 exact 400-row repo order.
+- Sơ cấp 2 exact 800-row repo order.
+- permanent APKG/root/model name has no version suffix.
+- Formation field absent.
+- native Anki Furigana filter present.
+- writing auto-flip/flip-lock scripts pass JavaScript syntax checks.
+- all stroke data embedded offline.
+- KanjiVG is not used for unresolved component glyphs.
+- no runtime component-image URLs inside cards.
+- no unresolved code/box placeholder survives in learner-facing component HTML.
+- `図` renders its named entity with embedded GlyphWiki SVG.
+- `卒` renders its rare Unicode component with HanaMin/GlyphWiki outline.
 
 ## Repository layout
 
 ```text
 builder/build_anki.py
 data/master/joyo2136_learning_bundle.json
-data/course/sc1.json
-data/course/sc2.json
-data/course/decks.json
-vendor/kanjivg-sources.zip
-dist/HT Joyo 2136.apkg
+scripts/fetch_sources.sh
+scripts/fetch_glyphwiki.py
 scripts/build.sh
 scripts/verify_build.py
 scripts/make_snapshot.py
+SOURCE_REFS.env
+requirements.txt
 .github/workflows/build.yml
+dist/                 # generated by CI
 ```
 
-GitHub Actions rebuilds and verifies the same permanent APKG path after source/builder changes.
+On a fresh GitHub repo, upload these files and GitHub Actions will create and commit the permanent `dist/HT Joyo 2136.apkg` artifact.
