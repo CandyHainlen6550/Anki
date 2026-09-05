@@ -1,0 +1,993 @@
+{
+  "refs": {
+    "HT_REF": "a09cdbafa3943836d21e037d8e24623402d77c9f",
+    "KANJIVG_REF": "55b5ba92a7cad78a62ef04db4be6f9562d949b7f",
+    "HANAMIN_REF": "801aa43acbf9f5411f1131ec22dc3f75fda899e8"
+  },
+  "checked_out": {
+    "HT": "a09cdbafa3943836d21e037d8e24623402d77c9f",
+    "KanjiVG": "55b5ba92a7cad78a62ef04db4be6f9562d949b7f",
+    "HanaMin": "801aa43acbf9f5411f1131ec22dc3f75fda899e8"
+  },
+  "glyphwiki": {
+    "&A-U-i002+34BC;": {
+      "status": "ok",
+      "name": "u34bc",
+      "file": "ec50d548fec5d3f0.svg",
+      "url": "https://glyphwiki.org/glyph/u34bc.svg",
+      "sha256": "9e3deb1a22e74ed9f918af3cb528a1b2fa1136dc351d167525537526b0c83aa9"
+    },
+    "&CDP-8665;": {
+      "status": "ok",
+      "name": "cdp-8665",
+      "file": "ea9315fe5c6ba1bd.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8665.svg",
+      "sha256": "aa70afc30671efb9a5bd880e64423a0462ae78c6858a2ab758bc866458831749"
+    },
+    "&CDP-88A5;": {
+      "status": "ok",
+      "name": "cdp-88a5",
+      "file": "882c5db4464c477b.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-88a5.svg",
+      "sha256": "2aca741cde16a1633a33ac6be54d4fda07a98c42bfc9c8e9db316339c86ab38e"
+    },
+    "&CDP-88C8;": {
+      "status": "ok",
+      "name": "cdp-88c8",
+      "file": "9f2ed1abcafc9eae.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-88c8.svg",
+      "sha256": "463039eeaf39b6afaad9efb7a8e5dcf5596ea2cc1df8f42f7c590bed9d44dd23"
+    },
+    "&CDP-88D2;": {
+      "status": "ok",
+      "name": "cdp-88d2",
+      "file": "75d6338b01f5b175.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-88d2.svg",
+      "sha256": "993956069228584e9b5c49aaf55c815c3d24f770a521b267d7976c5ac5de0909"
+    },
+    "&CDP-88F1;": {
+      "status": "ok",
+      "name": "cdp-88f1",
+      "file": "32f1679e7b9d9e70.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-88f1.svg",
+      "sha256": "a7007b0b9b4e3bcc476f765f9a8a13b95ffa3f3d58bea446d032a3d7bc8e7c90"
+    },
+    "&CDP-8958;": {
+      "status": "ok",
+      "name": "cdp-8958",
+      "file": "ae199cab11de7840.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8958.svg",
+      "sha256": "abc51bbf77ff14cfffb7aaa1c8f6abcb26906738d0508c1a68c502551761e854"
+    },
+    "&CDP-895F;": {
+      "status": "ok",
+      "name": "cdp-895f",
+      "file": "35f5b4628541bde9.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-895f.svg",
+      "sha256": "5ef9a913d4af82da0c399c3f4a9024d97e820aa21585f712092561ac3f9bc784"
+    },
+    "&CDP-8968;": {
+      "status": "ok",
+      "name": "cdp-8968",
+      "file": "25d180277da48413.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8968.svg",
+      "sha256": "4469b7ae30ad74c387acade9b238523d6739c528bac07a6511d4824aad0b5aac"
+    },
+    "&CDP-8974;": {
+      "status": "ok",
+      "name": "cdp-8974",
+      "file": "c940280d76a52ec9.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8974.svg",
+      "sha256": "f5a4628cd8bdb0a8003b7c819ff275ce369650df8bd68b65ee2289a5293ab774"
+    },
+    "&CDP-897D;": {
+      "status": "ok",
+      "name": "cdp-897d",
+      "file": "2b194ff06158ec2a.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-897d.svg",
+      "sha256": "2a78b98c78b30469c0411080edf8d8566761531d52fb1b3519095e1a1830b17c"
+    },
+    "&CDP-89AB;": {
+      "status": "ok",
+      "name": "cdp-89ab",
+      "file": "fe5a2b421942b528.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-89ab.svg",
+      "sha256": "c3c8a302d7ef0cf9a9e309248825bd53f95f6b54d15ddaf7ddc35e745ff26a48"
+    },
+    "&CDP-89AE;": {
+      "status": "ok",
+      "name": "cdp-89ae",
+      "file": "db5e57b3021edfc3.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-89ae.svg",
+      "sha256": "ddcda837a2ee004ed0987b7cdc81bb3933c2844bad8da75b0e4457f4bc45640d"
+    },
+    "&CDP-89BD;": {
+      "status": "ok",
+      "name": "cdp-89bd",
+      "file": "35dfea965b6e7de5.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-89bd.svg",
+      "sha256": "a188ef36f7f8854071b7099f009d96270d8eb3318690da98b683b5f257193018"
+    },
+    "&CDP-89BE;": {
+      "status": "ok",
+      "name": "cdp-89be",
+      "file": "75635631a012e154.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-89be.svg",
+      "sha256": "f3e71da50ba706b7938917e0f3f46484dc3dfb353453214b9e7836a95393569c"
+    },
+    "&CDP-89E5;": {
+      "status": "ok",
+      "name": "cdp-89e5",
+      "file": "8ef7e6636d3f8789.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-89e5.svg",
+      "sha256": "6e8ee20b4609252e27e043b6969fa9c7cd765973addd6e5e81f52db4bde48f8d"
+    },
+    "&CDP-89EC;": {
+      "status": "ok",
+      "name": "cdp-89ec",
+      "file": "ceb6171e36956394.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-89ec.svg",
+      "sha256": "a1ec8f5fefc134ae9e739b1f61704da4728a42b044b00add03d719d6c3ba1d6b"
+    },
+    "&CDP-89F3;": {
+      "status": "ok",
+      "name": "cdp-89f3",
+      "file": "4364f19f681b9081.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-89f3.svg",
+      "sha256": "cf4b45ac63eee86d7fd3ce65988045f980021563bf95d10397e713b7f90742cc"
+    },
+    "&CDP-89F5;": {
+      "status": "ok",
+      "name": "cdp-89f5",
+      "file": "029074a95e1f9c0c.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-89f5.svg",
+      "sha256": "1ea90e2f887d26f5f26e1b5743135d1840cfd33ce9c6e4b4aa8561d8b256abcd"
+    },
+    "&CDP-89FA;": {
+      "status": "ok",
+      "name": "cdp-89fa",
+      "file": "3b501aa25ab8b38b.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-89fa.svg",
+      "sha256": "ac5879e8fc3d44c050a60db36342e7fcf0d72fbefff6eb86db074dc17e935e82"
+    },
+    "&CDP-89FD;": {
+      "status": "ok",
+      "name": "cdp-89fd",
+      "file": "08375863dd15ea40.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-89fd.svg",
+      "sha256": "715bbff27ec05dd3be4829578ec1b20d81eeb31b8ecfb88bfb37fd4d5d0dac90"
+    },
+    "&CDP-8AC0;": {
+      "status": "ok",
+      "name": "cdp-8ac0",
+      "file": "d372da2447a9efc0.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8ac0.svg",
+      "sha256": "7c15c4925a3378c17e5b8cc474d0a37f5cacfefffaf547c3ddb5e0a96d3616cd"
+    },
+    "&CDP-8B7B;": {
+      "status": "ok",
+      "name": "cdp-8b7b",
+      "file": "7a3c1dacfd729c27.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8b7b.svg",
+      "sha256": "21295003ee99b5676f1dc1619aa25381a80fa671652b89481721a26919aa7d37"
+    },
+    "&CDP-8B7C;": {
+      "status": "ok",
+      "name": "cdp-8b7c",
+      "file": "7f4eed2b2a2a1c1b.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8b7c.svg",
+      "sha256": "d6a439e9d396fab60b219010d0840b2f14b472f1f678c3fb34bbf6a9d1a50d72"
+    },
+    "&CDP-8BA4;": {
+      "status": "ok",
+      "name": "cdp-8ba4",
+      "file": "43932fcc7e7cd20e.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8ba4.svg",
+      "sha256": "361188bb8288c8384fd40db5646dcc288e48003b8061ce0fda966a1f560eb813"
+    },
+    "&CDP-8BA5;": {
+      "status": "ok",
+      "name": "cdp-8ba5",
+      "file": "e04d8dfa9fb7dba3.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8ba5.svg",
+      "sha256": "5cee967bafc996b6276be6bfeb75f9fa4d8e4ae88754691d553d3ae161e372e7"
+    },
+    "&CDP-8BA8;": {
+      "status": "ok",
+      "name": "cdp-8ba8",
+      "file": "a6fe27a19fc82c07.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8ba8.svg",
+      "sha256": "1e6f64b717e7b39f41719b30d09a6d3af98a5a771909fc40dd84d37af97bedf9"
+    },
+    "&CDP-8BAE;": {
+      "status": "ok",
+      "name": "cdp-8bae",
+      "file": "1606462d6771f75d.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8bae.svg",
+      "sha256": "550382a30b8cbe43b2637a4115a5d994fa5ccb3ba79bdc414b49b15eaef2f198"
+    },
+    "&CDP-8BB5;": {
+      "status": "ok",
+      "name": "cdp-8bb5",
+      "file": "88808fc28b270270.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8bb5.svg",
+      "sha256": "04242bfc47ec60ec8f251be67b185d1f5db0284e056fe0334832d089e2325d46"
+    },
+    "&CDP-8BB8;": {
+      "status": "ok",
+      "name": "cdp-8bb8",
+      "file": "10a61d414fb45782.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8bb8.svg",
+      "sha256": "fc3aea75752b9043306bdbf3526c5120b1348868f77d421c79097d97de03efae"
+    },
+    "&CDP-8BBE;": {
+      "status": "ok",
+      "name": "cdp-8bbe",
+      "file": "f95125d54bf2c127.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8bbe.svg",
+      "sha256": "5f994f06fc2674dff1ed43049dfcc6ef53661592746e414bb5dc9bbe9c8c5b27"
+    },
+    "&CDP-8BBF;": {
+      "status": "ok",
+      "name": "cdp-8bbf",
+      "file": "1c59af70b6052d91.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8bbf.svg",
+      "sha256": "a648aacb8f04acb8a667d2217a3a39dd254514391a3ff667b396455bbc0461da"
+    },
+    "&CDP-8BC4;": {
+      "status": "ok",
+      "name": "cdp-8bc4",
+      "file": "6275b0a2ad9a5b11.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8bc4.svg",
+      "sha256": "27cae880a4bad553dc9419a5b76aa38d70ed4f69884584dca44cd59268514704"
+    },
+    "&CDP-8BC5;": {
+      "status": "ok",
+      "name": "cdp-8bc5",
+      "file": "7f00a106237d5d5c.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8bc5.svg",
+      "sha256": "b0dbbc457a09386d29a342df1bb1027f1e40e4e0d08ef25a277d0e5c1ac4fe98"
+    },
+    "&CDP-8BC7;": {
+      "status": "ok",
+      "name": "cdp-8bc7",
+      "file": "ec601565dbd5f9b9.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8bc7.svg",
+      "sha256": "bdc0542de24cac39838590dcfdf8030625c819c658b763f5b328050404d2f6a5"
+    },
+    "&CDP-8BD9;": {
+      "status": "ok",
+      "name": "cdp-8bd9",
+      "file": "eb5451437a4393b3.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8bd9.svg",
+      "sha256": "b6d41aa2022682b6f8002db08d8edb71520f51e442de148c6748df6fc97ae544"
+    },
+    "&CDP-8BE8;": {
+      "status": "ok",
+      "name": "cdp-8be8",
+      "file": "1265be60a341ae42.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8be8.svg",
+      "sha256": "0825632d1d166c97dbc0641195014d080a9818f2bbae9ed828a07f71e6a69f43"
+    },
+    "&CDP-8BE9;": {
+      "status": "ok",
+      "name": "cdp-8be9",
+      "file": "c9136d9edf7de99f.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8be9.svg",
+      "sha256": "268869b5031b4fa20699907b2bc7e4f66fe33f75071033c191f174f8327bbe86"
+    },
+    "&CDP-8BEA;": {
+      "status": "ok",
+      "name": "cdp-8bea",
+      "file": "6d68a286bcd8500a.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8bea.svg",
+      "sha256": "48469adee3bcb0f11d75142f3aa4dd6c52a362a8478be75f6e32582c6b4664b8"
+    },
+    "&CDP-8C46;": {
+      "status": "ok",
+      "name": "cdp-8c46",
+      "file": "2bac3e80a82f07af.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8c46.svg",
+      "sha256": "f81aa0227af0ed5f0ccade5a37f8cc428047a155c6cdc9b6f40736a5f073a9cb"
+    },
+    "&CDP-8C4F;": {
+      "status": "ok",
+      "name": "cdp-8c4f",
+      "file": "51140e3755a834ef.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8c4f.svg",
+      "sha256": "982ea7fada915f2f131ab92ff0890a91cecb6ab7d87b9961d776767d1b188ded"
+    },
+    "&CDP-8C52;": {
+      "status": "ok",
+      "name": "cdp-8c52",
+      "file": "7e604e9a25289329.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8c52.svg",
+      "sha256": "b8b199d80007c4f7469081100de3dacb97d50126fc8e22282e15b29b5dce6bb6"
+    },
+    "&CDP-8C66;": {
+      "status": "ok",
+      "name": "cdp-8c66",
+      "file": "887834ad7b8f9f86.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8c66.svg",
+      "sha256": "e39782aefd871a80dd4116dd4ea8575550fc8b172b9b64d874a99cd94fd1af6a"
+    },
+    "&CDP-8C69;": {
+      "status": "ok",
+      "name": "cdp-8c69",
+      "file": "ac7dc8d39d8160cd.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8c69.svg",
+      "sha256": "906fbd49a1c108a094f40ddfee6db18c61ef875aedbcf18bd1c3dc7fbeee010d"
+    },
+    "&CDP-8C6A;": {
+      "status": "ok",
+      "name": "cdp-8c6a",
+      "file": "ba12b402446f7921.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8c6a.svg",
+      "sha256": "8126ebc72953ed9fe23fac0fe496553122a676d1951c09bb64a10abd11c070bc"
+    },
+    "&CDP-8CA9;": {
+      "status": "ok",
+      "name": "cdp-8ca9",
+      "file": "e2023e85ec4e33d8.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8ca9.svg",
+      "sha256": "79ee402cfdef588ecf341f6b9d6049c59a92457aaef3dca4e857208a06bbf236"
+    },
+    "&CDP-8CAC;": {
+      "status": "ok",
+      "name": "cdp-8cac",
+      "file": "b8c88451bf1cecb7.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8cac.svg",
+      "sha256": "e9f480ee29af9f870cea80844d6e7e0881033017be7f9fb470aae2cb6c355fc4"
+    },
+    "&CDP-8CB8;": {
+      "status": "ok",
+      "name": "cdp-8cb8",
+      "file": "89d7dc7341f235b1.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8cb8.svg",
+      "sha256": "95a7d6d6055f3d51460b348d2ddeb5a81e1afdb5f037788dccce3e79bb3ca3fc"
+    },
+    "&CDP-8CBB;": {
+      "status": "ok",
+      "name": "cdp-8cbb",
+      "file": "d6382b0237792ff6.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8cbb.svg",
+      "sha256": "c14a31ff6e17ae89a29f81d1ce5ddf4ebe55838fe22304834dd421265bad7f65"
+    },
+    "&CDP-8CC1;": {
+      "status": "ok",
+      "name": "cdp-8cc1",
+      "file": "2c903db9e4f3b6e9.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8cc1.svg",
+      "sha256": "28d5feea5bb5b89b8170bfda4e5b747d9bda1ead058655017b69f5cbe8906247"
+    },
+    "&CDP-8CC6;": {
+      "status": "ok",
+      "name": "cdp-8cc6",
+      "file": "806b4c080107f2c4.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8cc6.svg",
+      "sha256": "039947bc6d8a5f8a369a10ff7cc4dad1d8f9a97f57cf17bd86df0d68a060f09a"
+    },
+    "&CDP-8CC7;": {
+      "status": "ok",
+      "name": "cdp-8cc7",
+      "file": "f4ad167a730fa873.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8cc7.svg",
+      "sha256": "60a7e5ed0110f8a9a4f0703e5119f17ed6aeba61d882a372e1f222ceddd0260a"
+    },
+    "&CDP-8CC9;": {
+      "status": "ok",
+      "name": "cdp-8cc9",
+      "file": "36acaa1d152a615a.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8cc9.svg",
+      "sha256": "08fc335753a2fc6900aeec1b2c0f46b2a8c653e6ca5fda69ad2a6f83a34d9cca"
+    },
+    "&CDP-8CCE;": {
+      "status": "ok",
+      "name": "cdp-8cce",
+      "file": "bc11c7015c5b0c4b.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8cce.svg",
+      "sha256": "a6cc6e79be71b231848345488082e58ab4a074f06d9c186d8194aded26b098b7"
+    },
+    "&CDP-8CDE;": {
+      "status": "ok",
+      "name": "cdp-8cde",
+      "file": "8b61bbe97d2ee7c2.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8cde.svg",
+      "sha256": "082c377f2436c84598679d0c1feae8537facc90bfa04767d525fd601564384b3"
+    },
+    "&CDP-8CE4;": {
+      "status": "ok",
+      "name": "cdp-8ce4",
+      "file": "d85ac72224db5a80.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8ce4.svg",
+      "sha256": "ef811338c6900a563faf96ae52b0fcf4dcd5a0700d53255d92369d390f8608d4"
+    },
+    "&CDP-8CE5;": {
+      "status": "ok",
+      "name": "cdp-8ce5",
+      "file": "d6744d6fe1c4cb6f.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8ce5.svg",
+      "sha256": "5846e1d6c47a192392ebc42833f8afc51857b7b196459a4668fb1a74cfa6a28d"
+    },
+    "&CDP-8CE7;": {
+      "status": "ok",
+      "name": "cdp-8ce7",
+      "file": "2222141571ce3566.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8ce7.svg",
+      "sha256": "e6fe94cad11cbc93038401e5b05e4cc3e50266d085d2fc59dc721ceef0253ab6"
+    },
+    "&CDP-8CF0;": {
+      "status": "ok",
+      "name": "cdp-8cf0",
+      "file": "90f1990df2b2ff29.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8cf0.svg",
+      "sha256": "8c393982bec947791f7f2f29f78ee326303fb71bb4b60ced3e237af156a2e1a8"
+    },
+    "&CDP-8CFA;": {
+      "status": "ok",
+      "name": "cdp-8cfa",
+      "file": "30522260421afa05.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8cfa.svg",
+      "sha256": "7a1404f05ab3e445665c75589f8d81b9d3655963024b389727a6bfde626d0a94"
+    },
+    "&CDP-8CFD;": {
+      "status": "ok",
+      "name": "cdp-8cfd",
+      "file": "71b04b0a086158dc.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8cfd.svg",
+      "sha256": "8e78f17951cd978721767a431a230100a498d37530c14381c6b5476685a3f34f"
+    },
+    "&CDP-8D40;": {
+      "status": "ok",
+      "name": "cdp-8d40",
+      "file": "0d682b63cba9f4c6.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8d40.svg",
+      "sha256": "ee114f7f4a58277e887c43d6cd66ad6970151282dcaf188ad4982ba75ca581f3"
+    },
+    "&CDP-8D56;": {
+      "status": "ok",
+      "name": "cdp-8d56",
+      "file": "19e139f7dbd743c3.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8d56.svg",
+      "sha256": "338cd8777184062a796be44e966f1170d5ed35e67cbb9bf66192ff0b435f9aa0"
+    },
+    "&CDP-8D57;": {
+      "status": "ok",
+      "name": "cdp-8d57",
+      "file": "09201aa7ed58f474.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8d57.svg",
+      "sha256": "334b7de23f5e25a951ed58462b3c865a0d194eabb80f204dc8b3dfecf7c98508"
+    },
+    "&CDP-8D61;": {
+      "status": "ok",
+      "name": "cdp-8d61",
+      "file": "247fddad306fbb71.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8d61.svg",
+      "sha256": "8da9a91951f17fb3c83b897e379b063979401414182f9e4c26b96c8e9236781d"
+    },
+    "&CDP-8D62;": {
+      "status": "ok",
+      "name": "cdp-8d62",
+      "file": "dae149d536aa7ade.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8d62.svg",
+      "sha256": "8a9e6e5acec73e0e2788423de7b6d5027649be04343cc6ec82329f3b7da1c325"
+    },
+    "&CDP-8D67;": {
+      "status": "ok",
+      "name": "cdp-8d67",
+      "file": "f6cadacc4c7253c5.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8d67.svg",
+      "sha256": "60b04cbd54af7a812785b4906b63608e7518b6a1f41ab99691af606722b81144"
+    },
+    "&CDP-8D74;": {
+      "status": "ok",
+      "name": "cdp-8d74",
+      "file": "bc77f3f5966ac101.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8d74.svg",
+      "sha256": "f5da9649ba1ebb1f928ea918d0d1dbdcea1ef376b9406413083e1d11703f2964"
+    },
+    "&CDP-8D78;": {
+      "status": "ok",
+      "name": "cdp-8d78",
+      "file": "4527f1cf25824a25.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8d78.svg",
+      "sha256": "966ea9100941d1651e633ee71646a448678716fabcfcf4caa0317fa43bdd10a2"
+    },
+    "&CDP-8DA8;": {
+      "status": "ok",
+      "name": "cdp-8da8",
+      "file": "ac33cc0a021b1f26.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8da8.svg",
+      "sha256": "f349f6c4506bde6809e1ec30f083e360d1fa11a6bd367369f15f0df628f78672"
+    },
+    "&CDP-8DBB;": {
+      "status": "ok",
+      "name": "cdp-8dbb",
+      "file": "c099df1cd9eb91df.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8dbb.svg",
+      "sha256": "91a2f2bcb8931ed50b2e91a23d61f4c39ea5949faf295911b022a6c451965a60"
+    },
+    "&CDP-8DE3;": {
+      "status": "ok",
+      "name": "cdp-8de3",
+      "file": "1b50ce4a3ee6a7e7.svg",
+      "url": "https://glyphwiki.org/glyph/cdp-8de3.svg",
+      "sha256": "2d291e22cc209e47c1bad91decf837e0dbf4dcafe04cdea3c7effacd5175adcd"
+    },
+    "&GT-36228;": {
+      "status": "ok",
+      "name": "u4343-02-var-001",
+      "file": "a1651f1cf31ccca0.svg",
+      "url": "https://glyphwiki.org/glyph/u4343-02-var-001.svg",
+      "sha256": "554891642cea16e30f594ae7a6934d2e06e222f0d542dd770b2c7e3614ab5b00"
+    },
+    "&GT-K00059;": {
+      "status": "ok",
+      "name": "gt-k00059",
+      "file": "b4a2632fbb70b0ac.svg",
+      "url": "https://glyphwiki.org/glyph/gt-k00059.svg",
+      "sha256": "cf0d9f506d92583dcdd9bae5daa9169566dc4c553829a0f067a62e2e9b31db32"
+    },
+    "&GT-K00822;": {
+      "status": "ok",
+      "name": "u2ff6-u3405-u2e80-var-001",
+      "file": "e0640c7acc2ab639.svg",
+      "url": "https://glyphwiki.org/glyph/u2ff6-u3405-u2e80-var-001.svg",
+      "sha256": "cbb876b38e528cd99b0569066380806a80daf4379c36e12f65543ae38cc53567"
+    },
+    "&GT-K01085;": {
+      "status": "ok",
+      "name": "u2ff1-u53b6-u5927-03",
+      "file": "2ffa7c7141fde9b3.svg",
+      "url": "https://glyphwiki.org/glyph/u2ff1-u53b6-u5927-03.svg",
+      "sha256": "fbba87f302bf5f8f2d779fbc24254e86cf7c57aa7b50eac1681dc5d32414844f"
+    },
+    "&GT-K01770;": {
+      "status": "ok",
+      "name": "gt-k01770",
+      "file": "26289782c957273c.svg",
+      "url": "https://glyphwiki.org/glyph/gt-k01770.svg",
+      "sha256": "914098a34c6322f4a662225e041a6478f3918ac29239768a69ab0d9a790ff299"
+    },
+    "&GT-K03318;": {
+      "status": "ok",
+      "name": "u81fd-02-var-001",
+      "file": "8d0d77a7b4185109.svg",
+      "url": "https://glyphwiki.org/glyph/u81fd-02-var-001.svg",
+      "sha256": "4fdf022cae3b120e7f47a1a27a3ab2669a85b6b5aa3bd47b3b18770351334030"
+    },
+    "&GT-K06261;": {
+      "status": "ok",
+      "name": "gt-k06261",
+      "file": "e8397efd62fffbd6.svg",
+      "url": "https://glyphwiki.org/glyph/gt-k06261.svg",
+      "sha256": "f720276072dd05fa3aea1f8b4728e88a52286a6be737bbdea7613bfc85fb1f23"
+    },
+    "&HD-TK-01032130;": {
+      "status": "ok",
+      "name": "u226f3-var-001",
+      "file": "6bd5831ae4141474.svg",
+      "url": "https://glyphwiki.org/glyph/u226f3-var-001.svg",
+      "sha256": "5830124bc2cffda256bb175ac646817a5245fca0b771f32a2a9bc73ad384fcb9"
+    },
+    "&MJ013489;": {
+      "status": "ok",
+      "name": "u66f7-02-var-002",
+      "file": "befda8aee51d5751.svg",
+      "url": "https://glyphwiki.org/glyph/u66f7-02-var-002.svg",
+      "sha256": "59497fe432ac7cd30125ad8155ce3619ce8fba3ce7937cf864255bdd557fe6e1"
+    },
+    "&U-i001+20541;": {
+      "status": "ok",
+      "name": "u20541",
+      "file": "3358561bea385585.svg",
+      "url": "https://glyphwiki.org/glyph/u20541.svg",
+      "sha256": "d4f1f1336b2f37f72898fd68e1b8c896fe712d2f1cbc4b919693db972f9d051d"
+    },
+    "𠀐": {
+      "status": "hanamin",
+      "codepoint": "U+20010"
+    },
+    "𠂆": {
+      "status": "hanamin",
+      "codepoint": "U+20086"
+    },
+    "𠂇": {
+      "status": "hanamin",
+      "codepoint": "U+20087"
+    },
+    "𠂉": {
+      "status": "hanamin",
+      "codepoint": "U+20089"
+    },
+    "𠂢": {
+      "status": "hanamin",
+      "codepoint": "U+200A2"
+    },
+    "𠂤": {
+      "status": "hanamin",
+      "codepoint": "U+200A4"
+    },
+    "𠃊": {
+      "status": "hanamin",
+      "codepoint": "U+200CA"
+    },
+    "𠃌": {
+      "status": "hanamin",
+      "codepoint": "U+200CC"
+    },
+    "𠃜": {
+      "status": "hanamin",
+      "codepoint": "U+200DC"
+    },
+    "𠆢": {
+      "status": "hanamin",
+      "codepoint": "U+201A2"
+    },
+    "𠔼": {
+      "status": "hanamin",
+      "codepoint": "U+2053C"
+    },
+    "𠘧": {
+      "status": "hanamin",
+      "codepoint": "U+20627"
+    },
+    "𠤕": {
+      "status": "hanamin",
+      "codepoint": "U+20915"
+    },
+    "𠦏": {
+      "status": "hanamin",
+      "codepoint": "U+2098F"
+    },
+    "𠦝": {
+      "status": "hanamin",
+      "codepoint": "U+2099D"
+    },
+    "𠧗": {
+      "status": "hanamin",
+      "codepoint": "U+209D7"
+    },
+    "𠩵": {
+      "status": "hanamin",
+      "codepoint": "U+20A75"
+    },
+    "𠫓": {
+      "status": "hanamin",
+      "codepoint": "U+20AD3"
+    },
+    "𠬝": {
+      "status": "hanamin",
+      "codepoint": "U+20B1D"
+    },
+    "𠬪": {
+      "status": "hanamin",
+      "codepoint": "U+20B2A"
+    },
+    "𠬶": {
+      "status": "hanamin",
+      "codepoint": "U+20B36"
+    },
+    "𠮛": {
+      "status": "hanamin",
+      "codepoint": "U+20B9B"
+    },
+    "𠮠": {
+      "status": "hanamin",
+      "codepoint": "U+20BA0"
+    },
+    "𠳋": {
+      "status": "hanamin",
+      "codepoint": "U+20CCB"
+    },
+    "𡈼": {
+      "status": "hanamin",
+      "codepoint": "U+2123C"
+    },
+    "𡗗": {
+      "status": "hanamin",
+      "codepoint": "U+215D7"
+    },
+    "𡨄": {
+      "status": "hanamin",
+      "codepoint": "U+21A04"
+    },
+    "𡩜": {
+      "status": "hanamin",
+      "codepoint": "U+21A5C"
+    },
+    "𡭴": {
+      "status": "hanamin",
+      "codepoint": "U+21B74"
+    },
+    "𡰯": {
+      "status": "hanamin",
+      "codepoint": "U+21C2F"
+    },
+    "𡱒": {
+      "status": "hanamin",
+      "codepoint": "U+21C52"
+    },
+    "𡱝": {
+      "status": "hanamin",
+      "codepoint": "U+21C5D"
+    },
+    "𡵉": {
+      "status": "hanamin",
+      "codepoint": "U+21D49"
+    },
+    "𡿪": {
+      "status": "hanamin",
+      "codepoint": "U+21FEA"
+    },
+    "𢀖": {
+      "status": "hanamin",
+      "codepoint": "U+22016"
+    },
+    "𢆉": {
+      "status": "hanamin",
+      "codepoint": "U+22189"
+    },
+    "𢆍": {
+      "status": "hanamin",
+      "codepoint": "U+2218D"
+    },
+    "𢆶": {
+      "status": "hanamin",
+      "codepoint": "U+221B6"
+    },
+    "𢎥": {
+      "status": "hanamin",
+      "codepoint": "U+223A5"
+    },
+    "𢦏": {
+      "status": "hanamin",
+      "codepoint": "U+2298F"
+    },
+    "𢼄": {
+      "status": "hanamin",
+      "codepoint": "U+22F04"
+    },
+    "𣈅": {
+      "status": "hanamin",
+      "codepoint": "U+23205"
+    },
+    "𣴎": {
+      "status": "hanamin",
+      "codepoint": "U+23D0E"
+    },
+    "𤋱": {
+      "status": "hanamin",
+      "codepoint": "U+242F1"
+    },
+    "𤣩": {
+      "status": "hanamin",
+      "codepoint": "U+248E9"
+    },
+    "𤮺": {
+      "status": "hanamin",
+      "codepoint": "U+24BBA"
+    },
+    "𤰇": {
+      "status": "hanamin",
+      "codepoint": "U+24C07"
+    },
+    "𤰔": {
+      "status": "hanamin",
+      "codepoint": "U+24C14"
+    },
+    "𤴓": {
+      "status": "hanamin",
+      "codepoint": "U+24D13"
+    },
+    "𦈢": {
+      "status": "hanamin",
+      "codepoint": "U+26222"
+    },
+    "𦍌": {
+      "status": "hanamin",
+      "codepoint": "U+2634C"
+    },
+    "𦍒": {
+      "status": "hanamin",
+      "codepoint": "U+26352"
+    },
+    "𦣻": {
+      "status": "hanamin",
+      "codepoint": "U+268FB"
+    },
+    "𦬇": {
+      "status": "hanamin",
+      "codepoint": "U+26B07"
+    },
+    "𦭝": {
+      "status": "hanamin",
+      "codepoint": "U+26B5D"
+    },
+    "𦰩": {
+      "status": "hanamin",
+      "codepoint": "U+26C29"
+    },
+    "𧈡": {
+      "status": "hanamin",
+      "codepoint": "U+27221"
+    },
+    "𧈧": {
+      "status": "hanamin",
+      "codepoint": "U+27227"
+    },
+    "𧘇": {
+      "status": "hanamin",
+      "codepoint": "U+27607"
+    },
+    "𧣈": {
+      "status": "hanamin",
+      "codepoint": "U+278C8"
+    },
+    "𧰨": {
+      "status": "hanamin",
+      "codepoint": "U+27C28"
+    },
+    "𧴪": {
+      "status": "hanamin",
+      "codepoint": "U+27D2A"
+    },
+    "𧾷": {
+      "status": "hanamin",
+      "codepoint": "U+27FB7"
+    },
+    "𨊠": {
+      "status": "hanamin",
+      "codepoint": "U+282A0"
+    },
+    "𨙵": {
+      "status": "hanamin",
+      "codepoint": "U+28675"
+    },
+    "𩵋": {
+      "status": "hanamin",
+      "codepoint": "U+29D4B"
+    },
+    "𪟊": {
+      "status": "hanamin",
+      "codepoint": "U+2A7CA"
+    },
+    "𪧷": {
+      "status": "hanamin",
+      "codepoint": "U+2A9F7"
+    },
+    "𫩠": {
+      "status": "hanamin",
+      "codepoint": "U+2BA60"
+    },
+    "𫲸": {
+      "status": "hanamin",
+      "codepoint": "U+2BCB8"
+    },
+    "𫵖": {
+      "status": "hanamin",
+      "codepoint": "U+2BD56"
+    },
+    "𬀷": {
+      "status": "hanamin",
+      "codepoint": "U+2C037"
+    },
+    "𬐚": {
+      "status": "hanamin",
+      "codepoint": "U+2C41A"
+    },
+    "𬗌": {
+      "status": "hanamin",
+      "codepoint": "U+2C5CC"
+    },
+    "𬺢": {
+      "status": "ok",
+      "name": "u2cea2",
+      "file": "02c77c0509efae69.svg",
+      "url": "https://glyphwiki.org/glyph/u2cea2.svg",
+      "sha256": "3f02a60702e4f5d7c0ca3cc43012a2163b44ffbdc72473b6cc4b2eec3820e0f2"
+    },
+    "𭔰": {
+      "status": "hanamin",
+      "codepoint": "U+2D530"
+    },
+    "𭕄": {
+      "status": "hanamin",
+      "codepoint": "U+2D544"
+    },
+    "𭤨": {
+      "status": "hanamin",
+      "codepoint": "U+2D928"
+    },
+    "𮂱": {
+      "status": "hanamin",
+      "codepoint": "U+2E0B1"
+    },
+    "𮥶": {
+      "status": "hanamin",
+      "codepoint": "U+2E976"
+    },
+    "冗": {
+      "status": "hanamin",
+      "codepoint": "U+2F817"
+    },
+    "叟": {
+      "status": "hanamin",
+      "codepoint": "U+2F837"
+    },
+    "直": {
+      "status": "hanamin",
+      "codepoint": "U+2F940"
+    },
+    "𰀁": {
+      "status": "ok",
+      "name": "u30001",
+      "file": "aac20950831c5fb3.svg",
+      "url": "https://glyphwiki.org/glyph/u30001.svg",
+      "sha256": "6d667f2fefa9d42992fa6ba13e367f5518dc0b50559c4f3047b81472e75198e8"
+    },
+    "𰀂": {
+      "status": "ok",
+      "name": "u30002",
+      "file": "eedfffee6cedc73e.svg",
+      "url": "https://glyphwiki.org/glyph/u30002.svg",
+      "sha256": "0ca41f4193183e0b659a2706b4cf5aca8f54803b1b5513a2ff452966fa3a824f"
+    },
+    "𰃦": {
+      "status": "ok",
+      "name": "u300e6",
+      "file": "eb0f12de2b51973f.svg",
+      "url": "https://glyphwiki.org/glyph/u300e6.svg",
+      "sha256": "ff4933c2a2f6c88547744e3e39b3bbf847d5480b82fead4bf931d5df702383f3"
+    },
+    "𰃮": {
+      "status": "ok",
+      "name": "u300ee",
+      "file": "75c08a163a8722c5.svg",
+      "url": "https://glyphwiki.org/glyph/u300ee.svg",
+      "sha256": "fcf1cd09076e24a4631af7f562b8788cc97c15add285a72d73252f72fafd8276"
+    },
+    "𰋷": {
+      "status": "ok",
+      "name": "u302f7",
+      "file": "635578cde2c05639.svg",
+      "url": "https://glyphwiki.org/glyph/u302f7.svg",
+      "sha256": "6028fa66d760a8e095edd6ebe0aced38f1af6cf51dc033e042fe6bb20f97051a"
+    },
+    "𰕎": {
+      "status": "ok",
+      "name": "u3054e",
+      "file": "cebe18a75127816b.svg",
+      "url": "https://glyphwiki.org/glyph/u3054e.svg",
+      "sha256": "ff5a0d465b828cf04198b1748161caeeea1340faea9215356614a68e0f2fcc94"
+    },
+    "𰮤": {
+      "status": "ok",
+      "name": "u30ba4",
+      "file": "0db8c99af28bf76e.svg",
+      "url": "https://glyphwiki.org/glyph/u30ba4.svg",
+      "sha256": "96c8e92b408173787767edb2f723b57cd33c57dfbeda4522ef39a72ce7ebf12e"
+    },
+    "𱐍": {
+      "status": "ok",
+      "name": "u3140d",
+      "file": "c2e88173dee7926c.svg",
+      "url": "https://glyphwiki.org/glyph/u3140d.svg",
+      "sha256": "d4ce9be54bddd0fb6772aa8f7ec4dfc240c867c0adf61cde43c270a11ca63dde"
+    },
+    "𱬹": {
+      "status": "ok",
+      "name": "u31b39",
+      "file": "4d367660c44f17ba.svg",
+      "url": "https://glyphwiki.org/glyph/u31b39.svg",
+      "sha256": "59b6f10b7f85595469e69dcdc2cc7f992822e22cc8965d0e22e2aed889f45ed3"
+    },
+    "𲰶": {
+      "status": "ok",
+      "name": "u32c36",
+      "file": "739ac7b5b6858d44.svg",
+      "url": "https://glyphwiki.org/glyph/u32c36.svg",
+      "sha256": "1ca5e76280500b4fc5415a8ec74a87ee54636dd2e6e5b9e540fed6dbde835b1b"
+    }
+  }
+}

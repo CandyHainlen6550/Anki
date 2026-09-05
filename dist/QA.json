@@ -1,0 +1,171 @@
+{
+  "notes": 3336,
+  "cards": 10008,
+  "counts_ok": true,
+  "stable_identity": {
+    "apkg_filename": "HT Joyo 2136.apkg",
+    "root_deck_present": true,
+    "model_id": "2084677010",
+    "model_id_ok": true,
+    "model_name": "HT Joyo 2136",
+    "model_name_ok": true,
+    "no_version_suffix_in_deck_or_model_names": true
+  },
+  "repo_order": {
+    "sc1_exact_match": true,
+    "sc2_exact_match": true,
+    "sc1_count": 400,
+    "sc2_count": 800,
+    "sc1_sha256": "40a7a19ad0fcfb1cd71f3b3b57f18a7a6f1e48074ff81798e90360fc60edb1c0",
+    "sc2_sha256": "7ecefb6e62790a4f1f8e855cfec984c1abe1119d6e1bc58dec6ab4007b96f166"
+  },
+  "fields": {
+    "field_names": [
+      "Kanji",
+      "HanViet",
+      "Meaning",
+      "On",
+      "Kun",
+      "KunWords",
+      "Furigana",
+      "Mnemonic",
+      "Key",
+      "KvgFile",
+      "StrokeDataB64",
+      "StrokeSVG",
+      "Disambiguator",
+      "ComponentsHTML",
+      "StrokeCount"
+    ],
+    "exact_current_schema": true,
+    "formation_field_removed": true,
+    "native_furigana_filter": true
+  },
+  "fronts": {
+    "reverse_meaning_visible": true,
+    "writing_meaning_visible": true
+  },
+  "writer": {
+    "embedded_stroke_data_present": true,
+    "auto_flip_bridge": true,
+    "tappable_writer": true,
+    "stable_pointer_capture": true,
+    "lost_pointer_recovery": true,
+    "flip_fix": true
+  },
+  "components": {
+    "strategy": "HanaMin SVG outlines for rare Unicode; embedded GlyphWiki SVG for named entities; KanjiVG only for stroke order",
+    "kanjivg_used_for_unresolved_components": false,
+    "entity_code_fallback_count": 0,
+    "runtime_component_url_count": 0,
+    "hanamin_svg_notes": 247,
+    "glyphwiki_embedded_notes": 177,
+    "builder_missing_entities": [],
+    "builder_missing_unicode": [],
+    "examples": {
+      "図": [
+        {
+          "tags": " joyo2136 repo_order course::sc1 page::2 ",
+          "has_hanamin": false,
+          "has_glyphwiki": true,
+          "has_entity_code": false,
+          "text": "囗 Vi bao bên ngoài phần nghĩa Nghĩa bao quanh, vây quanh (phạm vi) Mẹo nhớ Hình 囗 gợi trực tiếp dáng/ý “bao quanh”. — bên trong thành phần hình thể Nghĩa — Mẹo nhớ —"
+        },
+        {
+          "tags": " joyo2136 repo_order course::sc2 page::2 ",
+          "has_hanamin": false,
+          "has_glyphwiki": true,
+          "has_entity_code": false,
+          "text": "囗 Vi bao bên ngoài phần nghĩa Nghĩa bao quanh, vây quanh (phạm vi) Mẹo nhớ Hình 囗 gợi trực tiếp dáng/ý “bao quanh”. — bên trong thành phần hình thể Nghĩa — Mẹo nhớ —"
+        },
+        {
+          "tags": " joyo2136 repo_order course::all ",
+          "has_hanamin": false,
+          "has_glyphwiki": true,
+          "has_entity_code": false,
+          "text": "囗 Vi enclosure phần nghĩa Nghĩa bao quanh, vây quanh (phạm vi) Mẹo nhớ Hình 囗 gợi trực tiếp dáng/ý “bao quanh”. — bên trong thành phần hình thể Nghĩa — Mẹo nhớ —"
+        }
+      ],
+      "卒": [
+        {
+          "tags": " joyo2136 repo_order course::sc1 page::2 ",
+          "has_hanamin": true,
+          "has_glyphwiki": false,
+          "has_entity_code": false,
+          "text": "亠 Đầu phía trên thành phần hình thể Nghĩa nét trên đầu của một số chữ Mẹo nhớ Gắn hình 亠 với ý “nét trên đầu của một số chữ” khi gặp nó trong chữ ghép. — phía dưới thành phần hình thể Nghĩa — Mẹo nhớ —"
+        },
+        {
+          "tags": " joyo2136 repo_order course::sc2 page::2 ",
+          "has_hanamin": true,
+          "has_glyphwiki": false,
+          "has_entity_code": false,
+          "text": "亠 Đầu phía trên thành phần hình thể Nghĩa nét trên đầu của một số chữ Mẹo nhớ Gắn hình 亠 với ý “nét trên đầu của một số chữ” khi gặp nó trong chữ ghép. — phía dưới thành phần hình thể Nghĩa — Mẹo nhớ —"
+        },
+        {
+          "tags": " joyo2136 repo_order course::all ",
+          "has_hanamin": true,
+          "has_glyphwiki": false,
+          "has_entity_code": false,
+          "text": "亠 Đầu phía trên thành phần hình thể Nghĩa nét trên đầu của một số chữ Mẹo nhớ Gắn hình 亠 với ý “nét trên đầu của một số chữ” khi gặp nó trong chữ ghép. — phía dưới thành phần hình thể Nghĩa — Mẹo nhớ —"
+        }
+      ]
+    },
+    "図_exact_glyph_render_ok": true,
+    "卒_rare_glyph_render_ok": true
+  },
+  "js_syntax": {
+    "node_available": true,
+    "checked": 6,
+    "all_ok": true,
+    "details": [
+      {
+        "template": "01 Kanji → Hán Việt",
+        "side": "afmt",
+        "script": 1,
+        "ok": true,
+        "stderr": ""
+      },
+      {
+        "template": "02 Hán Việt → Kanji",
+        "side": "afmt",
+        "script": 1,
+        "ok": true,
+        "stderr": ""
+      },
+      {
+        "template": "03 Viết Kanji",
+        "side": "qfmt",
+        "script": 1,
+        "ok": true,
+        "stderr": ""
+      },
+      {
+        "template": "03 Viết Kanji",
+        "side": "afmt",
+        "script": 1,
+        "ok": true,
+        "stderr": ""
+      },
+      {
+        "template": "03 Viết Kanji",
+        "side": "afmt",
+        "script": 2,
+        "ok": true,
+        "stderr": ""
+      },
+      {
+        "template": "03 Viết Kanji",
+        "side": "afmt",
+        "script": 3,
+        "ok": true,
+        "stderr": ""
+      }
+    ]
+  },
+  "back_sections": {
+    "Thành phần": true,
+    "Thứ tự nét": true,
+    "Nguồn gốc cấu tạo removed": true
+  },
+  "ok": true
+}

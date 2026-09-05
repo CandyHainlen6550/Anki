@@ -1,0 +1,50 @@
+{
+  "notes": 3336,
+  "cards": 10008,
+  "subsets": {
+    "sc1": {
+      "label": "Sơ cấp 1",
+      "notes": 400,
+      "cards": 1200
+    },
+    "sc2": {
+      "label": "Sơ cấp 2",
+      "notes": 800,
+      "cards": 2400
+    },
+    "all": {
+      "notes": 2136,
+      "cards": 6408
+    }
+  },
+  "root_deck": "HT Joyo 2136",
+  "repo_order_exact": true,
+  "new_card_order": "added/due sequence",
+  "detailed_back_sections": [
+    "Thành phần",
+    "Thứ tự nét"
+  ],
+  "formation_field_removed": true,
+  "furigana_filter": "{{furigana:Furigana}}",
+  "component_glyphs": {
+    "strategy": "HanaMin SVG outlines for rare Unicode; embedded GlyphWiki SVG for named entities; KanjiVG only for stroke order",
+    "hanamin_unicode": 82,
+    "hanamin_entity_unicode": 0,
+    "glyphwiki": 93,
+    "glyphwiki_unicode_fallback": 11,
+    "entity_code_fallback": 0,
+    "missing_entities": [],
+    "missing_unicode": []
+  },
+  "unresolved_entity_kvg_fallback": false,
+  "embedded_stroke_records": 3336,
+  "derived_variant_stroke_records": 4,
+  "runtime_kanjivg_fallback": false,
+  "offline_stroke_rendering": true,
+  "inline_svg_embedded": true,
+  "colored_auto_animation": true,
+  "missing_embedded_strokes": 0,
+  "missing": [],
+  "output": "dist/HT Joyo 2136.apkg",
+  "size_bytes": 5180979
+}
