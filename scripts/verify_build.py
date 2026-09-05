@@ -35,7 +35,10 @@ def main():
         models=json.loads(c.execute('select models from col').fetchone()[0]); decks=json.loads(c.execute('select decks from col').fetchone()[0]); model=list(models.values())[0]
         notes=c.execute('select count(*) from notes').fetchone()[0]; cards=c.execute('select count(*) from cards').fetchone()[0]
         def order(did):
-            rs=c.execute('select n.flds,c.due from cards c join notes n on n.id=c.nid where c.did=? and c.ord=0 order by c.due',(did,)).fetchall()
+            parent_name=decks[str(did)]['name']
+            dids=[int(k) for k,d in decks.items() if d.get('name')==parent_name or d.get('name','').startswith(parent_name+'::')]
+            marks=','.join('?' for _ in dids)
+            rs=c.execute(f'select n.flds,c.due from cards c join notes n on n.id=c.nid where c.did in ({marks}) and c.ord=0 order by c.due',dids).fetchall()
             return [x[0].split('\x1f')[0] for x in rs]
         actual1,actual2=order(SC1_DID),order(SC2_DID)
         fields=[f['name'] for f in model['flds']]; fidx={n:i for i,n in enumerate(fields)}

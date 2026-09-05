@@ -42,6 +42,16 @@ SUBSET_DECKS = {
     'all': (DECK_ALL_K2HV, DECK_ALL_HV2K, DECK_ALL_WRITE),
 }
 
+def page_deck_id(parent_did,page):
+    # Stable child deck ID: existing mode deck ID + repo page.
+    return int(parent_did)*100+int(page)
+
+def repo_pages(rows):
+    pages=sorted({int(r.get('repo_page') or 0) for r in rows})
+    if not pages or pages[0] < 1:
+        raise ValueError('Sơ cấp repo rows must contain valid page numbers.')
+    return pages
+
 FIELDS = [
     'Kanji','HanViet','Meaning','On','Kun','KunWords','Furigana','Mnemonic',
     'Key','KvgFile','StrokeDataB64','StrokeSVG','Disambiguator','ComponentsHTML','StrokeCount'
@@ -639,6 +649,7 @@ def build(source,output,kvg_dir=None,stroke_meta=None,timestamp=None,sc1_source=
     if len(sc1_raw)!=400:raise ValueError(f'Expected repo Sơ cấp 1 = 400 rows, got {len(sc1_raw)}')
     if len(sc2_raw)!=800:raise ValueError(f'Expected repo Sơ cấp 2 = 800 rows, got {len(sc2_raw)}')
     sc1_rows=[normalize_repo_row(r) for r in sc1_raw]; sc2_rows=[normalize_repo_row(r) for r in sc2_raw]
+    page_sets={'sc1':repo_pages(sc1_rows),'sc2':repo_pages(sc2_rows)}
 
     visual_index=collections.defaultdict(list)
     for x in data.get('visual_components_l1',[]):visual_index[x.get('kanji')].append(x)
@@ -652,7 +663,12 @@ def build(source,output,kvg_dir=None,stroke_meta=None,timestamp=None,sc1_source=
     conn=sqlite3.connect(dbpath);c=conn.cursor();c.executescript(SCHEMA)
     conf={'activeDecks':[DECK_ROOT],'addToCur':True,'collapseTime':1200,'curDeck':DECK_ROOT,'curModel':str(MODEL_ID),'dueCounts':True,'estTimes':True,'newBury':True,'newSpread':0,'nextPos':1,'sortBackwards':False,'sortType':'noteFld','timeLim':0}
     dconf={'1':{'autoplay':True,'id':1,'lapse':{'delays':[10],'leechAction':0,'leechFails':8,'minInt':1,'mult':0},'maxTaken':60,'mod':0,'name':'Default','new':{'bury':True,'delays':[1,10],'initialFactor':2500,'ints':[1,4,7],'order':0,'perDay':9999,'separate':True},'replayq':True,'rev':{'bury':True,'ease4':1.3,'fuzz':0.05,'ivlFct':1,'maxIvl':36500,'minSpace':1,'perDay':9999},'timer':0,'usn':0}}
-    decks={str(k):deck_json(k,v,ts,'Sơ cấp 1 / Sơ cấp 2 lấy đúng danh sách + thứ tự từ repo; All = 2136.' if k==DECK_ROOT else '') for k,v in DECK_NAMES.items()}
+    deck_names=dict(DECK_NAMES)
+    for subset in ('sc1','sc2'):
+        for parent_did in SUBSET_DECKS[subset]:
+            for page in page_sets[subset]:
+                deck_names[page_deck_id(parent_did,page)]=DECK_NAMES[parent_did]+f'::Trang {page}'
+    decks={str(k):deck_json(k,v,ts,'Sơ cấp 1 / Sơ cấp 2 lấy đúng danh sách + thứ tự + trang từ repo; All = 2136.' if k==DECK_ROOT else '') for k,v in deck_names.items()}
     models={str(MODEL_ID):model_json(ts)}
     c.execute('INSERT INTO col VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)',(1,ts,ts*1000,ts*1000,11,0,0,0,json.dumps(conf,ensure_ascii=False),json.dumps(models,ensure_ascii=False),json.dumps(decks,ensure_ascii=False),json.dumps(dconf),json.dumps({})))
     base=ts*1000; note_seq=0; stroke_embedded=0; derived_strokes=0; missing=[]
@@ -682,7 +698,11 @@ def build(source,output,kvg_dir=None,stroke_meta=None,timestamp=None,sc1_source=
             for idx,v in enumerate(raw): vals.append(str(v or '') if idx in (11,13) else safe(v))
             flds='\x1f'.join(vals)
             nid=base+note_seq*8; c.execute('INSERT INTO notes VALUES(?,?,?,?,?,?,?,?,?,?,?)',(nid,stable_guid(subset,unique),MODEL_ID,ts,-1,' '+' '.join(t for t in tags if not t.endswith('::'))+' ',flds,ch,0,0,''))
-            for ord_,did in enumerate(SUBSET_DECKS[subset]):
+            for ord_,parent_did in enumerate(SUBSET_DECKS[subset]):
+                if subset in ('sc1','sc2'):
+                    did=page_deck_id(parent_did,int(r.get('repo_page') or 0))
+                else:
+                    did=parent_did
                 cid=nid+ord_+1;c.execute('INSERT INTO cards VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',(cid,nid,did,ord_,ts,-1,0,0,i,0,0,0,0,0,0,0,0,''))
     conn.commit();conn.close();output=Path(output);output.parent.mkdir(parents=True,exist_ok=True)
     with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as z:z.write(dbpath,'collection.anki2');z.writestr('media','{}')
