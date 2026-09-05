@@ -234,12 +234,19 @@
   },
   "js_syntax": {
     "node_available": true,
-    "checked": 6,
+    "checked": 7,
     "all_ok": true,
     "details": [
       {
         "template": "01 Kanji → Hán Việt",
         "side": "afmt",
+        "script": 1,
+        "ok": true,
+        "stderr": ""
+      },
+      {
+        "template": "02 Hán Việt → Kanji",
+        "side": "qfmt",
         "script": 1,
         "ok": true,
         "stderr": ""
