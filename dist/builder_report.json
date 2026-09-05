@@ -1,6 +1,6 @@
 {
-  "notes": 3336,
-  "cards": 10008,
+  "notes": 3380,
+  "cards": 10140,
   "subsets": {
     "sc1": {
       "label": "Sơ cấp 1",
@@ -9,13 +9,37 @@
     },
     "sc2": {
       "label": "Sơ cấp 2",
-      "notes": 800,
-      "cards": 2400
+      "notes": 844,
+      "cards": 2532
     },
     "all": {
       "notes": 2136,
       "cards": 6408
     }
+  },
+  "repo_pages": {
+    "sc1": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "sc2": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
   },
   "root_deck": "HT Joyo 2136",
   "repo_order_exact": true,
@@ -37,7 +61,7 @@
     "missing_unicode": []
   },
   "unresolved_entity_kvg_fallback": false,
-  "embedded_stroke_records": 3336,
+  "embedded_stroke_records": 3380,
   "derived_variant_stroke_records": 4,
   "runtime_kanjivg_fallback": false,
   "offline_stroke_rendering": true,
@@ -46,5 +70,5 @@
   "missing_embedded_strokes": 0,
   "missing": [],
   "output": "dist/HT Joyo 2136.apkg",
-  "size_bytes": 5186467
+  "size_bytes": 5266859
 }
