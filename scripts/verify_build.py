@@ -12,6 +12,12 @@ EXPECTED_FIELDS=['Kanji','HanViet','Meaning','On','Kun','KunWords','Furigana','M
 
 def sha_order(chars): return hashlib.sha256(''.join(chars).encode('utf-8')).hexdigest()
 def strip_html(s): return re.sub(r'\s+',' ',re.sub(r'<[^>]+>',' ',html.unescape(s or ''))).strip()
+# Count only URLs that can actually trigger a runtime network fetch.
+# Inline SVG namespaces (for example xmlns="http://www.w3.org/2000/svg")
+# are identifiers, not network resources.
+REMOTE_RESOURCE_RE = re.compile(
+    r'''(?i)(?:\b(?:src|href|xlink:href)\s*=\s*["']https?://|url\(\s*["']?https?://)'''
+)
 
 def main():
     ap=argparse.ArgumentParser()
@@ -41,7 +47,7 @@ def main():
             for tags,flds in rows:
                 vals=flds.split('\x1f'); comp=vals[fidx['ComponentsHTML']]
                 component_stats['entity_code_fallbacks']+=comp.count('comp-entity-code')
-                component_stats['remote_urls']+=comp.count('https://')+comp.count('http://')
+                component_stats['remote_urls']+=len(REMOTE_RESOURCE_RE.findall(comp))
                 if 'hanamin-glyph' in comp: component_stats['hanamin_svg_notes']+=1
                 if 'data:image/svg+xml;base64,' in comp: component_stats['glyphwiki_embedded_notes']+=1
             for target in ('図','卒'):
