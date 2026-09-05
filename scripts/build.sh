@@ -15,7 +15,7 @@ HMA=build/sources/chinese/fonts/HanaMin/HanaMinA.ttf
 HMB=build/sources/chinese/fonts/HanaMin/HanaMinB.ttf
 GW=build/glyphwiki/manifest.json
 
-python3 builder/build_anki.py \
+python3 scripts/build_anki_entry.py \
   --source data/master/joyo2136_learning_bundle.json \
   --sc1-source "$SC1" \
   --sc2-source "$SC2" \

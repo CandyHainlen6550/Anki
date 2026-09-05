@@ -4,13 +4,31 @@ from pathlib import Path
 
 SC1_DID=2084677101
 SC2_DID=2084677201
-EXPECTED_NOTES=3336
-EXPECTED_CARDS=10008
+SC1_MODE_DIDS=(2084677101,2084677102,2084677103)
+SC2_MODE_DIDS=(2084677201,2084677202,2084677203)
+EXPECTED_NOTES=3380
+EXPECTED_CARDS=10140
+EXPECTED_SC2_COUNT=844
+EXPECTED_SC2_COMPONENTS=83
+EXPECTED_SC2_PAGES={1:100,2:100,3:100,4:100,5:100,6:100,7:100,8:100,9:44}
+EXPECTED_SC2_SHA256='961b08f01dce5c50295e69d0172fbd3f5d8733a99afb5536fbc531247d552e94'
+EXPECTED_SC2_BOX_SHA256='b50cb31037d4221afd6bb05d24b872262710d68a6255962ac0ed39f61364cd21'
 EXPECTED_ROOT='HT Joyo 2136'
 EXPECTED_MODEL_ID='2084677010'
 EXPECTED_FIELDS=['Kanji','HanViet','Meaning','On','Kun','KunWords','Furigana','Mnemonic','Key','KvgFile','StrokeDataB64','StrokeSVG','Disambiguator','ComponentsHTML','StrokeCount']
 
 def sha_order(chars): return hashlib.sha256(''.join(chars).encode('utf-8')).hexdigest()
+def source_page_counts(rows):
+    out={}
+    for r in rows:
+        p=int(r.get('page') or 0)
+        out[p]=out.get(p,0)+1
+    return dict(sorted(out.items()))
+def boxed_signature(rows):
+    return hashlib.sha256('|'.join(
+        f"{i}:{r.get('kanji','')}" for i,r in enumerate(rows,1)
+        if r.get('formationType')=='component'
+    ).encode('utf-8')).hexdigest()
 def strip_html(s): return re.sub(r'\s+',' ',re.sub(r'<[^>]+>',' ',html.unescape(s or ''))).strip()
 # Count only URLs that can actually trigger a runtime network fetch.
 # Inline SVG namespaces (for example xmlns="http://www.w3.org/2000/svg")
@@ -25,8 +43,21 @@ def main():
     ap.add_argument('--builder-report'); ap.add_argument('--output')
     a=ap.parse_args()
     if Path(a.apkg).name!='HT Joyo 2136.apkg': raise SystemExit('APKG filename must stay exactly "HT Joyo 2136.apkg"')
-    sc1=[r['kanji'] for r in json.load(open(a.sc1,encoding='utf-8'))]
-    sc2=[r['kanji'] for r in json.load(open(a.sc2,encoding='utf-8'))]
+    sc1_rows=json.load(open(a.sc1,encoding='utf-8'))
+    sc2_rows=json.load(open(a.sc2,encoding='utf-8'))
+    sc1=[r['kanji'] for r in sc1_rows]
+    sc2=[r['kanji'] for r in sc2_rows]
+    sc2_pages=source_page_counts(sc2_rows)
+    sc2_component_count=sum(r.get('formationType')=='component' for r in sc2_rows)
+    sc2_source_ok=(
+        len(sc2_rows)==EXPECTED_SC2_COUNT
+        and sc2_pages==EXPECTED_SC2_PAGES
+        and sc2_component_count==EXPECTED_SC2_COMPONENTS
+        and sha_order(sc2)==EXPECTED_SC2_SHA256
+        and boxed_signature(sc2_rows)==EXPECTED_SC2_BOX_SHA256
+        and sc2_rows[357].get('sourceDisplay')=='~阝'
+        and sc2_rows[361].get('sourceDisplay')=='阝~'
+    )
     builder=json.load(open(a.builder_report,encoding='utf-8')) if a.builder_report else {}
 
     with tempfile.TemporaryDirectory() as td:
@@ -40,7 +71,27 @@ def main():
             marks=','.join('?' for _ in dids)
             rs=c.execute(f'select n.flds,c.due from cards c join notes n on n.id=c.nid where c.did in ({marks}) and c.ord=0 order by c.due',dids).fetchall()
             return [x[0].split('\x1f')[0] for x in rs]
+        def page_counts(parent_did):
+            parent_name=decks[str(parent_did)]['name']
+            prefix=parent_name+'::Trang '
+            found={}
+            for did_s,d in decks.items():
+                name=d.get('name','')
+                if not name.startswith(prefix): continue
+                page_text=name[len(prefix):]
+                if not page_text.isdigit(): continue
+                found[int(page_text)]=c.execute('select count(*) from cards where did=?',(int(did_s),)).fetchone()[0]
+            return dict(sorted(found.items()))
         actual1,actual2=order(SC1_DID),order(SC2_DID)
+        expected_sc1_pages=source_page_counts(sc1_rows)
+        page_layout={
+            'sc1':{str(did):page_counts(did) for did in SC1_MODE_DIDS},
+            'sc2':{str(did):page_counts(did) for did in SC2_MODE_DIDS},
+        }
+        page_layout_ok=(
+            all(x==expected_sc1_pages for x in page_layout['sc1'].values())
+            and all(x==EXPECTED_SC2_PAGES for x in page_layout['sc2'].values())
+        )
         fields=[f['name'] for f in model['flds']]; fidx={n:i for i,n in enumerate(fields)}
         rows=c.execute('select tags,flds from notes').fetchall()
         first_vals=next(f for t,f in rows if f.split('\x1f')[0]=='一').split('\x1f'); first=dict(zip(fields,first_vals))
@@ -81,9 +132,11 @@ def main():
         'model_name':model.get('name'),'model_name_ok':model.get('name')==EXPECTED_ROOT,
         'no_version_suffix_in_deck_or_model_names':not any(re.search(r'\bv\d+\b',n or '',re.I) for n in deck_names+[model.get('name') or ''])},
       'repo_order':{'sc1_exact_match':actual1==sc1,'sc2_exact_match':actual2==sc2,'sc1_count':len(actual1),'sc2_count':len(actual2),'sc1_sha256':sha_order(actual1),'sc2_sha256':sha_order(actual2)},
+      'sc2_canonical_source':{'ok':sc2_source_ok,'count':len(sc2_rows),'boxed_count':sc2_component_count,'pages':sc2_pages,'sequence_sha256':sha_order(sc2),'boxed_sha256':boxed_signature(sc2_rows),'right_radical_marker':sc2_rows[357].get('sourceDisplay'),'left_radical_marker':sc2_rows[361].get('sourceDisplay')},
+      'page_hierarchy':{'ok':page_layout_ok,'sc1_expected':expected_sc1_pages,'sc2_expected':EXPECTED_SC2_PAGES,'actual':page_layout},
       'fields':{'field_names':fields,'exact_current_schema':fields==EXPECTED_FIELDS,'formation_field_removed':'FormationHTML' not in fields,'native_furigana_filter':'{{furigana:Furigana}}' in model_text},
-      'fronts':{'reverse_meaning_visible':'Nghĩa: {{Meaning}}' in model['tmpls'][1]['qfmt'],'reverse_writer_enabled':'data-key="hv2k:{{Key}}"' in model['tmpls'][1]['qfmt'] and 'data-strokes="{{StrokeDataB64}}"' in model['tmpls'][1]['qfmt'],'writing_meaning_visible':'Nghĩa: {{Meaning}}' in model['tmpls'][2]['qfmt']},
-      'writer':{'embedded_stroke_data_present':bool(first.get('StrokeDataB64')),'auto_flip_bridge':'ankitap' in model_text,'tappable_writer':'tappable' in model['tmpls'][2]['qfmt'],'stable_pointer_capture':'setPointerCapture' in model_text,'lost_pointer_recovery':'lostpointercapture' in model_text,'flip_fix':'Bạn đã lật sớm' in model_text},
+      'fronts':{'reverse_meaning_visible':'Nghĩa: {{Meaning}}' in model['tmpls'][1]['qfmt'],'writing_meaning_visible':'Nghĩa: {{Meaning}}' in model['tmpls'][2]['qfmt']},
+      'writer':{'embedded_stroke_data_present':bool(first.get('StrokeDataB64')),'auto_flip_bridge':'ankitap' in model_text,'tappable_writer':'tappable' in model['tmpls'][2]['qfmt'],'stable_pointer_capture':'setPointerCapture' in model_text,'lost_pointer_recovery':'lostpointercapture' in model_text,'flip_fix':'Bạn đã lật sớm' in model_text,'missing_embedded_strokes':int(builder.get('missing_embedded_strokes') or 0),'all_strokes_embedded':int(builder.get('missing_embedded_strokes') or 0)==0},
       'components':{
         'strategy':glyph_report.get('strategy'),
         'kanjivg_used_for_unresolved_components':bool(builder.get('unresolved_entity_kvg_fallback')),
@@ -102,7 +155,7 @@ def main():
     sotsu_ok=bool(examples.get('卒')) and all((x['has_hanamin'] or x['has_glyphwiki']) and not x['has_entity_code'] for x in examples['卒'])
     result['components']['図_exact_glyph_render_ok']=fig_ok
     result['components']['卒_rare_glyph_render_ok']=sotsu_ok
-    ok=(result['counts_ok'] and result['stable_identity']['root_deck_present'] and result['stable_identity']['model_id_ok'] and result['stable_identity']['model_name_ok'] and result['stable_identity']['no_version_suffix_in_deck_or_model_names'] and result['repo_order']['sc1_exact_match'] and result['repo_order']['sc2_exact_match'] and result['fields']['exact_current_schema'] and result['fields']['formation_field_removed'] and result['fields']['native_furigana_filter'] and result['fronts']['reverse_meaning_visible'] and result['fronts']['reverse_writer_enabled'] and result['fronts']['writing_meaning_visible'] and result['writer']['embedded_stroke_data_present'] and result['writer']['auto_flip_bridge'] and result['writer']['stable_pointer_capture'] and result['writer']['lost_pointer_recovery'] and result['writer']['flip_fix'] and not result['components']['kanjivg_used_for_unresolved_components'] and result['components']['entity_code_fallback_count']==0 and result['components']['runtime_component_url_count']==0 and not result['components']['builder_missing_entities'] and not result['components']['builder_missing_unicode'] and fig_ok and sotsu_ok and result['js_syntax']['all_ok'] and all(result['back_sections'].values()))
+    ok=(result['counts_ok'] and result['stable_identity']['root_deck_present'] and result['stable_identity']['model_id_ok'] and result['stable_identity']['model_name_ok'] and result['stable_identity']['no_version_suffix_in_deck_or_model_names'] and result['repo_order']['sc1_exact_match'] and result['repo_order']['sc2_exact_match'] and result['sc2_canonical_source']['ok'] and result['page_hierarchy']['ok'] and result['fields']['exact_current_schema'] and result['fields']['formation_field_removed'] and result['fields']['native_furigana_filter'] and result['fronts']['reverse_meaning_visible'] and result['fronts']['writing_meaning_visible'] and result['writer']['embedded_stroke_data_present'] and result['writer']['auto_flip_bridge'] and result['writer']['stable_pointer_capture'] and result['writer']['lost_pointer_recovery'] and result['writer']['flip_fix'] and result['writer']['all_strokes_embedded'] and not result['components']['kanjivg_used_for_unresolved_components'] and result['components']['entity_code_fallback_count']==0 and result['components']['runtime_component_url_count']==0 and not result['components']['builder_missing_entities'] and not result['components']['builder_missing_unicode'] and fig_ok and sotsu_ok and result['js_syntax']['all_ok'] and all(result['back_sections'].values()))
     result['ok']=ok
     text=json.dumps(result,ensure_ascii=False,indent=2)
     if a.output:Path(a.output).write_text(text,encoding='utf-8')
