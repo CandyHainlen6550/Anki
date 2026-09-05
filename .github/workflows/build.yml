@@ -87,10 +87,14 @@ jobs:
           from pathlib import Path
           qa=json.loads(Path('dist/QA.json').read_text(encoding='utf-8'))
           assert qa.get('ok') is True, qa
-          assert qa.get('notes') == 3336
-          assert qa.get('cards') == 10008
+          assert qa.get('counts_ok') is True, qa
+          assert qa.get('notes') == 3380
+          assert qa.get('cards') == 10140
+          assert qa.get('repo_order', {}).get('sc1_count') == 400
+          assert qa.get('repo_order', {}).get('sc2_count') == 844
+          assert qa.get('sc2_canonical_source', {}).get('ok') is True
           assert qa['stable_identity']['apkg_filename'] == 'HT Joyo 2136.apkg'
-          print('Build QA OK: HT Joyo 2136')
+          print('Build QA OK: HT Joyo 2136 — 3380 notes / 10140 cards')
           PY
 
       - name: Commit verified dist
