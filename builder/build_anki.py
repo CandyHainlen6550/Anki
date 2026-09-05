@@ -647,7 +647,7 @@ def build(source,output,kvg_dir=None,stroke_meta=None,timestamp=None,sc1_source=
     if not sc1_source or not sc2_source:raise ValueError('This build requires --sc1-source and --sc2-source from repo public/data.')
     sc1_raw=json.load(open(sc1_source,encoding='utf-8')); sc2_raw=json.load(open(sc2_source,encoding='utf-8'))
     if len(sc1_raw)!=400:raise ValueError(f'Expected repo Sơ cấp 1 = 400 rows, got {len(sc1_raw)}')
-    if len(sc2_raw)!=800:raise ValueError(f'Expected repo Sơ cấp 2 = 800 rows, got {len(sc2_raw)}')
+    if len(sc2_raw)!=844:raise ValueError(f'Expected canonical repo Sơ cấp 2 = 844 rows (HT800_1→HT800_9), got {len(sc2_raw)}')
     sc1_rows=[normalize_repo_row(r) for r in sc1_raw]; sc2_rows=[normalize_repo_row(r) for r in sc2_raw]
     page_sets={'sc1':repo_pages(sc1_rows),'sc2':repo_pages(sc2_rows)}
 
@@ -668,7 +668,7 @@ def build(source,output,kvg_dir=None,stroke_meta=None,timestamp=None,sc1_source=
         for parent_did in SUBSET_DECKS[subset]:
             for page in page_sets[subset]:
                 deck_names[page_deck_id(parent_did,page)]=DECK_NAMES[parent_did]+f'::Trang {page}'
-    decks={str(k):deck_json(k,v,ts,'Sơ cấp 1 / Sơ cấp 2 lấy đúng danh sách + thứ tự + trang từ repo; All = 2136.' if k==DECK_ROOT else '') for k,v in deck_names.items()}
+    decks={str(k):deck_json(k,v,ts,'Sơ cấp 1 / Sơ cấp 2 lấy đúng danh sách + thứ tự + trang từ repo. HT800 là tên khóa lịch sử; bảng chuẩn hiện có 844 ô / 83 ô bộ thủ. All = 2136.' if k==DECK_ROOT else '') for k,v in deck_names.items()}
     models={str(MODEL_ID):model_json(ts)}
     c.execute('INSERT INTO col VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)',(1,ts,ts*1000,ts*1000,11,0,0,0,json.dumps(conf,ensure_ascii=False),json.dumps(models,ensure_ascii=False),json.dumps(decks,ensure_ascii=False),json.dumps(dconf),json.dumps({})))
     base=ts*1000; note_seq=0; stroke_embedded=0; derived_strokes=0; missing=[]
@@ -708,8 +708,9 @@ def build(source,output,kvg_dir=None,stroke_meta=None,timestamp=None,sc1_source=
     with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as z:z.write(dbpath,'collection.anki2');z.writestr('media','{}')
     dbpath.unlink()
     return {
-      'notes':3336,'cards':10008,
-      'subsets':{'sc1':{'label':'Sơ cấp 1','notes':400,'cards':1200},'sc2':{'label':'Sơ cấp 2','notes':800,'cards':2400},'all':{'notes':2136,'cards':6408}},
+      'notes':3380,'cards':10140,
+      'subsets':{'sc1':{'label':'Sơ cấp 1','notes':400,'cards':1200},'sc2':{'label':'Sơ cấp 2','notes':844,'cards':2532},'all':{'notes':2136,'cards':6408}},
+      'repo_pages':{'sc1':page_sets['sc1'],'sc2':page_sets['sc2']},
       'root_deck':ROOT_NAME,'repo_order_exact':True,'new_card_order':'added/due sequence','detailed_back_sections':['Thành phần','Thứ tự nét'],'formation_field_removed':True,'furigana_filter':'{{furigana:Furigana}}','component_glyphs':glyph_renderer.report(),'unresolved_entity_kvg_fallback':False,
       'embedded_stroke_records':stroke_embedded,'derived_variant_stroke_records':derived_strokes,'runtime_kanjivg_fallback':False,'offline_stroke_rendering':True,
       'inline_svg_embedded':True,'colored_auto_animation':True,'missing_embedded_strokes':len(missing),'missing':missing,'output':str(output),'size_bytes':output.stat().st_size
