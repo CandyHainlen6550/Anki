@@ -76,17 +76,16 @@ jobs:
 
           p = Path('builder/build_anki.py')
           s = p.read_text(encoding='utf-8')
-          marker = "p.style.strokeDasharray=String(L)+' '+String(L)"
-          if marker not in s:
-              old = "hintBtn.addEventListener('click',function(){if(idx>=paths.length)return;hints.innerHTML='';var p=E('path',pathAttrs(paths[idx],idx));p.style.opacity='.35';hints.appendChild(p);try{var L=p.getTotalLength();p.style.strokeDasharray=L;p.style.strokeDashoffset=L;p.style.transition='stroke-dashoffset .55s ease';requestAnimationFrame(function(){p.style.strokeDashoffset='0'})}catch(e){}setTimeout(function(){try{hints.innerHTML=''}catch(e){}},900)});"
-              new = "hintBtn.addEventListener('click',function(){if(idx>=paths.length)return;hints.innerHTML='';var p=E('path',pathAttrs(paths[idx],idx));p.style.opacity='.35';p.style.pointerEvents='none';hints.appendChild(p);try{var L=p.getTotalLength();p.style.strokeDasharray=String(L)+' '+String(L);p.style.strokeDashoffset=String(L);p.style.transition='none';void p.getBoundingClientRect();requestAnimationFrame(function(){requestAnimationFrame(function(){p.style.transition='stroke-dashoffset .68s linear';p.style.strokeDashoffset='0'})})}catch(e){}setTimeout(function(){try{hints.innerHTML=''}catch(e){}},1050)});"
-              if old not in s:
-                  raise SystemExit('Writer hint source changed; refusing unsafe patch')
+          old = "p.style.transition='stroke-dashoffset .68s linear';p.style.strokeDashoffset='0'})})}catch(e){}setTimeout(function(){try{hints.innerHTML=''}catch(e){}},1050)"
+          new = "p.style.transition='stroke-dashoffset .32s linear';p.style.strokeDashoffset='0'})})}catch(e){}setTimeout(function(){try{hints.innerHTML=''}catch(e){}},620)"
+          if old in s:
               s = s.replace(old, new, 1)
               p.write_text(s, encoding='utf-8')
-              print('Applied staged writer hint animation patch.')
+              print('Sped up writer hint animation to 0.32s.')
+          elif new in s:
+              print('Fast writer hint animation already present.')
           else:
-              print('Staged writer hint animation already present.')
+              raise SystemExit('Writer hint source changed; refusing unsafe patch')
           PY
 
       - name: Validate repository sources
