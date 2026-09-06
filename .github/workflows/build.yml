@@ -43,6 +43,30 @@ jobs:
       - name: Install build dependencies
         run: python -m pip install --disable-pip-version-check -r requirements.txt
 
+      - name: Normalize recursive chevron alignment
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          p = Path('builder/build_anki.py')
+          s = p.read_text(encoding='utf-8')
+          marker = 'M3 5.5L8 10.5L13 5.5'
+          if marker not in s:
+              old_css = '.comp-recursive-chevron{display:inline-block;font-size:20px;line-height:1;transition:transform .18s ease;transform-origin:center}.comp-recursive[open]>.comp-recursive-summary .comp-recursive-chevron{transform:rotate(180deg)}'
+              new_css = '.comp-recursive-chevron{width:18px;height:18px;flex:0 0 18px;display:inline-flex;align-items:center;justify-content:center;transition:transform .18s ease;transform-origin:center}.comp-recursive-chevron svg{width:14px;height:14px;display:block;overflow:visible}.comp-recursive-chevron path{fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}.comp-recursive[open]>.comp-recursive-summary .comp-recursive-chevron{transform:rotate(180deg)}'
+              old_arrow = '>⌄</span>'
+              new_arrow = '><svg viewBox="0 0 16 16" focusable="false" aria-hidden="true"><path d="M3 5.5L8 10.5L13 5.5"/></svg></span>'
+              if old_css not in s or old_arrow not in s:
+                  raise SystemExit('Recursive chevron source changed; refusing unsafe patch')
+              s = s.replace(old_css, new_css, 1).replace(old_arrow, new_arrow, 1)
+              p.write_text(s, encoding='utf-8')
+              print('Applied centered SVG chevron patch.')
+          else:
+              print('Centered SVG chevron already present.')
+          PY
+
       - name: Validate repository sources
         shell: bash
         run: |
@@ -115,16 +139,16 @@ jobs:
           print('Build QA OK: centralized mnemonic/decomposition, 3380 notes / 10140 cards')
           PY
 
-      - name: Commit verified dist
+      - name: Commit verified builder and dist
         if: github.event_name == 'push'
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A dist
+          git add builder/build_anki.py dist
           if git diff --cached --quiet; then
-            echo 'No dist changes.'
+            echo 'No builder/dist changes.'
           else
             git commit -m 'Rebuild verified HT Joyo 2136 APKG [skip ci]'
             git push
