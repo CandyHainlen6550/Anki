@@ -55,7 +55,7 @@
   "furigana_filter": "{{furigana:Furigana}}",
   "component_glyphs": {
     "strategy": "HanaMin SVG outlines for rare Unicode; embedded GlyphWiki SVG for named entities; KanjiVG only for stroke order",
-    "hanamin_unicode": 115,
+    "hanamin_unicode": 116,
     "hanamin_entity_unicode": 5,
     "glyphwiki": 112,
     "glyphwiki_unicode_fallback": 15,
@@ -73,5 +73,5 @@
   "missing_embedded_strokes": 0,
   "missing": [],
   "output": "dist/HT Joyo 2136.apkg",
-  "size_bytes": 6032454
+  "size_bytes": 6070155
 }
