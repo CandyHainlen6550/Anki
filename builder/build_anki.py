@@ -496,7 +496,7 @@ def _recursive_child_html(child, glyph_renderer, depth=2):
         '<article class="comp-recursive-child" data-recursive-child="' + attr_key + '">'
         '<div class="comp-recursive-child-head"><div class="comp-glyph">' + glyph_html(child['key'], child['meta'], glyph_renderer) + '</div>'
         '<div class="comp-recursive-copy"><strong>' + h(title) + '</strong><span>' + h(child.get('meaning') or '—') + '</span><small>' + h(pos) + '</small><small class="comp-recursive-role">' + h(role) + '</small></div></div>'
-        '<div class="comp-recursive-mn"><span class="mini-label">Mẹo nhớ</span><br>' + h(mnemonic) + '</div>'
+        '<div class="comp-recursive-mn"><span class="mini-label">Mẹo nhớ</span><br>' + render_inline_glyphs(mnemonic) + '</div>'
         + nested + '</article>'
     )
 
