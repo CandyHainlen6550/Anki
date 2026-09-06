@@ -67,6 +67,28 @@ jobs:
               print('Centered SVG chevron already present.')
           PY
 
+      - name: Normalize writer hint animation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          p = Path('builder/build_anki.py')
+          s = p.read_text(encoding='utf-8')
+          marker = "p.style.strokeDasharray=String(L)+' '+String(L)"
+          if marker not in s:
+              old = "hintBtn.addEventListener('click',function(){if(idx>=paths.length)return;hints.innerHTML='';var p=E('path',pathAttrs(paths[idx],idx));p.style.opacity='.35';hints.appendChild(p);try{var L=p.getTotalLength();p.style.strokeDasharray=L;p.style.strokeDashoffset=L;p.style.transition='stroke-dashoffset .55s ease';requestAnimationFrame(function(){p.style.strokeDashoffset='0'})}catch(e){}setTimeout(function(){try{hints.innerHTML=''}catch(e){}},900)});"
+              new = "hintBtn.addEventListener('click',function(){if(idx>=paths.length)return;hints.innerHTML='';var p=E('path',pathAttrs(paths[idx],idx));p.style.opacity='.35';p.style.pointerEvents='none';hints.appendChild(p);try{var L=p.getTotalLength();p.style.strokeDasharray=String(L)+' '+String(L);p.style.strokeDashoffset=String(L);p.style.transition='none';void p.getBoundingClientRect();requestAnimationFrame(function(){requestAnimationFrame(function(){p.style.transition='stroke-dashoffset .68s linear';p.style.strokeDashoffset='0'})})}catch(e){}setTimeout(function(){try{hints.innerHTML=''}catch(e){}},1050)});"
+              if old not in s:
+                  raise SystemExit('Writer hint source changed; refusing unsafe patch')
+              s = s.replace(old, new, 1)
+              p.write_text(s, encoding='utf-8')
+              print('Applied staged writer hint animation patch.')
+          else:
+              print('Staged writer hint animation already present.')
+          PY
+
       - name: Validate repository sources
         shell: bash
         run: |
