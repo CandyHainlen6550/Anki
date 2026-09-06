@@ -6,8 +6,22 @@ from pathlib import Path
 ENTITY_RE = re.compile(r'^&[^;]+;$')
 HEX_RE = re.compile(r'\+([0-9A-Fa-f]{4,6})(?:;|$)')
 ENTITY_UNICODE_FALLBACK = {
+    '&C4-2267;': '𢆶',       # CHISE C4-to-UCS: U+221B6
+    '&GT-K00233;': '弋',     # CHISE: GT-K00233 unified with U+5F0B
     '&GT-K01085;': '弁',
+    '&GT-K01189;': '𡉉',    # CHISE =ucs-itaiji-002 U+21249
     '&GT-K02380;': '𬺨',
+    '&g2-MJ007273;': '八',  # Mojikiban MJ007273 = U+516B
+}
+
+# These GT nodes are proper sub-glyphs rather than safe one-codepoint aliases.
+# CHISE records them as exact pieces of the Unicode parents below, so derive
+# standalone SVGs by cropping the parent GlyphWiki vector at build time.
+# Values: parent character, then crop fractions (top, right, bottom, left).
+DERIVED_GLYPH_FALLBACK = {
+    '&GT-K00135;': ('𫝀', (0.00, 0.00, 0.22, 0.00)),  # 𫝀 = ⿱ GT-K00135 一
+    '&GT-K03433;': ('𠦒', (0.16, 0.00, 0.00, 0.00)),  # 𠦒 = ⿱ 一 GT-K03433
+    '&GT-K04958;': ('睘', (0.30, 0.00, 0.00, 0.00)),  # 睘 = ⿱ ⺫ GT-K04958
 }
 
 GLYPHWIKI_EXACT_ALIASES = {
@@ -71,10 +85,12 @@ def candidates(entity, preferred=None):
         return ['u' + format(ord(entity), 'x')]
     raw = entity[1:-1]
     vals = []
+
     def add(value):
         value = str(value or '').strip().lower()
         if value and value not in vals:
             vals.append(value)
+
     add(preferred.get(entity, ''))
     for alias in GLYPHWIKI_EXACT_ALIASES.get(entity, ()):
         add(alias)
@@ -87,6 +103,9 @@ def candidates(entity, preferred=None):
     add(raw)
     stripped = re.sub(r'^(?:a-|g2-|o-)+', '', raw, flags=re.I)
     add(stripped)
+    m_mj_stripped = re.fullmatch(r'MJ(\d{6})', stripped, re.I)
+    if m_mj_stripped:
+        add('jmj-' + m_mj_stripped.group(1))
     add(re.sub(r'-i\d+', '', stripped, flags=re.I))
     m = HEX_RE.search(entity)
     if m:
@@ -95,6 +114,27 @@ def candidates(entity, preferred=None):
         add(value.replace('+', '-'))
         add(re.sub(r'-(?:i\d+)-', '-', value, flags=re.I))
     return vals
+
+
+def crop_svg(body, crop):
+    """Crop an SVG viewBox without touching its vector paths."""
+    text = body.decode('utf-8', errors='replace')
+    m = re.search(
+        r'viewBox=["\']\s*([-+0-9.eE]+)[ ,]+([-+0-9.eE]+)[ ,]+([-+0-9.eE]+)[ ,]+([-+0-9.eE]+)\s*["\']',
+        text,
+        re.I,
+    )
+    if not m:
+        return None
+    x, y, w, h = map(float, m.groups())
+    top, right, bottom, left = crop
+    nx = x + w * left
+    ny = y + h * top
+    nw = w * max(0.05, 1.0 - left - right)
+    nh = h * max(0.05, 1.0 - top - bottom)
+    replacement = 'viewBox="{:.6g} {:.6g} {:.6g} {:.6g}"'.format(nx, ny, nw, nh)
+    text = text[:m.start()] + replacement + text[m.end():]
+    return text.encode('utf-8')
 
 
 def fetch(url, attempts=3):
@@ -134,9 +174,19 @@ def main():
         if fallback and ord(fallback) in cmap:
             manifest[entity] = {'status': 'unicode_fallback', 'char': fallback, 'codepoint': 'U+' + format(ord(fallback), '04X')}
             continue
+
         hit = None
         tried = []
+
+        # If CHISE gives an exact Unicode equivalent, try its GlyphWiki outline
+        # even when that codepoint is absent from the downloaded HanaMin font.
+        names = []
+        if fallback:
+            names.append('u' + format(ord(fallback), 'x'))
         for name in candidates(entity, preferred):
+            if name not in names:
+                names.append(name)
+        for name in names:
             url = a.base_url.rstrip('/') + '/' + name + '.svg'
             tried.append(url)
             body = fetch(url)
@@ -145,6 +195,26 @@ def main():
                 (dest / fn).write_bytes(body)
                 hit = {'status':'ok','name':name,'file':fn,'url':url,'sha256':hashlib.sha256(body).hexdigest()}
                 break
+
+        # For the three proper sub-glyph GT nodes, use the exact CHISE-documented
+        # Unicode parent and crop its vector viewBox. Nothing is fetched at card
+        # runtime; the derived SVG is cached and embedded into the APKG.
+        if not hit and entity in DERIVED_GLYPH_FALLBACK:
+            parent, crop = DERIVED_GLYPH_FALLBACK[entity]
+            name = 'u' + format(ord(parent), 'x')
+            url = a.base_url.rstrip('/') + '/' + name + '.svg'
+            tried.append(url + '#derived-crop')
+            body = fetch(url)
+            body = crop_svg(body, crop) if body else None
+            if body:
+                fn = hashlib.sha1(entity.encode()).hexdigest()[:16] + '.svg'
+                (dest / fn).write_bytes(body)
+                hit = {
+                    'status':'ok', 'name':name, 'file':fn, 'url':url,
+                    'derived_from':parent, 'crop':list(crop),
+                    'sha256':hashlib.sha256(body).hexdigest(),
+                }
+
         manifest[entity] = hit or {'status': 'missing', 'tried': tried}
 
     (dest / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding='utf-8')
