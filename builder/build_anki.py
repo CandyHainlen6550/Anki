@@ -44,26 +44,21 @@ SUBSET_DECKS = {
 
 
 
-def render_inline_glyphs(text):
-    """
-    Wrap uncommon CJK glyphs inside mnemonic text so they use
-    the same glyph renderer as decomposition cards instead of
-    relying on the browser font fallback.
-    """
+def render_inline_glyphs(text, renderer=None):
+    """Render supplementary CJK inside prose with the component renderer."""
     if not text:
-        return text
+        return ''
     out = []
     for ch in str(text):
         cp = ord(ch)
-        if (
-            0x3400 <= cp <= 0x4DBF
-            or 0x4E00 <= cp <= 0x9FFF
-            or 0x20000 <= cp <= 0x2FA1F
-        ):
-            out.append(render_glyph_inline(ch))
+        if 0x20000 <= cp <= 0x2FA1F:
+            rendered = glyph_html(ch, {'render_type':'unicode', 'render_value':ch}, renderer)
+            out.append('<span class="inline-glyph" data-char="' + html.escape(ch, quote=True) + '">' + rendered + '</span>')
+        elif ch == '\n':
+            out.append('<br>')
         else:
-            out.append(ch)
-    return "".join(out)
+            out.append(h(ch))
+    return ''.join(out)
 
 def page_deck_id(parent_did,page):
     # Stable child deck ID: existing mode deck ID + repo page.
@@ -85,6 +80,7 @@ CSS = r'''
 '''
 
 CSS += r'''
+.inline-glyph{display:inline-flex;width:1.08em;height:1.08em;align-items:center;justify-content:center;vertical-align:-.16em;line-height:1}.inline-glyph svg,.inline-glyph img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}.inline-glyph svg{fill:currentColor}.inline-glyph img{filter:invert(1)}
 .comp-grid{align-items:start}.comp-recursive{width:100%;box-sizing:border-box;margin-top:12px;border:1px solid #31516b;border-radius:14px;overflow:hidden;background:#0b1c2d;color:#dbeaf7}.comp-recursive-summary{box-sizing:border-box;min-height:48px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;list-style:none;font-weight:800;line-height:1.35;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}.comp-recursive-summary::-webkit-details-marker{display:none}.comp-recursive-summary::marker{content:''}.comp-recursive-summary-title{min-width:0;overflow-wrap:anywhere}.comp-recursive-summary-title b{font-family:"Noto Serif JP","Yu Mincho",serif;color:#13c8ff;font-size:1.12em}.comp-recursive-summary-side{display:flex;align-items:center;gap:8px;flex:0 0 auto;color:#8fa9bd;font-size:12px;white-space:nowrap}.comp-recursive-chevron{width:18px;height:18px;flex:0 0 18px;display:inline-flex;align-items:center;justify-content:center;transition:transform .18s ease;transform-origin:center}.comp-recursive-chevron svg{width:14px;height:14px;display:block;overflow:visible}.comp-recursive-chevron path{fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}.comp-recursive[open]>.comp-recursive-summary .comp-recursive-chevron{transform:rotate(180deg)}.comp-recursive-body{box-sizing:border-box;padding:12px;border-top:1px solid #294158;background:#081727}.comp-recursive-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;width:100%}.comp-recursive-child{box-sizing:border-box;min-width:0;padding:10px;background:#102338;border:1px solid #294962;border-radius:12px;text-align:left}.comp-recursive-child-head{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;align-items:start}.comp-recursive-child .comp-glyph{width:72px;height:72px;flex-basis:72px;font-size:48px;border-radius:12px}.comp-recursive-child .comp-glyph img,.comp-recursive-child .comp-glyph svg{max-width:100%;max-height:100%}.comp-recursive-copy{min-width:0}.comp-recursive-copy strong,.comp-recursive-copy span,.comp-recursive-copy small{display:block;min-width:0;overflow-wrap:anywhere;word-break:break-word}.comp-recursive-copy strong{font-size:22px;line-height:1.25;color:#eef7ff}.comp-recursive-copy span{margin-top:3px;font-size:16px;line-height:1.45;color:#c4d4e2}.comp-recursive-copy small{margin-top:4px;font-size:12px;line-height:1.35;color:#13c8ff}.comp-recursive-role{color:#8fa9bd!important}.comp-recursive-mn{margin-top:8px;color:#ffe5b5;font-size:13px;line-height:1.45}.comp-recursive .comp-recursive{margin-top:9px}
 @media(max-width:680px){.comp-recursive{margin-top:10px}.comp-recursive-summary{min-height:50px;padding:11px 12px}.comp-recursive-summary-side>span:first-child{display:none}.comp-recursive-body{padding:10px}.comp-recursive-grid{grid-template-columns:1fr}.comp-recursive-child{padding:9px}.comp-recursive-child-head{grid-template-columns:52px minmax(0,1fr)}.comp-recursive-child .comp-glyph{width:52px;height:52px;flex-basis:52px;font-size:36px}}@media(min-width:681px) and (max-width:1100px){.comp-recursive-grid{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}}@media(hover:hover){.comp-recursive-summary:hover{background:#102a40}}
 '''
@@ -496,7 +492,7 @@ def _recursive_child_html(child, glyph_renderer, depth=2):
         '<article class="comp-recursive-child" data-recursive-child="' + attr_key + '">'
         '<div class="comp-recursive-child-head"><div class="comp-glyph">' + glyph_html(child['key'], child['meta'], glyph_renderer) + '</div>'
         '<div class="comp-recursive-copy"><strong>' + h(title) + '</strong><span>' + h(child.get('meaning') or '—') + '</span><small>' + h(pos) + '</small><small class="comp-recursive-role">' + h(role) + '</small></div></div>'
-        '<div class="comp-recursive-mn"><span class="mini-label">Mẹo nhớ</span><br>' + render_inline_glyphs(mnemonic) + '</div>'
+        '<div class="comp-recursive-mn"><span class="mini-label">Mẹo nhớ</span><br>' + render_inline_glyphs(mnemonic, glyph_renderer) + '</div>'
         + nested + '</article>'
     )
 
@@ -509,7 +505,7 @@ def _recursive_block_html(parent, children, glyph_renderer, depth=2):
     child_html = ''.join(_recursive_child_html(child, glyph_renderer, depth) for child in children)
     return (
         '<details class="comp-recursive" data-recursive-depth="' + str(depth) + '" data-recursive-root="' + attr_root + '">'
-        '<summary class="comp-recursive-summary"><span class="comp-recursive-summary-title">Cấu tạo của <b>' + h(root_key) + '</b></span>'
+        '<summary class="comp-recursive-summary"><span class="comp-recursive-summary-title">Cấu tạo của <b>' + render_inline_glyphs(root_key, glyph_renderer) + '</b></span>'
         '<span class="comp-recursive-summary-side"><span>' + str(len(children)) + ' phần</span><span class="comp-recursive-chevron" aria-hidden="true"><svg viewBox="0 0 16 16" focusable="false" aria-hidden="true"><path d="M3 5.5L8 10.5L13 5.5"/></svg></span></span></summary>'
         '<div class="comp-recursive-body"><div class="comp-recursive-grid">' + child_html + '</div></div></details>'
     )
@@ -530,13 +526,14 @@ def components_html(ch, learner_decomp, row=None, glyph_renderer=None):
             '<div class="comp-head"><div class="comp-glyph">' + glyph_html(item['key'], item['meta'], glyph_renderer) + '</div>'
             '<div><div class="comp-name">' + h(title) + '</div><div class="comp-meta">' + h(pos) + '</div><div class="comp-role">' + h(role) + '</div></div></div>'
             '<div class="comp-box"><span class="mini-label">Nghĩa</span><br>' + h(item.get('meaning') or '—') + '</div>'
-            '<div class="comp-box mn"><span class="mini-label">Mẹo nhớ</span><br>' + h(item.get('mnemonic') or '—') + '</div>'
+            '<div class="comp-box mn"><span class="mini-label">Mẹo nhớ</span><br>' + render_inline_glyphs(item.get('mnemonic') or '—', glyph_renderer) + '</div>'
             + recursive + '</div>'
         )
     rendered = ''.join(cards)
     regressions = {
         '調': ('data-component="言"', 'data-component="周"', 'data-recursive-root="周"', 'data-recursive-child="用"', 'data-recursive-child="口"'),
         '三': ('data-component="一"', 'data-component="𠄞"', 'data-recursive-root="𠄞"'),
+        '供': ('data-component="亻"', 'data-component="共"', 'data-recursive-root="共"', 'data-recursive-child="卄"', 'data-recursive-child="𬺢"'),
     }
     if ch in regressions:
         missing = [marker for marker in regressions[ch] if marker not in rendered]
@@ -694,6 +691,9 @@ def build(kanji_source, mnemonics_source, decomp_source, output, kvg_dir=None, s
     page_sets = {'sc1': repo_pages(sc1_rows), 'sc2': repo_pages(sc2_rows)}
     counts = load_stroke_counts(stroke_meta)
     glyph_renderer = GlyphRenderer(hanamin_a, hanamin_b, glyphwiki_manifest)
+    rare_probe = render_inline_glyphs('𬺢', glyph_renderer)
+    if not ('hanamin-glyph' in rare_probe or 'glyphwiki-glyph' in rare_probe):
+        raise RuntimeError('Rare glyph renderer QA failed for U+2CEA2 𬺢')
     subsets = [('sc1', sc1_rows), ('sc2', sc2_rows), ('all', all_rows)]
     hv_counts = {k: collections.Counter(str(r.get('han_viet', '')).strip().lower() for r in rows) for k, rows in subsets}
 
