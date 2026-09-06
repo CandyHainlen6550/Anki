@@ -6,6 +6,7 @@ cd "$ROOT"
 mkdir -p dist
 rm -f dist/*.apkg
 
+# Build directly from the committed renderer; CI must not rewrite builder source.
 bash scripts/fetch_sources.sh
 
 SC1=data/ht/sc1.json
