@@ -42,6 +42,29 @@ SUBSET_DECKS = {
     'all': (DECK_ALL_K2HV, DECK_ALL_HV2K, DECK_ALL_WRITE),
 }
 
+
+
+def render_inline_glyphs(text):
+    """
+    Wrap uncommon CJK glyphs inside mnemonic text so they use
+    the same glyph renderer as decomposition cards instead of
+    relying on the browser font fallback.
+    """
+    if not text:
+        return text
+    out = []
+    for ch in str(text):
+        cp = ord(ch)
+        if (
+            0x3400 <= cp <= 0x4DBF
+            or 0x4E00 <= cp <= 0x9FFF
+            or 0x20000 <= cp <= 0x2FA1F
+        ):
+            out.append(render_glyph_inline(ch))
+        else:
+            out.append(ch)
+    return "".join(out)
+
 def page_deck_id(parent_did,page):
     # Stable child deck ID: existing mode deck ID + repo page.
     return int(parent_did)*100+int(page)
@@ -192,7 +215,7 @@ function end(ev){if(!drawing)return;if(ev&&activePointer!==null&&typeof ev.point
 function cancelGesture(ev){if(!drawing)return;if(ev&&activePointer!==null&&typeof ev.pointerId==='number'&&ev.pointerId!==activePointer)return;failActive('Sai nét — thao tác bị ngắt, viết lại nét '+(idx+1))}
 svg.addEventListener('pointerdown',begin,{passive:false});svg.addEventListener('pointermove',move,{passive:false});svg.addEventListener('pointerup',end,{passive:false});svg.addEventListener('pointercancel',cancelGesture,{passive:false});svg.addEventListener('lostpointercapture',function(){if(drawing)setTimeout(function(){if(drawing)failActive('Sai nét — thao tác bị ngắt, viết lại nét '+(idx+1))},0)});
 resetBtn.addEventListener('click',function(){clearActiveNow();idx=0;done.innerHTML='';live.innerHTML='';hints.innerHTML='';clearProgress();clearGate();msg('Viết từ nét 1/'+paths.length,'')});
-hintBtn.addEventListener('click',function(){if(idx>=paths.length)return;hints.innerHTML='';var p=E('path',pathAttrs(paths[idx],idx));p.style.opacity='.35';p.style.pointerEvents='none';hints.appendChild(p);try{var L=p.getTotalLength();p.style.strokeDasharray=String(L)+' '+String(L);p.style.strokeDashoffset=String(L);p.style.transition='none';void p.getBoundingClientRect();requestAnimationFrame(function(){requestAnimationFrame(function(){p.style.transition='stroke-dashoffset .14s linear';p.style.strokeDashoffset='0'})})}catch(e){}setTimeout(function(){try{hints.innerHTML=''}catch(e){}},320)});
+hintBtn.addEventListener('click',function(){if(idx>=paths.length)return;hints.innerHTML='';var p=E('path',pathAttrs(paths[idx],idx));p.style.opacity='.35';p.style.pointerEvents='none';hints.appendChild(p);try{var L=p.getTotalLength();p.style.strokeDasharray=String(L)+' '+String(L);p.style.strokeDashoffset=String(L);p.style.transition='none';void p.getBoundingClientRect();requestAnimationFrame(function(){requestAnimationFrame(function(){p.style.transition='stroke-dashoffset .32s linear';p.style.strokeDashoffset='0'})})}catch(e){}setTimeout(function(){try{hints.innerHTML=''}catch(e){}},620)});
 paths=decode();if(paths.length){initNorm();restoreProgress();if(idx===0)msg(side==='back'?'Bạn đã lật sớm — tiếp tục viết ở đây. Đáp án vẫn bị khóa.':'Viết đúng '+paths.length+' nét để mở đáp án.','')}else{msg('Thiếu dữ liệu nét được nhúng trong thẻ.','bad');resetBtn.disabled=true;hintBtn.disabled=true}
 })();
 </script>
