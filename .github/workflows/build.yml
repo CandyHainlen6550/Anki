@@ -76,14 +76,14 @@ jobs:
 
           p = Path('builder/build_anki.py')
           s = p.read_text(encoding='utf-8')
-          old = "p.style.transition='stroke-dashoffset .68s linear';p.style.strokeDashoffset='0'})})}catch(e){}setTimeout(function(){try{hints.innerHTML=''}catch(e){}},1050)"
-          new = "p.style.transition='stroke-dashoffset .32s linear';p.style.strokeDashoffset='0'})})}catch(e){}setTimeout(function(){try{hints.innerHTML=''}catch(e){}},620)"
+          old = "p.style.transition='stroke-dashoffset .32s linear';p.style.strokeDashoffset='0'})})}catch(e){}setTimeout(function(){try{hints.innerHTML=''}catch(e){}},620)"
+          new = "p.style.transition='stroke-dashoffset .14s linear';p.style.strokeDashoffset='0'})})}catch(e){}setTimeout(function(){try{hints.innerHTML=''}catch(e){}},320)"
           if old in s:
               s = s.replace(old, new, 1)
               p.write_text(s, encoding='utf-8')
-              print('Sped up writer hint animation to 0.32s.')
+              print('Sped up writer hint animation to 0.14s.')
           elif new in s:
-              print('Fast writer hint animation already present.')
+              print('Ultra-fast writer hint animation already present.')
           else:
               raise SystemExit('Writer hint source changed; refusing unsafe patch')
           PY
