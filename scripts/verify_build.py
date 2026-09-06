@@ -39,12 +39,17 @@ REMOTE_RESOURCE_RE = re.compile(
 
 def main():
     ap=argparse.ArgumentParser()
-    ap.add_argument('--apkg',required=True); ap.add_argument('--sc1',required=True); ap.add_argument('--sc2',required=True)
+    ap.add_argument('--apkg',required=True); ap.add_argument('--kanji',required=True); ap.add_argument('--mnemonics',required=True); ap.add_argument('--decomp',required=True); ap.add_argument('--sc1',required=True); ap.add_argument('--sc2',required=True)
     ap.add_argument('--builder-report'); ap.add_argument('--output')
     a=ap.parse_args()
     if Path(a.apkg).name!='HT Joyo 2136.apkg': raise SystemExit('APKG filename must stay exactly "HT Joyo 2136.apkg"')
+    master=json.load(open(a.kanji,encoding='utf-8'))
+    mnemonics=json.load(open(a.mnemonics,encoding='utf-8'))
+    decomp=json.load(open(a.decomp,encoding='utf-8'))
     sc1_rows=json.load(open(a.sc1,encoding='utf-8'))
     sc2_rows=json.load(open(a.sc2,encoding='utf-8'))
+    canonical=[r['kanji'] for r in master.get('kanji',[])]
+    source_split_ok=(len(canonical)==2136 and len(set(canonical))==2136 and int(decomp.get('joyoCount') or 0)==2136 and all(str(mnemonics.get(ch,'')).strip() for ch in canonical))
     sc1=[r['kanji'] for r in sc1_rows]
     sc2=[r['kanji'] for r in sc2_rows]
     sc2_pages=source_page_counts(sc2_rows)
@@ -104,14 +109,21 @@ def main():
                 component_stats['remote_urls']+=len(REMOTE_RESOURCE_RE.findall(comp))
                 if 'hanamin-glyph' in comp: component_stats['hanamin_svg_notes']+=1
                 if 'data:image/svg+xml;base64,' in comp: component_stats['glyphwiki_embedded_notes']+=1
-            for target in ('図','卒'):
+            for target in ('京','愛','調','三','飛','図','卒'):
                 arr=[]
                 for tags,flds in rows:
                     vals=flds.split('\x1f')
                     if vals[0]==target:
                         comp=vals[fidx['ComponentsHTML']]
-                        arr.append({'tags':tags,'has_hanamin':('hanamin-glyph' in comp),'has_glyphwiki':('data:image/svg+xml;base64,' in comp),'has_entity_code':('comp-entity-code' in comp),'text':strip_html(comp)[:600]})
+                        arr.append({'tags':tags,'html':comp,'has_hanamin':('hanamin-glyph' in comp),'has_glyphwiki':('data:image/svg+xml;base64,' in comp),'has_entity_code':('comp-entity-code' in comp),'text':strip_html(comp)[:900]})
                 examples[target]=arr
+        mnemonic_mismatches=[]
+        raw_mnemonic_leaks=[]
+        for tags,flds in rows:
+            vals=flds.split('\x1f'); ch=vals[fidx['Kanji']]; got=html.unescape(vals[fidx['Mnemonic']]).replace('<br>','\n')
+            expected=str(mnemonics.get(ch,'') or '')
+            if got!=expected: mnemonic_mismatches.append({'kanji':ch,'tags':tags,'expected':expected[:160],'actual':got[:160]})
+            if re.search(r'&(?:CDP|GT|AJ1|MJ|U-|A-)[^;]*;',got): raw_mnemonic_leaks.append({'kanji':ch,'tags':tags,'mnemonic':got[:240]})
         con.close()
 
     js=[]; node=shutil.which('node')
@@ -136,6 +148,7 @@ def main():
       'page_hierarchy':{'ok':page_layout_ok,'sc1_expected':expected_sc1_pages,'sc2_expected':EXPECTED_SC2_PAGES,'actual':page_layout},
       'fields':{'field_names':fields,'exact_current_schema':fields==EXPECTED_FIELDS,'formation_field_removed':'FormationHTML' not in fields,'native_furigana_filter':'{{furigana:Furigana}}' in model_text},
       'fronts':{'reverse_meaning_visible':'Nghĩa: {{Meaning}}' in model['tmpls'][1]['qfmt'],'writing_meaning_visible':'Nghĩa: {{Meaning}}' in model['tmpls'][2]['qfmt']},
+      'learning_sources':{'split_source_ok':source_split_ok,'centralized_mnemonics':len(mnemonics),'decomposable_roots':len(decomp.get('roots') or {}),'mnemonic_mismatch_count':len(mnemonic_mismatches),'mnemonic_mismatches':mnemonic_mismatches[:20],'raw_technical_mnemonic_leak_count':len(raw_mnemonic_leaks),'raw_technical_mnemonic_leaks':raw_mnemonic_leaks[:20]},
       'writer':{'embedded_stroke_data_present':bool(first.get('StrokeDataB64')),'auto_flip_bridge':'ankitap' in model_text,'tappable_writer':'tappable' in model['tmpls'][2]['qfmt'],'stable_pointer_capture':'setPointerCapture' in model_text,'lost_pointer_recovery':'lostpointercapture' in model_text,'flip_fix':'Bạn đã lật sớm' in model_text,'missing_embedded_strokes':int(builder.get('missing_embedded_strokes') or 0),'all_strokes_embedded':int(builder.get('missing_embedded_strokes') or 0)==0},
       'components':{
         'strategy':glyph_report.get('strategy'),
@@ -153,9 +166,20 @@ def main():
     }
     fig_ok=bool(examples.get('図')) and all(x['has_glyphwiki'] and not x['has_entity_code'] for x in examples['図'])
     sotsu_ok=bool(examples.get('卒')) and all((x['has_hanamin'] or x['has_glyphwiki']) and not x['has_entity_code'] for x in examples['卒'])
+    def every_example(target, markers=(), forbidden=()):
+        arr=examples.get(target) or []
+        return bool(arr) and all(all(m in x['html'] for m in markers) and all(m not in x['html'] for m in forbidden) for x in arr)
+    decomp_regressions={
+      '京':every_example('京',('data-component="亠"','data-component="口"','data-component="小"')),
+      '愛':every_example('愛',('data-component="⺤"','data-component="冖"','data-component="心"','data-component="夂"')),
+      '調':every_example('調',('data-component="言"','data-component="周"','data-recursive-root="周"','data-recursive-child="用"','data-recursive-child="口"')),
+      '三':every_example('三',('data-component="一"','data-component="𠄞"','data-recursive-root="𠄞"')),
+      '飛_atomic':every_example('飛',('comp-empty',),('data-component=',)),
+    }
     result['components']['図_exact_glyph_render_ok']=fig_ok
     result['components']['卒_rare_glyph_render_ok']=sotsu_ok
-    ok=(result['counts_ok'] and result['stable_identity']['root_deck_present'] and result['stable_identity']['model_id_ok'] and result['stable_identity']['model_name_ok'] and result['stable_identity']['no_version_suffix_in_deck_or_model_names'] and result['repo_order']['sc1_exact_match'] and result['repo_order']['sc2_exact_match'] and result['sc2_canonical_source']['ok'] and result['page_hierarchy']['ok'] and result['fields']['exact_current_schema'] and result['fields']['formation_field_removed'] and result['fields']['native_furigana_filter'] and result['fronts']['reverse_meaning_visible'] and result['fronts']['writing_meaning_visible'] and result['writer']['embedded_stroke_data_present'] and result['writer']['auto_flip_bridge'] and result['writer']['stable_pointer_capture'] and result['writer']['lost_pointer_recovery'] and result['writer']['flip_fix'] and result['writer']['all_strokes_embedded'] and not result['components']['kanjivg_used_for_unresolved_components'] and result['components']['entity_code_fallback_count']==0 and result['components']['runtime_component_url_count']==0 and not result['components']['builder_missing_entities'] and not result['components']['builder_missing_unicode'] and fig_ok and sotsu_ok and result['js_syntax']['all_ok'] and all(result['back_sections'].values()))
+    result['components']['learner_decomp_regressions']=decomp_regressions
+    ok=(result['counts_ok'] and result['stable_identity']['root_deck_present'] and result['stable_identity']['model_id_ok'] and result['stable_identity']['model_name_ok'] and result['stable_identity']['no_version_suffix_in_deck_or_model_names'] and result['repo_order']['sc1_exact_match'] and result['repo_order']['sc2_exact_match'] and result['sc2_canonical_source']['ok'] and result['page_hierarchy']['ok'] and result['fields']['exact_current_schema'] and result['fields']['formation_field_removed'] and result['fields']['native_furigana_filter'] and result['fronts']['reverse_meaning_visible'] and result['fronts']['writing_meaning_visible'] and result['learning_sources']['split_source_ok'] and result['learning_sources']['mnemonic_mismatch_count']==0 and result['learning_sources']['raw_technical_mnemonic_leak_count']==0 and result['writer']['embedded_stroke_data_present'] and result['writer']['auto_flip_bridge'] and result['writer']['stable_pointer_capture'] and result['writer']['lost_pointer_recovery'] and result['writer']['flip_fix'] and result['writer']['all_strokes_embedded'] and not result['components']['kanjivg_used_for_unresolved_components'] and result['components']['entity_code_fallback_count']==0 and result['components']['runtime_component_url_count']==0 and not result['components']['builder_missing_entities'] and not result['components']['builder_missing_unicode'] and fig_ok and sotsu_ok and all(decomp_regressions.values()) and result['js_syntax']['all_ok'] and all(result['back_sections'].values()))
     result['ok']=ok
     text=json.dumps(result,ensure_ascii=False,indent=2)
     if a.output:Path(a.output).write_text(text,encoding='utf-8')

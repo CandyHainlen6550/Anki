@@ -1,0 +1,21 @@
+{
+  "source": "HT clean snapshot",
+  "files": {
+    "sc1.json": {
+      "sha256": "760d049fd4e3572e239ed2b2e6cdffce996deb4101fe8fe0417904948c969ddf",
+      "bytes": 1110500
+    },
+    "sc2.json": {
+      "sha256": "8d2777309f19f945e3876576669f8e0ffed9875ffae3246d32db13055d4e7fb3",
+      "bytes": 2224573
+    },
+    "mnemonics.json": {
+      "sha256": "999645da2386e1e39ed23c8af743a54aa9825f23dd1a73889f5fae721a75bbca",
+      "bytes": 417766
+    },
+    "learner_decomp.json": {
+      "sha256": "dde851ee08574481ab40d7629294980779180140a2ba14b1a390b5a627c67c5c",
+      "bytes": 651831
+    }
+  }
+}

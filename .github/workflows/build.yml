@@ -5,7 +5,7 @@ on:
   push:
     paths:
       - 'builder/**'
-      - 'data/master/**'
+      - 'data/**'
       - 'scripts/**'
       - 'requirements.txt'
       - 'SOURCE_REFS.env'
@@ -43,28 +43,44 @@ jobs:
       - name: Install build dependencies
         run: python -m pip install --disable-pip-version-check -r requirements.txt
 
-      - name: Validate repository source
+      - name: Validate repository sources
         shell: bash
         run: |
           set -euo pipefail
           test -f builder/build_anki.py
-          test -f data/master/joyo2136_learning_bundle.json
-          test -f scripts/fetch_sources.sh
-          test -f scripts/fetch_glyphwiki.py
-          test -f scripts/build.sh
-          test -f scripts/verify_build.py
-          test -f scripts/make_snapshot.py
-          test -f SOURCE_REFS.env
-          python3 -m py_compile builder/build_anki.py scripts/fetch_glyphwiki.py scripts/verify_build.py scripts/make_snapshot.py
+          test -f data/master/kanji.json
+          test -f data/ht/sc1.json
+          test -f data/ht/sc2.json
+          test -f data/ht/mnemonics.json
+          test -f data/ht/learner_decomp.json
+          test -f data/ht/SOURCE.json
+          test ! -e data/master/joyo2136_learning_bundle.json
+          test ! -e scripts/build_anki_entry.py
+          test ! -e scripts/pin_ht_main.sh
+          python3 -m py_compile builder/build_anki.py scripts/fetch_glyphwiki.py scripts/verify_build.py scripts/make_snapshot.py scripts/sync_from_ht.py
           python3 - <<'PY'
           import json
           from pathlib import Path
-          master=json.loads(Path('data/master/joyo2136_learning_bundle.json').read_text(encoding='utf-8'))
+          master=json.loads(Path('data/master/kanji.json').read_text(encoding='utf-8'))
+          mn=json.loads(Path('data/ht/mnemonics.json').read_text(encoding='utf-8'))
+          decomp=json.loads(Path('data/ht/learner_decomp.json').read_text(encoding='utf-8'))
+          sc1=json.loads(Path('data/ht/sc1.json').read_text(encoding='utf-8'))
+          sc2=json.loads(Path('data/ht/sc2.json').read_text(encoding='utf-8'))
           assert len(master.get('kanji',[])) == 2136
-          print('Master source OK: 2136')
+          assert len({r['kanji'] for r in master['kanji']}) == 2136
+          assert len(sc1) == 400 and len(sc2) == 844
+          assert int(decomp.get('joyoCount') or 0) == 2136
+          assert all(str(mn.get(r['kanji'],'')).strip() for r in master['kanji'])
+          def has_mnemonic(v):
+              if isinstance(v,dict):
+                  return any(str(k).lower()=='mnemonic' or has_mnemonic(x) for k,x in v.items())
+              if isinstance(v,list): return any(has_mnemonic(x) for x in v)
+              return False
+          assert not has_mnemonic(sc1) and not has_mnemonic(sc2)
+          print('Split learning sources OK: 2136 / 400 / 844')
           PY
 
-      - name: Fetch pinned upstreams, build and verify
+      - name: Fetch external sources, build and verify
         shell: bash
         run: bash scripts/build.sh
 
@@ -88,13 +104,15 @@ jobs:
           qa=json.loads(Path('dist/QA.json').read_text(encoding='utf-8'))
           assert qa.get('ok') is True, qa
           assert qa.get('counts_ok') is True, qa
-          assert qa.get('notes') == 3380
-          assert qa.get('cards') == 10140
+          assert qa.get('notes') == 3380 and qa.get('cards') == 10140
           assert qa.get('repo_order', {}).get('sc1_count') == 400
           assert qa.get('repo_order', {}).get('sc2_count') == 844
           assert qa.get('sc2_canonical_source', {}).get('ok') is True
+          assert qa.get('learning_sources', {}).get('mnemonic_mismatch_count') == 0
+          assert qa.get('learning_sources', {}).get('raw_technical_mnemonic_leak_count') == 0
+          assert all(qa.get('components', {}).get('learner_decomp_regressions', {}).values())
           assert qa['stable_identity']['apkg_filename'] == 'HT Joyo 2136.apkg'
-          print('Build QA OK: HT Joyo 2136 — 3380 notes / 10140 cards')
+          print('Build QA OK: centralized mnemonic/decomposition, 3380 notes / 10140 cards')
           PY
 
       - name: Commit verified dist

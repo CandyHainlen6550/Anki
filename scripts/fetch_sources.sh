@@ -12,7 +12,6 @@ fetch_sparse() {
   local repo="$1" ref="$2" dest="$3"; shift 3
   git init -q "$dest"
   git -C "$dest" remote add origin "$repo"
-  # Partial fetch prevents the large upstream repos/fonts from bloating this repo.
   if ! git -C "$dest" -c protocol.version=2 fetch -q --depth=1 --filter=blob:none origin "$ref"; then
     git -C "$dest" fetch -q --depth=1 origin "$ref"
   fi
@@ -22,25 +21,18 @@ fetch_sparse() {
   git -C "$dest" checkout -q --detach FETCH_HEAD
 }
 
-fetch_sparse "$HT_REPO" "$HT_REF" build/sources/HT \
-  public/data/sc1.json public/data/sc2.json public/data/decks.json
-
-fetch_sparse "$KANJIVG_REPO" "$KANJIVG_REF" build/sources/kanjivg \
-  kanji
-
+fetch_sparse "$KANJIVG_REPO" "$KANJIVG_REF" build/sources/kanjivg kanji
 fetch_sparse "$HANAMIN_REPO" "$HANAMIN_REF" build/sources/chinese \
   fonts/HanaMin/HanaMinA.ttf fonts/HanaMin/HanaMinB.ttf fonts/HanaMin/LICENSE.txt fonts/HanaMin/README.txt
 
 python3 scripts/fetch_glyphwiki.py \
-  --master data/master/joyo2136_learning_bundle.json \
-  --sc1 build/sources/HT/public/data/sc1.json \
-  --sc2 build/sources/HT/public/data/sc2.json \
+  --decomp data/ht/learner_decomp.json \
   --output-dir build/glyphwiki \
   --base-url "$GLYPHWIKI_BASE" \
   --hanamin-a build/sources/chinese/fonts/HanaMin/HanaMinA.ttf \
   --hanamin-b build/sources/chinese/fonts/HanaMin/HanaMinB.ttf
 
-printf 'Fetched pinned sources:\n'
-printf '  HT       %s\n' "$HT_REF"
+printf 'Fetched pinned external sources:\n'
 printf '  KanjiVG  %s\n' "$KANJIVG_REF"
 printf '  HanaMin  %s\n' "$HANAMIN_REF"
+printf 'Using committed HT learning snapshot in data/ht/.\n'

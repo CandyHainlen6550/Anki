@@ -61,6 +61,11 @@ CSS = r'''
 .card{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Arial,sans-serif;text-align:center;color:#eaf2ff;background:#0c1b2b;margin:0;padding:18px;box-sizing:border-box}.ht-card{max-width:920px;margin:0 auto;background:#102338;border:1px solid #27435d;border-radius:22px;padding:28px;box-sizing:border-box;box-shadow:0 10px 30px rgba(0,0,0,.18)}.eyebrow,.section-title,.mini-label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#8ea5ba;font-weight:800}.eyebrow{margin-bottom:10px}.kanji{font-family:"Noto Serif JP","Yu Mincho","Hiragino Mincho ProN",serif;font-size:108px;line-height:1.05;color:#13c8ff;font-weight:500}.hv{font-size:42px;font-weight:800;line-height:1.2}.meaning{margin-top:12px;color:#b4c6d8;font-size:20px;line-height:1.45}.answer-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px;text-align:left}.fact{background:#0a1827;border:1px solid #284158;border-radius:14px;padding:13px}.fact b{display:block;color:#8198ad;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}.fact span{font-size:16px}.furigana-render{font-family:"Noto Sans JP","Yu Gothic","Hiragino Sans",sans-serif;line-height:2.15}.furigana-render ruby{ruby-position:over}.furigana-render rt{font-size:.62em;color:#91a9bd;font-weight:600}.mnemonic{margin-top:14px;text-align:left;background:#2a1604;border:1px solid #8a5200;border-radius:14px;padding:14px;color:#ffe4ad;line-height:1.55}.small{font-size:14px;color:#8fa5b9;margin-top:10px}.disambig{font-size:16px;color:#9fb4c8;margin-top:8px}.detail-section{margin-top:24px;padding-top:20px;border-top:1px solid #294158;text-align:left}.section-title{font-size:14px;color:#d6e7f5;margin-bottom:12px}.comp-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.comp-card{background:#081727;border:1px solid #31516b;border-left:4px solid #13c8ff;border-radius:16px;padding:14px;min-width:0}.comp-head{display:flex;gap:13px;align-items:center}.comp-glyph{width:72px;height:72px;flex:0 0 72px;border:1px solid #31516b;border-radius:14px;background:#102338;display:flex;align-items:center;justify-content:center;font-family:"Noto Serif JP","Yu Mincho",serif;font-size:50px;color:#eef7ff;overflow:hidden}.comp-glyph img{width:82%;height:82%;object-fit:contain;filter:invert(1)}.comp-glyph svg{width:84%;height:84%;display:block;color:#eef7ff;fill:currentColor}.comp-entity-code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;line-height:1.15;color:#9fb4c8;overflow-wrap:anywhere;padding:4px}.comp-name{font-size:21px;font-weight:800}.comp-meta{color:#99aec2;font-size:14px;line-height:1.45;margin-top:3px}.comp-role{color:#13c8ff;font-weight:700;font-size:13px;margin-top:3px}.comp-box{margin-top:12px;padding:10px 11px;border:1px solid #263f56;border-radius:12px;line-height:1.5;color:#cfdeeb}.comp-box.mn{background:#271503;border-color:#755000;color:#ffe5b5}.comp-empty{color:#91a7bb;padding:14px;border:1px dashed #38536a;border-radius:12px}.origin-card{background:#081727;border:1px solid #2f4d66;border-radius:16px;padding:15px;line-height:1.55}.origin-type{font-size:20px;font-weight:800;color:#eaf2ff}.origin-summary{margin-top:7px;color:#cad9e7}.origin-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:13px}.origin-fact{background:#0f2133;border:1px solid #29445b;border-radius:11px;padding:10px}.origin-fact b{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8198ad;margin-bottom:5px}.ids-text{font-family:"Noto Sans CJK JP","Noto Sans JP","Yu Gothic",sans-serif;overflow-wrap:anywhere}.conflict{margin-top:12px;color:#ffbd52;background:#2d1d06;border:1px solid #80591b;border-radius:10px;padding:10px}.stroke-area{display:flex;gap:18px;align-items:center;flex-wrap:wrap}.stroke-preview{width:250px;height:250px;border:1px solid #31516b;background:#13243a;border-radius:14px;overflow:hidden;display:flex;align-items:center;justify-content:center}.stroke-preview svg{width:100%;height:100%;display:block}.stroke-info{min-width:180px;flex:1;color:#bfd0df;line-height:1.55}.stroke-count{font-size:24px;font-weight:800;color:#eaf2ff}.stroke-replay{margin-top:12px;border:1px solid #365b73;background:#102b3f;color:#e9f7ff;border-radius:10px;padding:9px 14px;font-weight:700}.writer-wrap{max-width:390px;margin:18px auto 0}.writer-box{width:min(82vw,340px);aspect-ratio:1/1;margin:0 auto;background:#13243a;border:2px solid #2c526c;border-radius:16px;overflow:hidden;touch-action:none}.writer-box svg{display:block;width:100%;height:100%;touch-action:none}.writer-tools{display:flex;justify-content:center;gap:10px;margin-top:12px}.writer-tools button{border:1px solid #365b73;background:#102b3f;color:#e9f7ff;border-radius:10px;padding:9px 14px;font-weight:700}.writer-status{min-height:24px;margin-top:10px;font-weight:700;color:#a9c3d6}.writer-status.ok{color:#4ade80}.writer-status.bad{color:#fb7185}.locked{background:#30150f;border:1px solid #874838;border-radius:14px;padding:18px;color:#ffd0c3;font-weight:700}.nightMode .card,.night_mode .card{background:#0c1b2b;color:#eaf2ff}@media(max-width:680px){.ht-card{padding:20px 14px;border-radius:16px}.kanji{font-size:84px}.hv{font-size:32px}.answer-grid,.comp-grid,.origin-grid{grid-template-columns:1fr}.comp-glyph{width:64px;height:64px;flex-basis:64px;font-size:44px}.stroke-preview{width:min(74vw,240px);height:min(74vw,240px)}}
 '''
 
+CSS += r'''
+.comp-grid{align-items:start}.comp-recursive{width:100%;box-sizing:border-box;margin-top:12px;border:1px solid #31516b;border-radius:14px;overflow:hidden;background:#0b1c2d;color:#dbeaf7}.comp-recursive-summary{box-sizing:border-box;min-height:48px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;list-style:none;font-weight:800;line-height:1.35;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}.comp-recursive-summary::-webkit-details-marker{display:none}.comp-recursive-summary::marker{content:''}.comp-recursive-summary-title{min-width:0;overflow-wrap:anywhere}.comp-recursive-summary-title b{font-family:"Noto Serif JP","Yu Mincho",serif;color:#13c8ff;font-size:1.12em}.comp-recursive-summary-side{display:flex;align-items:center;gap:8px;flex:0 0 auto;color:#8fa9bd;font-size:12px;white-space:nowrap}.comp-recursive-chevron{display:inline-block;font-size:20px;line-height:1;transition:transform .18s ease;transform-origin:center}.comp-recursive[open]>.comp-recursive-summary .comp-recursive-chevron{transform:rotate(180deg)}.comp-recursive-body{box-sizing:border-box;padding:12px;border-top:1px solid #294158;background:#081727}.comp-recursive-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;width:100%}.comp-recursive-child{box-sizing:border-box;min-width:0;padding:10px;background:#102338;border:1px solid #294962;border-radius:12px;text-align:left}.comp-recursive-child-head{display:grid;grid-template-columns:58px minmax(0,1fr);gap:10px;align-items:center}.comp-recursive-child .comp-glyph{width:58px;height:58px;flex-basis:58px;font-size:40px;border-radius:11px}.comp-recursive-child .comp-glyph img,.comp-recursive-child .comp-glyph svg{max-width:100%;max-height:100%}.comp-recursive-copy{min-width:0}.comp-recursive-copy strong,.comp-recursive-copy span,.comp-recursive-copy small{display:block;min-width:0;overflow-wrap:anywhere;word-break:break-word}.comp-recursive-copy strong{font-size:18px;line-height:1.25;color:#eef7ff}.comp-recursive-copy span{margin-top:3px;font-size:14px;line-height:1.4;color:#c4d4e2}.comp-recursive-copy small{margin-top:4px;font-size:12px;line-height:1.35;color:#13c8ff}.comp-recursive-role{color:#8fa9bd!important}.comp-recursive-mn{margin-top:8px;color:#ffe5b5;font-size:13px;line-height:1.45}.comp-recursive .comp-recursive{margin-top:9px}
+@media(max-width:680px){.comp-recursive{margin-top:10px}.comp-recursive-summary{min-height:50px;padding:11px 12px}.comp-recursive-summary-side>span:first-child{display:none}.comp-recursive-body{padding:10px}.comp-recursive-grid{grid-template-columns:1fr}.comp-recursive-child{padding:9px}.comp-recursive-child-head{grid-template-columns:52px minmax(0,1fr)}.comp-recursive-child .comp-glyph{width:52px;height:52px;flex-basis:52px;font-size:36px}}@media(min-width:681px) and (max-width:1100px){.comp-recursive-grid{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}}@media(hover:hover){.comp-recursive-summary:hover{background:#102a40}}
+'''
+
 STROKE_BACK = r'''
 <div class="detail-section">
   <div class="section-title">Thứ tự nét</div>
@@ -193,25 +198,20 @@ paths=decode();if(paths.length){initNorm();restoreProgress();if(idx===0)msg(side
 </script>
 '''
 
+# Card 02: optional handwriting. Correct writing auto-flips; normal Show Answer stays available.
+Q_HV2K = r'''<div class="ht-card tappable" id="ht-write-root" data-side="front" data-kanji="{{Kanji}}" data-key="hv2k:{{Key}}" data-strokes="{{StrokeDataB64}}"><div class="eyebrow">Hán Việt → Kanji</div><div class="hv">{{HanViet}}</div><div class="disambig">Nghĩa: {{Meaning}}</div><div class="writer-wrap"><div class="writer-box tappable" id="ht-writer-box"></div><div class="writer-tools"><button type="button" id="ht-reset">Viết lại</button><button type="button" id="ht-hint">Gợi ý nét</button></div><div id="ht-writer-status" class="writer-status"></div></div><div class="small">Vẽ đúng sẽ tự lật thẻ. Nếu chưa vẽ được, bạn vẫn có thể lật thủ công để xem đáp án.</div></div>''' + WRITER_JS
+A_HV2K = COMMON_BACK
+
 Q_WRITE = r'''<div class="ht-card tappable" id="ht-write-root" data-side="front" data-kanji="{{Kanji}}" data-key="{{Key}}" data-strokes="{{StrokeDataB64}}"><div class="eyebrow">Hán Việt → viết Kanji</div><div class="hv">{{HanViet}}</div><div class="disambig">Nghĩa: {{Meaning}}</div><div class="writer-wrap"><div class="writer-box tappable" id="ht-writer-box"></div><div class="writer-tools"><button type="button" id="ht-reset">Viết lại</button><button type="button" id="ht-hint">Gợi ý nét</button></div><div id="ht-writer-status" class="writer-status"></div></div><div class="small">Đáp án chỉ hiện sau khi hệ thống xác nhận đủ nét đúng.</div></div>''' + WRITER_JS
 
 A_WRITE = r'''<div id="ht-write-answer" data-key="{{Key}}"><div id="ht-back-writer"><div class="ht-card tappable" id="ht-write-root" data-side="back" data-kanji="{{Kanji}}" data-key="{{Key}}" data-strokes="{{StrokeDataB64}}"><div class="eyebrow">Hán Việt → viết Kanji</div><div class="hv">{{HanViet}}</div><div class="disambig">Nghĩa: {{Meaning}}</div><div class="writer-wrap"><div class="writer-box tappable" id="ht-writer-box"></div><div class="writer-tools"><button type="button" id="ht-reset">Viết lại</button><button type="button" id="ht-hint">Gợi ý nét</button></div><div id="ht-writer-status" class="writer-status"></div></div><div class="small">Bạn đã lật sớm: cứ tiếp tục viết ở đây. Đáp án vẫn bị khóa cho tới khi đủ nét đúng.</div></div></div><div id="ht-unlocked" style="display:none">''' + COMMON_BACK + r'''</div></div>''' + WRITER_JS + r'''<script>(function(){var wrap=document.getElementById('ht-write-answer');if(!wrap)return;var key=wrap.getAttribute('data-key')||'',gate='ht-write-ok:'+key;var store=null;try{sessionStorage.setItem('__ht_writer_probe','1');sessionStorage.removeItem('__ht_writer_probe');store=sessionStorage}catch(e){try{localStorage.setItem('__ht_writer_probe','1');localStorage.removeItem('__ht_writer_probe');store=localStorage}catch(e2){store=null}}function getGate(){var v=null;try{v=store?store.getItem(gate):null}catch(e){}var t=Number(v||0);return !!(t&&Date.now()-t>=0&&Date.now()-t<10*60*1000)}function clearGate(){try{if(store)store.removeItem(gate)}catch(e){}}window.htRevealWriteAnswer=function(){var w=document.getElementById('ht-back-writer'),a=document.getElementById('ht-unlocked');if(w)w.style.display='none';if(a)a.style.display='block';clearGate()};if(getGate())window.htRevealWriteAnswer();})();</script>'''
 
-IDS_ARITY={'⿰':2,'⿱':2,'⿲':3,'⿳':3,'⿴':2,'⿵':2,'⿶':2,'⿷':2,'⿸':2,'⿹':2,'⿺':2,'⿻':2}
-IDS_POS={
- '⿰':['left','right'],'⿱':['top','bottom'],'⿲':['left','middle','right'],'⿳':['top','middle','bottom'],
- '⿴':['outside','inside'],'⿵':['outside','inside'],'⿶':['outside','inside'],'⿷':['outside','inside'],
- '⿸':['outside','inside'],'⿹':['outside','inside'],'⿺':['outside','inside'],'⿻':['overlay','overlay']
-}
 POS_VI={'left':'bên trái','right':'bên phải','top':'phía trên','bottom':'phía dưới','middle':'ở giữa','inside':'bên trong','outside':'bao ngoài','overlay':'chồng nét','surround_upper_left':'bao phía trên–trái','surround_upper_right':'bao phía trên–phải','surround_lower_left':'bao phía dưới–trái'}
 ROLE_VI={'semantic':'phần nghĩa','phonetic':'phần âm','visual_only':'thành phần hình thể'}
-FORM_VI={'pictographic':'Tượng hình','ideographic':'Hội ý','phono-semantic':'Hình thanh','indicative':'Chỉ sự','kokuji':'Quốc tự (Kokuji)','unknown':'Chưa xác định'}
 MANUAL_COMP={
  '⺫':{'han_viet':'Mục/Võng','meaning_vi':'mắt / lưới ở phía trên','mnemonic_vi':'⺫ gợi hình con mắt hoặc tấm lưới nằm ngang.'},
  '𰃮':{'meaning_vi':'dạng giản hóa/shinjitai dùng làm component; tương ứng với phần hình thể phía trên của 學, Nhật dùng trong 学・覚・栄・労…','mnemonic_vi':'Nhớ mảnh hình này là phần giản hóa xuất hiện trong 学・覚・栄・労…; không coi nó là một chữ nghĩa độc lập mới.'}
 }
-
-DEPTH2_INDEX={}
 
 def h(s): return html.escape(str(s or ''), quote=False)
 def safe(s): return h(s).replace('\n','<br>')
@@ -224,78 +224,27 @@ def cap_hv(s):
         else: out.append(p.strip().capitalize())
     return ''.join(out).strip()
 def anki_furigana(s,target=''):
-    """Convert source `語る【かたる】` to Anki ruby notation `語[かた]る`.
-
-    The source data contains at most one target kanji per annotated expression.
-    We therefore keep kana before/after the target outside the ruby annotation and
-    place only the target-kanji reading inside `[ ]`. This matches Anki's documented
-    `Text[Ruby]` syntax and avoids putting furigana over okurigana.
-    """
+    """Convert source `語る【かたる】` to Anki ruby notation `語[かた]る`."""
     text=str(s or '').strip()
-    if not text:
-        return ''
+    if not text:return ''
     parts=[]
     for raw in re.split(r'\s*;\s*',text):
         raw=raw.strip()
-        if not raw:
-            continue
+        if not raw:continue
         m=re.fullmatch(r'(.+?)【([^】]+)】',raw)
         if not m:
-            parts.append(raw.replace('【','[').replace('】',']'))
-            continue
+            parts.append(raw.replace('【','[').replace('】',']'));continue
         surface,reading=m.group(1),m.group(2)
         if target and target in surface:
-            i=surface.find(target)
-            prefix=surface[:i]
-            suffix=surface[i+len(target):]
+            i=surface.find(target);prefix=surface[:i];suffix=surface[i+len(target):]
             if reading.startswith(prefix) and (not suffix or reading.endswith(suffix)) and len(reading)>=len(prefix)+len(suffix):
-                end=len(reading)-len(suffix) if suffix else len(reading)
-                ruby=reading[len(prefix):end]
+                end=len(reading)-len(suffix) if suffix else len(reading);ruby=reading[len(prefix):end]
                 if ruby:
-                    parts.append(prefix+target+'['+ruby+']'+suffix)
-                    continue
+                    parts.append(prefix+target+'['+ruby+']'+suffix);continue
         parts.append(surface+'['+reading+']')
-    # Whitespace around the separator keeps each ruby expression as a separate token.
     return ' ; '.join(parts)
 
 def kvg_filename(ch): return f'{ord(ch):05x}.svg'
-
-def ids_tokens(s):
-    out=[]; i=0
-    while i<len(s):
-        if s[i]=='&':
-            j=s.find(';',i)
-            if j!=-1: out.append(s[i:j+1]); i=j+1; continue
-        out.append(s[i]); i+=1
-    return out
-
-def parse_ids_expr(s):
-    toks=ids_tokens(s)
-    def rec(i):
-        if i>=len(toks): raise ValueError('unexpected end')
-        t=toks[i]
-        if t in IDS_ARITY:
-            kids=[]; j=i+1
-            for _ in range(IDS_ARITY[t]):
-                n,j=rec(j); kids.append(n)
-            return ('op',t,kids),j
-        return ('leaf',t),i+1
-    try:
-        node,j=rec(0)
-        return node if j==len(toks) else None
-    except Exception: return None
-
-def flatten_ids(expr, parent_role='visual_only'):
-    node=parse_ids_expr(expr)
-    if not node:return []
-    out=[]
-    def walk(n,pos=''):
-        if n[0]=='leaf': out.append({'key':n[1],'position':pos,'role':parent_role}); return
-        op=n[1]; kids=n[2]; poss=IDS_POS.get(op,['']*len(kids))
-        for k,p in zip(kids,poss): walk(k,p)
-    walk(node)
-    return out
-
 
 ENTITY_UNICODE_RE = re.compile(r'\+([0-9A-Fa-f]{4,6})(?:;|$)')
 
@@ -310,6 +259,7 @@ class GlyphRenderer:
         self.cache={}
         self.fonts={}
         self.gw={}
+        self.gw_unicode={}
         self.stats=collections.Counter()
         self.missing_entities=set()
         self.missing_unicode=set()
@@ -319,9 +269,13 @@ class GlyphRenderer:
             base=Path(glyphwiki_manifest).parent
             raw=json.load(open(glyphwiki_manifest,encoding='utf-8'))
             for key,info in raw.items():
-                if isinstance(info,dict) and info.get('status')=='ok' and info.get('file'):
+                if not isinstance(info,dict):
+                    continue
+                if info.get('status')=='ok' and info.get('file'):
                     f=base/info['file']
                     if f.is_file(): self.gw[key]=(f,info)
+                elif info.get('status')=='unicode_fallback' and info.get('char'):
+                    self.gw_unicode[key]=str(info['char'])
 
     def _load_font(self,path):
         try:
@@ -382,7 +336,7 @@ class GlyphRenderer:
         if key.startswith('&') and key.endswith(';'):
             out=self._glyphwiki_img(key)
             if not out:
-                ch=self.entity_unicode(key)
+                ch=self.gw_unicode.get(key) or self.entity_unicode(key)
                 if ch:
                     out=self._font_svg(ch)
                     if out:self.stats['hanamin_entity_unicode']+=1
@@ -430,117 +384,142 @@ def glyph_html(key, meta, renderer=None):
         return '<span class="comp-entity-code">'+h(key[1:-1])+'</span>'
     return h(key)
 
-def component_entries(ch, visual_index, components, kvg_dir=None):
-    rows=visual_index.get(ch,[])
-    out=[]
-    for r in rows:
-        if str(r.get('learning_visible','')).lower() not in ('true','1','yes'): continue
-        key=str(r.get('component_key',''))
-        # IDS wrappers are structural syntax rather than a drawable component.
-        if key and key[0] in IDS_ARITY:
-            leaves=flatten_ids(key,r.get('role') or 'visual_only')
-            for x in leaves: out.append(x)
-            continue
-        out.append({'key':key,'position':r.get('position',''),'role':r.get('role','visual_only'),'row':r})
-    enriched=[]
-    for x in out:
-        key=x['key']; meta=dict(components.get(key,{}) or {}); meta.update(MANUAL_COMP.get(key,{}))
-        row=x.get('row') or {}
-        enriched.append({
-            'key':key,'position':x.get('position') or row.get('position',''),'position_vi':x.get('position_vi',''),
-            'role':x.get('role') or row.get('role','visual_only'),
-            'han_viet':row.get('component_han_viet') or meta.get('han_viet') or '',
-            'meaning':row.get('component_meaning_vi') or meta.get('meaning_vi') or '',
-            'mnemonic':row.get('component_mnemonic_vi') or meta.get('mnemonic_vi') or '',
-            'meta':meta
-        })
-    return enriched
-
-def components_html(ch, visual_index, components, kvg_dir=None, glyph_renderer=None):
-    items=component_entries(ch,visual_index,components,kvg_dir)
-    if not items:return '<div class="comp-empty">Không tách thành phần ở mức học hiện tại.</div>'
-    cards=[]
-    for x in items:
-        title=cap_hv(x['han_viet']) if x['han_viet'] else '—'
-        pos=x.get('position_vi') or POS_VI.get(x['position'],str(x['position'] or ''))
-        role=ROLE_VI.get(x['role'],str(x['role'] or 'thành phần hình thể'))
-        cards.append('<div class="comp-card"><div class="comp-head"><div class="comp-glyph">'+glyph_html(x['key'],x['meta'],glyph_renderer)+'</div><div><div class="comp-name">'+h(title)+'</div><div class="comp-meta">'+h(pos)+'</div><div class="comp-role">'+h(role)+'</div></div></div><div class="comp-box"><span class="mini-label">Nghĩa</span><br>'+h(x['meaning'] or '—')+'</div><div class="comp-box mn"><span class="mini-label">Mẹo nhớ</span><br>'+h(x['mnemonic'] or '—')+'</div></div>')
-    return ''.join(cards)
-
-def formation_html(row, form):
-    ftype=FORM_VI.get(str(row.get('formation_type','')),str(row.get('formation_type','') or 'Chưa xác định'))
-    summary=row.get('etymology_summary_vi') or '—'
-    cur=row.get('current_visual_ids') or form.get('current_visual_ids') or '—'
-    origin_char=row.get('origin_char') or form.get('origin_char') or row.get('kanji')
-    origin_ids=row.get('origin_ids') or form.get('origin_ids') or '—'
-    conflict=str(row.get('formation_conflict') or form.get('formation_conflict') or '').lower()=='true'
-    s='<div class="origin-card"><div class="origin-type">'+h(ftype)+'</div><div class="origin-summary">'+h(summary)+'</div><div class="origin-grid">'
-    s+='<div class="origin-fact"><b>IDS hiện tại</b><span class="ids-text">'+h(cur)+'</span></div>'
-    s+='<div class="origin-fact"><b>Dạng gốc</b><span class="ids-text">'+h(origin_char)+'</span></div>'
-    s+='<div class="origin-fact"><b>IDS nguồn gốc</b><span class="ids-text">'+h(origin_ids)+'</span></div></div>'
-    if conflict:s+='<div class="conflict">Có bất đồng giữa nguồn; giữ nguyên các claim nguồn thay vì ép thành một kết luận giả.</div>'
-    return s+'</div>'
-
-
-def normalize_repo_row(r):
-    f=r.get('formation') or {}
+def normalize_repo_row(r, mnemonics):
+    ch = str(r.get('kanji', ''))
     return {
-        'kanji':r.get('kanji',''), 'repo_id':r.get('id',''), 'repo_index':r.get('index',''), 'repo_page':r.get('page',''),
-        'han_viet':r.get('hanViet',''), 'meaning_vi':r.get('meaning',''), 'on_reading':r.get('on',''),
-        'kun_reading':r.get('kun',''), 'kun_words_jmdict':r.get('kunWords',''), 'furigana':r.get('furigana',''),
-        'mnemonic_vi':r.get('mnemonic',''), 'formation_type':r.get('formationType',''),
-        'etymology_summary_vi':r.get('etymology',''), 'current_visual_ids':f.get('currentVisualIds',''),
-        'origin_char':f.get('originChar') or r.get('kanji',''), 'origin_ids':f.get('originIds',''),
-        'formation_conflict':f.get('conflict',False), '_repo_components':r.get('components') or [], '_repo_formation':f,
+        'kanji': ch,
+        'repo_id': r.get('id', ''),
+        'repo_index': r.get('index', ''),
+        'repo_page': r.get('page', ''),
+        'han_viet': r.get('hanViet', ''),
+        'meaning_vi': r.get('meaning', ''),
+        'on_reading': r.get('on', ''),
+        'kun_reading': r.get('kun', ''),
+        'kun_words_jmdict': r.get('kunWords', ''),
+        'furigana': r.get('furigana', ''),
+        'mnemonic_vi': mnemonics.get(ch, ''),
+        '_repo_components': r.get('components') or [],
     }
 
-def repo_component_entries(row, master_components, kvg_dir=None):
-    out=[]
-    def enrich_leaf(key, base, parent=None):
-        parent=parent or {}
-        mm=dict(master_components.get(key,{}) or {}); mm.update(MANUAL_COMP.get(key,{}))
-        rt=base.get('renderType') or base.get('render_type') or mm.get('render_type') or ''
-        rv=base.get('renderValue') or base.get('render_value') or mm.get('render_value') or ''
-        meta=dict(mm); meta['render_type']=rt; meta['render_value']=rv
-        ppos=parent.get('positionVi') or POS_VI.get(parent.get('position',''),str(parent.get('position') or ''))
-        cpos=base.get('positionVi') or POS_VI.get(base.get('position',''),str(base.get('position') or ''))
-        combined=' → '.join(x for x in (ppos,cpos) if x) if parent else cpos
-        out.append({
-            'key':key,
-            'han_viet':base.get('hanViet') or base.get('han_viet') or mm.get('han_viet') or '',
-            'meaning':base.get('meaning') or base.get('meaning_vi') or mm.get('meaning_vi') or '',
-            'mnemonic':base.get('mnemonic') or base.get('mnemonic_vi') or mm.get('mnemonic_vi') or '',
-            'position':base.get('position') or parent.get('position') or '',
-            'position_vi':combined,
-            'role':base.get('role') or parent.get('role') or 'visual_only', 'meta':meta
-        })
-    for c in row.get('_repo_components') or []:
-        key=str(c.get('component') or c.get('display') or '')
-        children=c.get('children') or []
-        is_tree=(c.get('renderType')=='ids_tree' or (key and key[0] in IDS_ARITY))
-        if is_tree and children:
-            for child in children:
-                enrich_leaf(str(child.get('component') or child.get('display') or ''), child, c)
-        elif is_tree:
-            for leaf in flatten_ids(key,c.get('role') or 'visual_only'):
-                enrich_leaf(leaf.get('key',''),{'position':leaf.get('position',''),'role':leaf.get('role','visual_only')},c)
-        else:
-            # A real rare Unicode/component entity stays one component. Its glyph is
-            # rendered by HanaMin/GlyphWiki, not substituted with KanjiVG children.
-            enrich_leaf(key,c)
+
+def _existing_component_index(row):
+    out = {}
+
+    def visit(node):
+        if not isinstance(node, dict):
+            return
+        key = str(node.get('component') or node.get('display') or node.get('renderValue') or '')
+        if key and key not in out:
+            out[key] = node
+        for child in node.get('children') or []:
+            visit(child)
+
+    for node in (row or {}).get('_repo_components') or []:
+        visit(node)
     return out
 
-def repo_components_html(row, master_components, kvg_dir=None, glyph_renderer=None):
-    items=repo_component_entries(row,master_components,kvg_dir)
-    if not items:return '<div class="comp-empty">Không tách thành phần ở mức học hiện tại.</div>'
-    cards=[]
-    for x in items:
-        title=cap_hv(x['han_viet']) if x['han_viet'] else '—'
-        pos=x.get('position_vi') or POS_VI.get(x['position'],str(x['position'] or ''))
-        role=ROLE_VI.get(x['role'],str(x['role'] or 'thành phần hình thể'))
-        cards.append('<div class="comp-card"><div class="comp-head"><div class="comp-glyph">'+glyph_html(x['key'],x['meta'],glyph_renderer)+'</div><div><div class="comp-name">'+h(title)+'</div><div class="comp-meta">'+h(pos)+'</div><div class="comp-role">'+h(role)+'</div></div></div><div class="comp-box"><span class="mini-label">Nghĩa</span><br>'+h(x['meaning'] or '—')+'</div><div class="comp-box mn"><span class="mini-label">Mẹo nhớ</span><br>'+h(x['mnemonic'] or '—')+'</div></div>')
-    return ''.join(cards)
 
+def _decomp_meta(identity, learner_decomp, existing=None):
+    existing = existing or {}
+    raw = dict((learner_decomp.get('meta') or {}).get(identity, {}) or {})
+    manual = MANUAL_COMP.get(identity, {}) or {}
+    return {
+        'render_type': raw.get('renderType') or existing.get('renderType') or existing.get('render_type') or 'unicode',
+        'render_value': raw.get('renderValue') or existing.get('renderValue') or existing.get('render_value') or raw.get('display') or identity,
+        'glyphwiki_name': raw.get('glyphwikiName') or existing.get('glyphwikiName') or existing.get('glyphwiki_name') or '',
+        'han_viet': raw.get('hanViet') or existing.get('hanViet') or existing.get('han_viet') or manual.get('han_viet') or '',
+        'meaning_vi': raw.get('meaning') or existing.get('meaning') or existing.get('meaning_vi') or manual.get('meaning_vi') or '',
+        'mnemonic_vi': raw.get('mnemonic') or manual.get('mnemonic_vi') or '',
+        'display': raw.get('display') or existing.get('display') or identity,
+        'family': raw.get('family') or '',
+        'source_identity': raw.get('sourceIdentity') or identity,
+    }
+
+
+def _component_tree(identity, learner_decomp, existing_by_key, path=()):
+    existing = existing_by_key.get(identity, {}) or {}
+    meta = _decomp_meta(identity, learner_decomp, existing)
+    cycle = identity in path
+    children = [] if cycle else list((learner_decomp.get('decomp') or {}).get(identity, []) or [])
+    return {
+        'key': identity,
+        'han_viet': meta.get('han_viet', ''),
+        'meaning': meta.get('meaning_vi', ''),
+        'mnemonic': meta.get('mnemonic_vi', ''),
+        'position': existing.get('position') or '',
+        'position_vi': existing.get('positionVi') or existing.get('position_vi') or '',
+        'role': existing.get('role') or 'visual_only',
+        'meta': meta,
+        'children': [_component_tree(str(ch), learner_decomp, existing_by_key, path + (identity,)) for ch in children],
+    }
+
+
+def component_entries(ch, learner_decomp, row=None):
+    roots = (learner_decomp.get('roots') or {}).get(ch)
+    if not isinstance(roots, list) or not roots:
+        return []
+    existing = _existing_component_index(row or {})
+    return [_component_tree(str(identity), learner_decomp, existing) for identity in roots]
+
+
+def _recursive_child_html(child, glyph_renderer, depth=2):
+    title = cap_hv(child.get('han_viet')) if child.get('han_viet') else '—'
+    pos = child.get('position_vi') or POS_VI.get(child.get('position', ''), str(child.get('position') or 'thành phần'))
+    role = ROLE_VI.get(child.get('role'), str(child.get('role') or 'thành phần hình thể'))
+    attr_key = html.escape(str(child.get('key') or ''), quote=True)
+    nested = _recursive_block_html(child, child.get('children') or [], glyph_renderer, depth + 1) if child.get('children') else ''
+    mnemonic = child.get('mnemonic') or '—'
+    return (
+        '<article class="comp-recursive-child" data-recursive-child="' + attr_key + '">'
+        '<div class="comp-recursive-child-head"><div class="comp-glyph">' + glyph_html(child['key'], child['meta'], glyph_renderer) + '</div>'
+        '<div class="comp-recursive-copy"><strong>' + h(title) + '</strong><span>' + h(child.get('meaning') or '—') + '</span><small>' + h(pos) + '</small><small class="comp-recursive-role">' + h(role) + '</small></div></div>'
+        '<div class="comp-recursive-mn"><span class="mini-label">Mẹo nhớ</span><br>' + h(mnemonic) + '</div>'
+        + nested + '</article>'
+    )
+
+
+def _recursive_block_html(parent, children, glyph_renderer, depth=2):
+    if not children:
+        return ''
+    root_key = str(parent.get('key') or '')
+    attr_root = html.escape(root_key, quote=True)
+    child_html = ''.join(_recursive_child_html(child, glyph_renderer, depth) for child in children)
+    return (
+        '<details class="comp-recursive" data-recursive-depth="' + str(depth) + '" data-recursive-root="' + attr_root + '">'
+        '<summary class="comp-recursive-summary"><span class="comp-recursive-summary-title">Cấu tạo của <b>' + h(root_key) + '</b></span>'
+        '<span class="comp-recursive-summary-side"><span>' + str(len(children)) + ' phần</span><span class="comp-recursive-chevron" aria-hidden="true">⌄</span></span></summary>'
+        '<div class="comp-recursive-body"><div class="comp-recursive-grid">' + child_html + '</div></div></details>'
+    )
+
+
+def components_html(ch, learner_decomp, row=None, glyph_renderer=None):
+    items = component_entries(ch, learner_decomp, row)
+    if not items:
+        return '<div class="comp-empty">Không tách thành phần ở mức học hiện tại.</div>'
+    cards = []
+    for item in items:
+        title = cap_hv(item.get('han_viet')) if item.get('han_viet') else '—'
+        pos = item.get('position_vi') or POS_VI.get(item.get('position', ''), str(item.get('position') or 'thành phần hình thể'))
+        role = ROLE_VI.get(item.get('role'), str(item.get('role') or 'thành phần hình thể'))
+        recursive = _recursive_block_html(item, item.get('children') or [], glyph_renderer, 2)
+        cards.append(
+            '<div class="comp-card" data-component="' + html.escape(str(item.get('key') or ''), quote=True) + '">'
+            '<div class="comp-head"><div class="comp-glyph">' + glyph_html(item['key'], item['meta'], glyph_renderer) + '</div>'
+            '<div><div class="comp-name">' + h(title) + '</div><div class="comp-meta">' + h(pos) + '</div><div class="comp-role">' + h(role) + '</div></div></div>'
+            '<div class="comp-box"><span class="mini-label">Nghĩa</span><br>' + h(item.get('meaning') or '—') + '</div>'
+            '<div class="comp-box mn"><span class="mini-label">Mẹo nhớ</span><br>' + h(item.get('mnemonic') or '—') + '</div>'
+            + recursive + '</div>'
+        )
+    rendered = ''.join(cards)
+    regressions = {
+        '調': ('data-component="言"', 'data-component="周"', 'data-recursive-root="周"', 'data-recursive-child="用"', 'data-recursive-child="口"'),
+        '三': ('data-component="一"', 'data-component="𠄞"', 'data-recursive-root="𠄞"'),
+    }
+    if ch in regressions:
+        missing = [marker for marker in regressions[ch] if marker not in rendered]
+        if missing:
+            raise RuntimeError(ch + ' learner decomposition QA failed: ' + ', '.join(missing))
+    return rendered
 
 VARIANT_FALLBACK={
     '牜':('07292.svg','牛','true'),
@@ -636,90 +615,191 @@ def deck_json(did,name,ts,desc=''):return {'collapsed':False,'conf':1,'desc':des
 def stable_guid(subset,unique_key):
     return hashlib.sha1(('HT-JOYO-2136-REPOORDER|'+subset+'|'+str(unique_key)).encode()).hexdigest()[:12]
 
-def build(source,output,kvg_dir=None,stroke_meta=None,timestamp=None,sc1_source=None,sc2_source=None,hanamin_a=None,hanamin_b=None,glyphwiki_manifest=None):
-    data=json.load(open(source,encoding='utf-8')); all_rows=data['kanji']
-    global DEPTH2_INDEX
-    DEPTH2_INDEX=collections.defaultdict(list)
-    for _d in data.get('depth2',[]): DEPTH2_INDEX[str(_d.get('parent_component_key') or '')].append(_d)
-    for _k in list(DEPTH2_INDEX): DEPTH2_INDEX[_k].sort(key=lambda z:int(z.get('child_order') or 0))
-    if not kvg_dir: raise ValueError('This build requires --kanjivg-dir so all stroke data is embedded offline.')
-    if len(all_rows)!=2136:raise ValueError(f'Expected 2136 kanji, got {len(all_rows)}')
-    if not sc1_source or not sc2_source:raise ValueError('This build requires --sc1-source and --sc2-source from repo public/data.')
-    sc1_raw=json.load(open(sc1_source,encoding='utf-8')); sc2_raw=json.load(open(sc2_source,encoding='utf-8'))
-    if len(sc1_raw)!=400:raise ValueError(f'Expected repo Sơ cấp 1 = 400 rows, got {len(sc1_raw)}')
-    if len(sc2_raw)!=844:raise ValueError(f'Expected canonical repo Sơ cấp 2 = 844 rows (HT800_1→HT800_9), got {len(sc2_raw)}')
-    sc1_rows=[normalize_repo_row(r) for r in sc1_raw]; sc2_rows=[normalize_repo_row(r) for r in sc2_raw]
-    page_sets={'sc1':repo_pages(sc1_rows),'sc2':repo_pages(sc2_rows)}
+def build(kanji_source, mnemonics_source, decomp_source, output, kvg_dir=None, stroke_meta=None, timestamp=None, sc1_source=None, sc2_source=None, hanamin_a=None, hanamin_b=None, glyphwiki_manifest=None):
+    master = json.load(open(kanji_source, encoding='utf-8'))
+    all_rows = master['kanji']
+    mnemonics = json.load(open(mnemonics_source, encoding='utf-8'))
+    learner_decomp = json.load(open(decomp_source, encoding='utf-8'))
 
-    visual_index=collections.defaultdict(list)
-    for x in data.get('visual_components_l1',[]):visual_index[x.get('kanji')].append(x)
-    for xs in visual_index.values():xs.sort(key=lambda x:int(x.get('component_order') or 0))
-    components=data.get('components',{}); counts=load_stroke_counts(stroke_meta)
-    glyph_renderer=GlyphRenderer(hanamin_a,hanamin_b,glyphwiki_manifest)
-    subsets=[('sc1',sc1_rows),('sc2',sc2_rows),('all',all_rows)]
-    hv_counts={k:collections.Counter(str(r.get('han_viet','')).strip().lower() for r in rs) for k,rs in subsets}
-    ts=int(timestamp or time.time()); dbpath=Path(str(output)+'.collection.anki2')
-    if dbpath.exists():dbpath.unlink()
-    conn=sqlite3.connect(dbpath);c=conn.cursor();c.executescript(SCHEMA)
-    conf={'activeDecks':[DECK_ROOT],'addToCur':True,'collapseTime':1200,'curDeck':DECK_ROOT,'curModel':str(MODEL_ID),'dueCounts':True,'estTimes':True,'newBury':True,'newSpread':0,'nextPos':1,'sortBackwards':False,'sortType':'noteFld','timeLim':0}
-    dconf={'1':{'autoplay':True,'id':1,'lapse':{'delays':[10],'leechAction':0,'leechFails':8,'minInt':1,'mult':0},'maxTaken':60,'mod':0,'name':'Default','new':{'bury':True,'delays':[1,10],'initialFactor':2500,'ints':[1,4,7],'order':0,'perDay':9999,'separate':True},'replayq':True,'rev':{'bury':True,'ease4':1.3,'fuzz':0.05,'ivlFct':1,'maxIvl':36500,'minSpace':1,'perDay':9999},'timer':0,'usn':0}}
-    deck_names=dict(DECK_NAMES)
-    for subset in ('sc1','sc2'):
+    if not kvg_dir:
+        raise ValueError('This build requires --kanjivg-dir so all stroke data is embedded offline.')
+    if len(all_rows) != 2136:
+        raise ValueError(f'Expected 2136 kanji, got {len(all_rows)}')
+    joyo = [str(r.get('kanji', '')) for r in all_rows]
+    if len(set(joyo)) != 2136:
+        raise ValueError('Canonical 2136 master contains duplicates.')
+    missing_mn = [ch for ch in joyo if not str(mnemonics.get(ch, '')).strip()]
+    if missing_mn:
+        raise ValueError('Missing centralized mnemonic for: ' + ', '.join(missing_mn[:20]))
+    if int(learner_decomp.get('joyoCount') or 0) != 2136:
+        raise ValueError('Learner decomposition is not the canonical 2136 dataset.')
+    if not sc1_source or not sc2_source:
+        raise ValueError('This build requires local HT snapshot sc1/sc2 sources.')
+
+    sc1_raw = json.load(open(sc1_source, encoding='utf-8'))
+    sc2_raw = json.load(open(sc2_source, encoding='utf-8'))
+    if len(sc1_raw) != 400:
+        raise ValueError(f'Expected Sơ cấp 1 = 400 rows, got {len(sc1_raw)}')
+    if len(sc2_raw) != 844:
+        raise ValueError(f'Expected canonical Sơ cấp 2 = 844 rows (HT800_1→HT800_9), got {len(sc2_raw)}')
+
+    def legacy_mnemonic_paths(value, path=''):
+        found = []
+        if isinstance(value, dict):
+            for key, child in value.items():
+                child_path = path + '/' + str(key)
+                if str(key).lower() == 'mnemonic':
+                    found.append(child_path)
+                found.extend(legacy_mnemonic_paths(child, child_path))
+        elif isinstance(value, list):
+            for i, child in enumerate(value):
+                found.extend(legacy_mnemonic_paths(child, path + '/' + str(i)))
+        return found
+
+    for label, rows in [('sc1', sc1_raw), ('sc2', sc2_raw)]:
+        stale = legacy_mnemonic_paths(rows)
+        if stale:
+            raise ValueError(f'{label} snapshot still contains legacy mnemonic fields; run scripts/sync_from_ht.py first.')
+
+    sc1_rows = [normalize_repo_row(r, mnemonics) for r in sc1_raw]
+    sc2_rows = [normalize_repo_row(r, mnemonics) for r in sc2_raw]
+    all_rows = [dict(r, mnemonic_vi=mnemonics.get(str(r.get('kanji', '')), '')) for r in all_rows]
+    missing_course = [r['kanji'] for r in sc1_rows + sc2_rows if not str(r.get('mnemonic_vi', '')).strip()]
+    if missing_course:
+        raise ValueError('Missing centralized course mnemonic for: ' + ', '.join(missing_course[:20]))
+
+    page_sets = {'sc1': repo_pages(sc1_rows), 'sc2': repo_pages(sc2_rows)}
+    counts = load_stroke_counts(stroke_meta)
+    glyph_renderer = GlyphRenderer(hanamin_a, hanamin_b, glyphwiki_manifest)
+    subsets = [('sc1', sc1_rows), ('sc2', sc2_rows), ('all', all_rows)]
+    hv_counts = {k: collections.Counter(str(r.get('han_viet', '')).strip().lower() for r in rows) for k, rows in subsets}
+
+    ts = int(timestamp or time.time())
+    dbpath = Path(str(output) + '.collection.anki2')
+    if dbpath.exists():
+        dbpath.unlink()
+    conn = sqlite3.connect(dbpath)
+    c = conn.cursor()
+    c.executescript(SCHEMA)
+    conf = {'activeDecks':[DECK_ROOT],'addToCur':True,'collapseTime':1200,'curDeck':DECK_ROOT,'curModel':str(MODEL_ID),'dueCounts':True,'estTimes':True,'newBury':True,'newSpread':0,'nextPos':1,'sortBackwards':False,'sortType':'noteFld','timeLim':0}
+    dconf = {'1':{'autoplay':True,'id':1,'lapse':{'delays':[10],'leechAction':0,'leechFails':8,'minInt':1,'mult':0},'maxTaken':60,'mod':0,'name':'Default','new':{'bury':True,'delays':[1,10],'initialFactor':2500,'ints':[1,4,7],'order':0,'perDay':9999,'separate':True},'replayq':True,'rev':{'bury':True,'ease4':1.3,'fuzz':0.05,'ivlFct':1,'maxIvl':36500,'minSpace':1,'perDay':9999},'timer':0,'usn':0}}
+    deck_names = dict(DECK_NAMES)
+    for subset in ('sc1', 'sc2'):
         for parent_did in SUBSET_DECKS[subset]:
             for page in page_sets[subset]:
-                deck_names[page_deck_id(parent_did,page)]=DECK_NAMES[parent_did]+f'::Trang {page}'
-    decks={str(k):deck_json(k,v,ts,'Sơ cấp 1 / Sơ cấp 2 lấy đúng danh sách + thứ tự + trang từ repo. HT800 là tên khóa lịch sử; bảng chuẩn hiện có 844 ô / 83 ô bộ thủ. All = 2136.' if k==DECK_ROOT else '') for k,v in deck_names.items()}
-    models={str(MODEL_ID):model_json(ts)}
-    c.execute('INSERT INTO col VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)',(1,ts,ts*1000,ts*1000,11,0,0,0,json.dumps(conf,ensure_ascii=False),json.dumps(models,ensure_ascii=False),json.dumps(decks,ensure_ascii=False),json.dumps(dconf),json.dumps({})))
-    base=ts*1000; note_seq=0; stroke_embedded=0; derived_strokes=0; missing=[]
-    for subset,subset_rows in subsets:
-        for i,r in enumerate(subset_rows,1):
-            note_seq+=1; ch=r['kanji']; hv=cap_hv(r.get('han_viet','')); mean=str(r.get('meaning_vi','') or ''); dup=hv_counts[subset][str(r.get('han_viet','')).strip().lower()]>1; disambig=('Nghĩa: '+mean) if dup else ''
-            filename=kvg_filename(ch);b64='';sd={'p':[],'n':[]};svg_markup='';sp=find_svg(kvg_dir,filename); source_filename=filename
+                deck_names[page_deck_id(parent_did, page)] = DECK_NAMES[parent_did] + f'::Trang {page}'
+    decks = {str(k): deck_json(k, v, ts, 'Sơ cấp 1 / Sơ cấp 2 dùng snapshot HT sạch: 400 + 844 ô, không chứa mnemonic cũ. Mnemonic và chiết tự dùng nguồn tập trung. All = 2136.' if k == DECK_ROOT else '') for k, v in deck_names.items()}
+    models = {str(MODEL_ID): model_json(ts)}
+    c.execute('INSERT INTO col VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)', (1, ts, ts*1000, ts*1000, 11, 0, 0, 0, json.dumps(conf, ensure_ascii=False), json.dumps(models, ensure_ascii=False), json.dumps(decks, ensure_ascii=False), json.dumps(dconf), json.dumps({})))
+
+    base = ts * 1000
+    note_seq = 0
+    stroke_embedded = 0
+    derived_strokes = 0
+    missing = []
+    for subset, subset_rows in subsets:
+        for i, r in enumerate(subset_rows, 1):
+            note_seq += 1
+            ch = r['kanji']
+            hv = cap_hv(r.get('han_viet', ''))
+            mean = str(r.get('meaning_vi', '') or '')
+            dup = hv_counts[subset][str(r.get('han_viet', '')).strip().lower()] > 1
+            disambig = ('Nghĩa: ' + mean) if dup else ''
+            filename = kvg_filename(ch)
+            b64 = ''
+            sd = {'p': [], 'n': []}
+            svg_markup = ''
+            sp = find_svg(kvg_dir, filename)
+            source_filename = filename
             if sp:
-                try: sd=parse_stroke_data(sp.read_text(encoding='utf-8'))
-                except Exception: sd={'p':[],'n':[]}
+                try:
+                    sd = parse_stroke_data(sp.read_text(encoding='utf-8'))
+                except Exception:
+                    sd = {'p': [], 'n': []}
             if not sd.get('p'):
-                vsd,vfile=parse_variant_stroke_data(kvg_dir,ch)
-                if vsd and vsd.get('p'): sd=vsd; source_filename=vfile or filename; derived_strokes+=1
+                vsd, vfile = parse_variant_stroke_data(kvg_dir, ch)
+                if vsd and vsd.get('p'):
+                    sd = vsd
+                    source_filename = vfile or filename
+                    derived_strokes += 1
             if sd.get('p'):
-                b64=base64.b64encode(json.dumps(sd,ensure_ascii=False,separators=(',',':')).encode()).decode(); svg_markup=stroke_svg_html(sd); stroke_embedded+=1
-            else: missing.append({'subset':subset,'index':i,'kanji':ch})
-            if subset in ('sc1','sc2'):
-                comp_html=repo_components_html(r,components,kvg_dir,glyph_renderer)
-                unique=r.get('repo_id') or f'{subset}-{i:04d}-{ord(ch):x}'; tags=['joyo2136','repo_order','course::'+subset,'page::'+str(r.get('repo_page') or '')]
+                b64 = base64.b64encode(json.dumps(sd, ensure_ascii=False, separators=(',', ':')).encode()).decode()
+                svg_markup = stroke_svg_html(sd)
+                stroke_embedded += 1
             else:
-                comp_html=components_html(ch,visual_index,components,kvg_dir,glyph_renderer)
-                unique=f'all-{i:04d}-{ord(ch):x}'; tags=['joyo2136','repo_order','course::all']
-            stroke_count=(len(sd.get('p',[])) if sd.get('p') else counts.get(ch) or '')
-            furigana=anki_furigana(r.get('furigana',''),ch)
-            raw=[ch,hv,mean,r.get('on_reading',''),r.get('kun_reading',''),r.get('kun_words_jmdict',''),furigana,r.get('mnemonic_vi',''),str(unique),source_filename,b64,svg_markup,disambig,comp_html,str(stroke_count)]
-            vals=[]
-            for idx,v in enumerate(raw): vals.append(str(v or '') if idx in (11,13) else safe(v))
-            flds='\x1f'.join(vals)
-            nid=base+note_seq*8; c.execute('INSERT INTO notes VALUES(?,?,?,?,?,?,?,?,?,?,?)',(nid,stable_guid(subset,unique),MODEL_ID,ts,-1,' '+' '.join(t for t in tags if not t.endswith('::'))+' ',flds,ch,0,0,''))
-            for ord_,parent_did in enumerate(SUBSET_DECKS[subset]):
-                if subset in ('sc1','sc2'):
-                    did=page_deck_id(parent_did,int(r.get('repo_page') or 0))
-                else:
-                    did=parent_did
-                cid=nid+ord_+1;c.execute('INSERT INTO cards VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',(cid,nid,did,ord_,ts,-1,0,0,i,0,0,0,0,0,0,0,0,''))
-    conn.commit();conn.close();output=Path(output);output.parent.mkdir(parents=True,exist_ok=True)
-    with zipfile.ZipFile(output,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=9) as z:z.write(dbpath,'collection.anki2');z.writestr('media','{}')
+                missing.append({'subset': subset, 'index': i, 'kanji': ch})
+
+            comp_html = components_html(ch, learner_decomp, r if subset in ('sc1', 'sc2') else None, glyph_renderer)
+            if subset in ('sc1', 'sc2'):
+                unique = r.get('repo_id') or f'{subset}-{i:04d}-{ord(ch):x}'
+                tags = ['joyo2136', 'repo_order', 'course::' + subset, 'page::' + str(r.get('repo_page') or '')]
+            else:
+                unique = f'all-{i:04d}-{ord(ch):x}'
+                tags = ['joyo2136', 'repo_order', 'course::all']
+
+            stroke_count = len(sd.get('p', [])) if sd.get('p') else counts.get(ch) or ''
+            furigana = anki_furigana(r.get('furigana', ''), ch)
+            raw = [ch, hv, mean, r.get('on_reading', ''), r.get('kun_reading', ''), r.get('kun_words_jmdict', ''), furigana, r.get('mnemonic_vi', ''), str(unique), source_filename, b64, svg_markup, disambig, comp_html, str(stroke_count)]
+            vals = [str(v or '') if idx in (11, 13) else safe(v) for idx, v in enumerate(raw)]
+            flds = '\x1f'.join(vals)
+            nid = base + note_seq * 8
+            c.execute('INSERT INTO notes VALUES(?,?,?,?,?,?,?,?,?,?,?)', (nid, stable_guid(subset, unique), MODEL_ID, ts, -1, ' ' + ' '.join(t for t in tags if not t.endswith('::')) + ' ', flds, ch, 0, 0, ''))
+            for ord_, parent_did in enumerate(SUBSET_DECKS[subset]):
+                did = page_deck_id(parent_did, int(r.get('repo_page') or 0)) if subset in ('sc1', 'sc2') else parent_did
+                cid = nid + ord_ + 1
+                c.execute('INSERT INTO cards VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', (cid, nid, did, ord_, ts, -1, 0, 0, i, 0, 0, 0, 0, 0, 0, 0, 0, ''))
+
+    conn.commit()
+    conn.close()
+    output = Path(output)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=9) as z:
+        z.write(dbpath, 'collection.anki2')
+        z.writestr('media', '{}')
     dbpath.unlink()
     return {
-      'notes':3380,'cards':10140,
-      'subsets':{'sc1':{'label':'Sơ cấp 1','notes':400,'cards':1200},'sc2':{'label':'Sơ cấp 2','notes':844,'cards':2532},'all':{'notes':2136,'cards':6408}},
-      'repo_pages':{'sc1':page_sets['sc1'],'sc2':page_sets['sc2']},
-      'root_deck':ROOT_NAME,'repo_order_exact':True,'new_card_order':'added/due sequence','detailed_back_sections':['Thành phần','Thứ tự nét'],'formation_field_removed':True,'furigana_filter':'{{furigana:Furigana}}','component_glyphs':glyph_renderer.report(),'unresolved_entity_kvg_fallback':False,
-      'embedded_stroke_records':stroke_embedded,'derived_variant_stroke_records':derived_strokes,'runtime_kanjivg_fallback':False,'offline_stroke_rendering':True,
-      'inline_svg_embedded':True,'colored_auto_animation':True,'missing_embedded_strokes':len(missing),'missing':missing,'output':str(output),'size_bytes':output.stat().st_size
+        'notes': 3380,
+        'cards': 10140,
+        'source_schema': 'split-centralized-v1',
+        'centralized_mnemonics': len(mnemonics),
+        'learner_decomp_roots': len(learner_decomp.get('roots') or {}),
+        'subsets': {'sc1': {'label':'Sơ cấp 1','notes':400,'cards':1200}, 'sc2': {'label':'Sơ cấp 2','notes':844,'cards':2532}, 'all': {'notes':2136,'cards':6408}},
+        'repo_pages': {'sc1': page_sets['sc1'], 'sc2': page_sets['sc2']},
+        'root_deck': ROOT_NAME,
+        'repo_order_exact': True,
+        'new_card_order': 'added/due sequence',
+        'detailed_back_sections': ['Thành phần', 'Thứ tự nét'],
+        'formation_field_removed': True,
+        'furigana_filter': '{{furigana:Furigana}}',
+        'component_glyphs': glyph_renderer.report(),
+        'unresolved_entity_kvg_fallback': False,
+        'embedded_stroke_records': stroke_embedded,
+        'derived_variant_stroke_records': derived_strokes,
+        'runtime_kanjivg_fallback': False,
+        'offline_stroke_rendering': True,
+        'inline_svg_embedded': True,
+        'colored_auto_animation': True,
+        'missing_embedded_strokes': len(missing),
+        'missing': missing,
+        'output': str(output),
+        'size_bytes': output.stat().st_size,
     }
 
+
 def main():
-    ap=argparse.ArgumentParser()
-    ap.add_argument('--source',required=True); ap.add_argument('--sc1-source',required=True); ap.add_argument('--sc2-source',required=True)
-    ap.add_argument('--output',required=True); ap.add_argument('--kanjivg-dir'); ap.add_argument('--stroke-meta'); ap.add_argument('--timestamp',type=int)
-    ap.add_argument('--hanamin-a'); ap.add_argument('--hanamin-b'); ap.add_argument('--glyphwiki-manifest')
-    a=ap.parse_args(); print(json.dumps(build(a.source,a.output,a.kanjivg_dir,a.stroke_meta,a.timestamp,a.sc1_source,a.sc2_source,a.hanamin_a,a.hanamin_b,a.glyphwiki_manifest),ensure_ascii=False,indent=2))
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--kanji-source', required=True)
+    ap.add_argument('--mnemonics-source', required=True)
+    ap.add_argument('--decomp-source', required=True)
+    ap.add_argument('--sc1-source', required=True)
+    ap.add_argument('--sc2-source', required=True)
+    ap.add_argument('--output', required=True)
+    ap.add_argument('--kanjivg-dir')
+    ap.add_argument('--stroke-meta')
+    ap.add_argument('--timestamp', type=int)
+    ap.add_argument('--hanamin-a')
+    ap.add_argument('--hanamin-b')
+    ap.add_argument('--glyphwiki-manifest')
+    a = ap.parse_args()
+    print(json.dumps(build(a.kanji_source, a.mnemonics_source, a.decomp_source, a.output, a.kanjivg_dir, a.stroke_meta, a.timestamp, a.sc1_source, a.sc2_source, a.hanamin_a, a.hanamin_b, a.glyphwiki_manifest), ensure_ascii=False, indent=2))
 if __name__=='__main__':main()
