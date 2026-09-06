@@ -6,6 +6,11 @@ cd "$ROOT"
 mkdir -p dist
 rm -f dist/*.apkg
 
+# Normalize the shared rare-glyph renderer before fetching/building. This is
+# idempotent: once Actions commits the generated builder, later runs are no-ops.
+python3 scripts/normalize_glyph_rendering.py
+python3 -m py_compile builder/build_anki.py
+
 bash scripts/fetch_sources.sh
 
 SC1=data/ht/sc1.json
