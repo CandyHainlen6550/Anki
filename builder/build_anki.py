@@ -95,6 +95,16 @@ CSS += r'''
 @media(max-width:680px){.comp-modal-panel{max-width:calc(100vw - 12px);max-height:calc(100vh - 12px)}@supports (height:100dvh){.comp-modal-panel{max-height:calc(100dvh - 12px)}}}
 '''
 
+CSS += r'''
+/* ipad-interaction-polish-v1 */
+#ht-write-root,#ht-write-root *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
+.writer-box,.writer-box *{touch-action:none!important;-webkit-user-drag:none!important}
+.writer-tools button{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.comp-modal-overlay{display:flex!important;visibility:hidden;opacity:0;pointer-events:none;-webkit-backface-visibility:hidden;backface-visibility:hidden;transform:translateZ(0)}
+.comp-modal-overlay.is-open{visibility:visible;opacity:1;pointer-events:auto}
+.comp-modal-panel{-webkit-backface-visibility:hidden;backface-visibility:hidden;transform:translateZ(0)}
+'''
+
 STROKE_BACK = r'''
 <div class="detail-section">
   <div class="section-title">Thứ tự nét</div>
@@ -146,15 +156,16 @@ function initComponentModal(){
   overlay.innerHTML='<div class="comp-modal-panel" role="dialog" aria-modal="true" aria-labelledby="ht-component-modal-title"><div class="comp-modal-header"><div class="comp-modal-title" id="ht-component-modal-title">Cấu tạo</div><button type="button" class="comp-modal-close" aria-label="Đóng">×</button></div><div class="comp-modal-body"></div></div>';
   /* Keep the fixed modal outside the body: on iOS/WKWebView the body is locked with position:fixed, and a body child can be shifted off-screen. */
   document.documentElement.appendChild(overlay);
-  var title=overlay.querySelector('.comp-modal-title'),body=overlay.querySelector('.comp-modal-body'),closeBtn=overlay.querySelector('.comp-modal-close'),lastTrigger=null,pageLocked=false,lockedY=0,oldBodyStyle='',oldHtmlStyle='';
+  var title=overlay.querySelector('.comp-modal-title'),body=overlay.querySelector('.comp-modal-body'),closeBtn=overlay.querySelector('.comp-modal-close'),lastTrigger=null,pageLocked=false,lockedY=0,oldBodyStyle='',oldHtmlStyle='',activeContent=null,activeSource=null;
   function lockPage(){if(pageLocked)return;lockedY=window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop||0;oldBodyStyle=document.body.getAttribute('style')||'';oldHtmlStyle=document.documentElement.getAttribute('style')||'';document.documentElement.style.overflow='hidden';document.body.style.position='fixed';document.body.style.top=(-lockedY)+'px';document.body.style.left='0';document.body.style.right='0';document.body.style.width='100%';document.body.style.overflow='hidden';pageLocked=true}
   function unlockPage(){if(!pageLocked)return;if(oldBodyStyle)document.body.setAttribute('style',oldBodyStyle);else document.body.removeAttribute('style');if(oldHtmlStyle)document.documentElement.setAttribute('style',oldHtmlStyle);else document.documentElement.removeAttribute('style');pageLocked=false;try{window.scrollTo(0,lockedY)}catch(e){}}
-  function closeModal(){overlay.classList.remove('is-open');overlay.setAttribute('aria-hidden','true');body.innerHTML='';unlockPage();if(lastTrigger&&lastTrigger.focus){try{lastTrigger.focus()}catch(e){}}lastTrigger=null}
+  function restoreModalContent(){if(activeContent&&activeSource){try{activeSource.appendChild(activeContent)}catch(e){}}activeContent=null;activeSource=null;while(body.firstChild){body.removeChild(body.firstChild)}}
+  function closeModal(){overlay.classList.remove('is-open');overlay.setAttribute('aria-hidden','true');restoreModalContent();unlockPage();lastTrigger=null}
   function openModal(trigger){
     var id=trigger&&trigger.getAttribute('data-comp-modal'),source=id&&document.getElementById(id);if(!source)return;
     var sourceTitle=source.querySelector('.comp-modal-source-title'),sourceContent=source.querySelector('.comp-modal-source-content');if(!sourceTitle||!sourceContent)return;
-    lastTrigger=trigger;lockPage();title.innerHTML=sourceTitle.innerHTML;body.innerHTML=sourceContent.innerHTML;body.scrollTop=0;overlay.classList.add('is-open');overlay.setAttribute('aria-hidden','false');
-    try{closeBtn.focus()}catch(e){}
+    lastTrigger=trigger;restoreModalContent();title.innerHTML=sourceTitle.innerHTML;activeSource=sourceContent;activeContent=sourceContent.firstElementChild;if(!activeContent)return;body.appendChild(activeContent);body.scrollTop=0;overlay.classList.add('is-open');overlay.setAttribute('aria-hidden','false');
+    requestAnimationFrame(function(){if(overlay.classList.contains('is-open'))lockPage()})
   }
   document.addEventListener('click',function(ev){var trigger=ancestorWithClass(ev.target,'comp-modal-trigger');if(trigger){ev.preventDefault();ev.stopPropagation();openModal(trigger);return}var close=ancestorWithClass(ev.target,'comp-modal-close');if(close){ev.preventDefault();ev.stopPropagation();closeModal();return}if(ev.target===overlay){ev.preventDefault();closeModal()}},false);
   document.addEventListener('keydown',function(ev){if((ev.key==='Escape'||ev.keyCode===27)&&overlay.classList.contains('is-open'))closeModal()},false);
@@ -208,7 +219,13 @@ function msg(t,c){status.textContent=t;status.className='writer-status '+(c||'')
 function decode(){try{var x=JSON.parse(atob(embedded));if(Array.isArray(x))return x;if(x&&Array.isArray(x.p)){strokeNorm=!!x.z;return x.p}}catch(e){}return []}
 function E(n,a){var e=document.createElementNS(NS,n);if(a)Object.keys(a).forEach(function(k){e.setAttribute(k,a[k])});return e}
 var svg=E('svg',{viewBox:'0 0 109 109','class':'tappable'}),bg=E('g'),done=E('g'),live=E('g'),hints=E('g');
-svg.style.touchAction='none';svg.style.userSelect='none';svg.style.webkitUserSelect='none';
+svg.style.touchAction='none';svg.style.userSelect='none';svg.style.webkitUserSelect='none';svg.style.webkitTouchCallout='none';
+function writerNode(n){if(!n)return false;var e=n.nodeType===1?n:n.parentNode;return !!(e&&root.contains(e))}
+function clearWriterSelection(){try{var sel=window.getSelection&&window.getSelection();if(sel&&sel.rangeCount&&(writerNode(sel.anchorNode)||writerNode(sel.focusNode)))sel.removeAllRanges()}catch(e){}}
+root.addEventListener('selectstart',function(ev){ev.preventDefault();clearWriterSelection()},{capture:true,passive:false});
+root.addEventListener('dragstart',function(ev){ev.preventDefault()},{capture:true,passive:false});
+root.addEventListener('contextmenu',function(ev){if(writerNode(ev.target))ev.preventDefault()},{capture:true,passive:false});
+document.addEventListener('selectionchange',clearWriterSelection,false);
 svg.appendChild(E('rect',{x:'0',y:'0',width:'109',height:'109',fill:'#13243a'}));svg.appendChild(bg);svg.appendChild(hints);svg.appendChild(done);svg.appendChild(live);box.appendChild(svg);
 [['0','54.5','109','54.5'],['54.5','0','54.5','109']].forEach(function(v){bg.appendChild(E('line',{x1:v[0],y1:v[1],x2:v[2],y2:v[3],stroke:'#60738c','stroke-width':'.65','stroke-dasharray':'4 3','stroke-opacity':'.7'}))});
 var measure=E('path',{fill:'none',stroke:'none'});measure.style.visibility='hidden';svg.appendChild(measure);
@@ -246,9 +263,9 @@ function scheduleRender(){if(!raf)raf=requestAnimationFrame(renderLive)}
 function releaseCapture(){if(activePointer!==null){try{if(svg.hasPointerCapture&&svg.hasPointerCapture(activePointer))svg.releasePointerCapture(activePointer)}catch(e){}}}
 function clearActiveNow(){cancelRAF();cancelWatchdog();releaseCapture();drawing=false;activePointer=null;pts=[];liveD='';renderedCount=0;if(active){try{active.remove()}catch(e){}active=null}}
 function failActive(text){cancelRAF();cancelWatchdog();releaseCapture();drawing=false;activePointer=null;if(active){var bad=active;try{bad.setAttribute('stroke','#ff334e');bad.setAttribute('stroke-width','4.8');bad.style.opacity='1';bad.style.transition='opacity .32s ease'}catch(e){}setTimeout(function(){try{bad.style.opacity='0'}catch(e){}},360);setTimeout(function(){try{bad.remove()}catch(e){}},720)}active=null;pts=[];liveD='';renderedCount=0;msg(text||('Sai nét — viết lại nét '+(idx+1)),'bad')}
-function begin(ev){if(idx>=paths.length)return;if(ev.isPrimary===false)return;ev.preventDefault();if(drawing||active)failActive('Sai nét — nét trước bị ngắt, viết lại nét '+(idx+1));drawing=true;activePointer=(typeof ev.pointerId==='number'?ev.pointerId:null);pts=[];liveD='';renderedCount=0;var p=pos(ev);appendPoint(p);active=E('path',{fill:'none',stroke:P[idx%P.length],'stroke-width':'4.4','stroke-linecap':'round','stroke-linejoin':'round',d:'M '+p.x+' '+p.y});live.appendChild(active);if(activePointer!==null)try{svg.setPointerCapture(activePointer)}catch(e){}armWatchdog()}
-function move(ev){if(!drawing)return;if(activePointer!==null&&typeof ev.pointerId==='number'&&ev.pointerId!==activePointer)return;ev.preventDefault();var list=(typeof ev.getCoalescedEvents==='function'?ev.getCoalescedEvents():null);if(list&&list.length){for(var i=0;i<list.length;i++)appendPoint(pos(list[i]))}else appendPoint(pos(ev));scheduleRender();armWatchdog()}
-function end(ev){if(!drawing)return;if(ev&&activePointer!==null&&typeof ev.pointerId==='number'&&ev.pointerId!==activePointer)return;if(ev)ev.preventDefault();if(ev)appendPoint(pos(ev));renderLive();cancelRAF();cancelWatchdog();releaseCapture();drawing=false;activePointer=null;var ok=false;try{ok=evalStroke(pts,paths[idx])}catch(e){ok=false}if(ok){if(active)active.remove();active=null;var col=P[idx%P.length];done.appendChild(E('path',pathAttrs(paths[idx],idx)));idx++;saveProgress();pts=[];liveD='';renderedCount=0;if(idx>=paths.length){finish()}else msg('✓ Đúng nét '+idx+'/'+paths.length+' · tiếp nét '+(idx+1),'ok')}else failActive('Sai nét — viết lại nét '+(idx+1))}
+function begin(ev){if(idx>=paths.length)return;if(ev.isPrimary===false)return;ev.preventDefault();ev.stopPropagation();clearWriterSelection();if(drawing||active)failActive('Sai nét — nét trước bị ngắt, viết lại nét '+(idx+1));drawing=true;activePointer=(typeof ev.pointerId==='number'?ev.pointerId:null);pts=[];liveD='';renderedCount=0;var p=pos(ev);appendPoint(p);active=E('path',{fill:'none',stroke:P[idx%P.length],'stroke-width':'4.4','stroke-linecap':'round','stroke-linejoin':'round',d:'M '+p.x+' '+p.y});live.appendChild(active);if(activePointer!==null)try{svg.setPointerCapture(activePointer)}catch(e){}armWatchdog()}
+function move(ev){if(!drawing)return;if(activePointer!==null&&typeof ev.pointerId==='number'&&ev.pointerId!==activePointer)return;ev.preventDefault();ev.stopPropagation();var list=(typeof ev.getCoalescedEvents==='function'?ev.getCoalescedEvents():null);if(list&&list.length){for(var i=0;i<list.length;i++)appendPoint(pos(list[i]))}else appendPoint(pos(ev));scheduleRender();armWatchdog()}
+function end(ev){if(!drawing)return;if(ev&&activePointer!==null&&typeof ev.pointerId==='number'&&ev.pointerId!==activePointer)return;if(ev){ev.preventDefault();ev.stopPropagation()}if(ev)appendPoint(pos(ev));renderLive();cancelRAF();cancelWatchdog();releaseCapture();drawing=false;activePointer=null;var ok=false;try{ok=evalStroke(pts,paths[idx])}catch(e){ok=false}if(ok){if(active)active.remove();active=null;var col=P[idx%P.length];done.appendChild(E('path',pathAttrs(paths[idx],idx)));idx++;saveProgress();pts=[];liveD='';renderedCount=0;if(idx>=paths.length){finish()}else msg('✓ Đúng nét '+idx+'/'+paths.length+' · tiếp nét '+(idx+1),'ok')}else failActive('Sai nét — viết lại nét '+(idx+1))}
 function cancelGesture(ev){if(!drawing)return;if(ev&&activePointer!==null&&typeof ev.pointerId==='number'&&ev.pointerId!==activePointer)return;failActive('Sai nét — thao tác bị ngắt, viết lại nét '+(idx+1))}
 svg.addEventListener('pointerdown',begin,{passive:false});svg.addEventListener('pointermove',move,{passive:false});svg.addEventListener('pointerup',end,{passive:false});svg.addEventListener('pointercancel',cancelGesture,{passive:false});svg.addEventListener('lostpointercapture',function(){if(drawing)setTimeout(function(){if(drawing)failActive('Sai nét — thao tác bị ngắt, viết lại nét '+(idx+1))},0)});
 resetBtn.addEventListener('click',function(){clearActiveNow();idx=0;done.innerHTML='';live.innerHTML='';hints.innerHTML='';clearProgress();clearGate();msg('Viết từ nét 1/'+paths.length,'')});
