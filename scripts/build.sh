@@ -6,7 +6,19 @@ cd "$ROOT"
 mkdir -p dist
 rm -f dist/*.apkg
 
-# Build directly from the committed renderer; CI must not rewrite builder source.
+# One-time migration for the iPad component modal. The verified workflow commits
+# the resulting builder/build_anki.py; this patch hook is removed after that lands.
+PATCH=scripts/ipad_component_modal.patch
+if git apply --check "$PATCH"; then
+  git apply "$PATCH"
+elif git apply --reverse --check "$PATCH"; then
+  echo 'iPad component modal patch already applied.'
+else
+  echo 'iPad component modal patch no longer matches builder source.' >&2
+  exit 1
+fi
+python3 -m py_compile builder/build_anki.py
+
 bash scripts/fetch_sources.sh
 
 SC1=data/ht/sc1.json
