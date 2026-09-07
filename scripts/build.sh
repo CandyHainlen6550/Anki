@@ -6,10 +6,7 @@ cd "$ROOT"
 mkdir -p dist
 rm -f dist/*.apkg
 
-# One-time migration: keep first recursive level inline, move only the second level to a viewport-fitted modal.
-python3 scripts/apply_recursive_modal_v2.py
-python3 -m py_compile builder/build_anki.py
-
+# Build directly from the committed renderer; no migration or source rewriting is allowed.
 bash scripts/fetch_sources.sh
 
 SC1=data/ht/sc1.json
