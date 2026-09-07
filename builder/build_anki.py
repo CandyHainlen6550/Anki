@@ -81,8 +81,28 @@ CSS = r'''
 
 CSS += r'''
 .inline-glyph{display:inline-flex;width:1.08em;height:1.08em;align-items:center;justify-content:center;vertical-align:-.16em;line-height:1}.inline-glyph svg,.inline-glyph img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain}.inline-glyph svg{fill:currentColor}.inline-glyph img{filter:invert(1)}
-.comp-grid{align-items:start}.comp-recursive{width:100%;box-sizing:border-box;margin-top:12px;border:1px solid #31516b;border-radius:14px;overflow:hidden;background:#0b1c2d;color:#dbeaf7}.comp-recursive-summary{box-sizing:border-box;min-height:48px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;list-style:none;font-weight:800;line-height:1.35;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}.comp-recursive-summary::-webkit-details-marker{display:none}.comp-recursive-summary::marker{content:''}.comp-recursive-summary-title{min-width:0;overflow-wrap:anywhere}.comp-recursive-summary-title b{font-family:"Noto Serif JP","Yu Mincho",serif;color:#13c8ff;font-size:1.12em}.comp-recursive-summary-side{display:flex;align-items:center;gap:8px;flex:0 0 auto;color:#8fa9bd;font-size:12px;white-space:nowrap}.comp-recursive-chevron{width:18px;height:18px;flex:0 0 18px;display:inline-flex;align-items:center;justify-content:center;transition:transform .18s ease;transform-origin:center}.comp-recursive-chevron svg{width:14px;height:14px;display:block;overflow:visible}.comp-recursive-chevron path{fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}.comp-recursive[open]>.comp-recursive-summary .comp-recursive-chevron{transform:rotate(180deg)}.comp-recursive-body{box-sizing:border-box;padding:12px;border-top:1px solid #294158;background:#081727}.comp-recursive-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;width:100%}.comp-recursive-child{box-sizing:border-box;min-width:0;padding:10px;background:#102338;border:1px solid #294962;border-radius:12px;text-align:left}.comp-recursive-child-head{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;align-items:start}.comp-recursive-child .comp-glyph{width:72px;height:72px;flex-basis:72px;font-size:48px;border-radius:12px}.comp-recursive-child .comp-glyph img,.comp-recursive-child .comp-glyph svg{max-width:100%;max-height:100%}.comp-recursive-copy{min-width:0}.comp-recursive-copy strong,.comp-recursive-copy span,.comp-recursive-copy small{display:block;min-width:0;overflow-wrap:anywhere;word-break:break-word}.comp-recursive-copy strong{font-size:22px;line-height:1.25;color:#eef7ff}.comp-recursive-copy span{margin-top:3px;font-size:16px;line-height:1.45;color:#c4d4e2}.comp-recursive-copy small{margin-top:4px;font-size:12px;line-height:1.35;color:#13c8ff}.comp-recursive-role{color:#8fa9bd!important}.comp-recursive-mn{margin-top:8px;color:#ffe5b5;font-size:13px;line-height:1.45}.comp-recursive .comp-recursive{margin-top:9px}
-@media(max-width:680px){.comp-recursive{margin-top:10px}.comp-recursive-summary{min-height:50px;padding:11px 12px}.comp-recursive-summary-side>span:first-child{display:none}.comp-recursive-body{padding:10px}.comp-recursive-grid{grid-template-columns:1fr}.comp-recursive-child{padding:9px}.comp-recursive-child-head{grid-template-columns:52px minmax(0,1fr)}.comp-recursive-child .comp-glyph{width:52px;height:52px;flex-basis:52px;font-size:36px}}@media(min-width:681px) and (max-width:1100px){.comp-recursive-grid{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}}@media(hover:hover){.comp-recursive-summary:hover{background:#102a40}}
+.comp-grid{align-items:start}.comp-modal-source{display:none!important}.comp-modal-trigger{box-sizing:border-box;width:100%;min-height:46px;margin-top:12px;padding:10px 12px;border:1px solid #365b73;border-radius:12px;background:#102b3f;color:#e9f7ff;font:inherit;font-weight:800;display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;cursor:pointer;-webkit-appearance:none;appearance:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}.comp-modal-trigger-side{flex:0 0 auto;color:#13c8ff;font-size:13px;white-space:nowrap}.comp-modal-trigger:active{background:#16364e}.comp-modal-overlay{position:fixed;z-index:2147483000;left:0;top:0;right:0;bottom:0;display:none;box-sizing:border-box;padding:22px;align-items:center;justify-content:center;background:rgba(2,9,18,.76);-webkit-tap-highlight-color:transparent}.comp-modal-overlay.is-open{display:flex}.comp-modal-panel{box-sizing:border-box;width:760px;max-width:100%;max-height:82vh;display:flex;flex-direction:column;overflow:hidden;background:#0b1c2d;border:1px solid #3a607a;border-radius:18px;box-shadow:0 24px 70px rgba(0,0,0,.52);color:#dbeaf7;text-align:left}.comp-modal-header{min-height:62px;box-sizing:border-box;padding:12px 14px 12px 18px;border-bottom:1px solid #294158;display:flex;align-items:center;justify-content:space-between;gap:14px;background:#102338}.comp-modal-title{min-width:0;font-size:22px;line-height:1.3;font-weight:900;color:#eef7ff;overflow-wrap:anywhere}.comp-modal-title .inline-glyph{color:#13c8ff}.comp-modal-close{width:42px;height:42px;flex:0 0 42px;border:1px solid #365b73;border-radius:11px;background:#0b1c2d;color:#eaf2ff;font-size:28px;line-height:1;font-weight:400;display:flex;align-items:center;justify-content:center;-webkit-appearance:none;appearance:none;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}.comp-modal-body{box-sizing:border-box;padding:16px;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}.comp-modal-body>.comp-recursive-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.comp-recursive{width:100%;box-sizing:border-box;margin-top:10px;border:1px solid #31516b;border-radius:12px;overflow:hidden;background:#0b1c2d;color:#dbeaf7}.comp-recursive-summary{box-sizing:border-box;min-height:46px;padding:9px 10px;display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;list-style:none;font-weight:800;line-height:1.35;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}.comp-recursive-summary::-webkit-details-marker{display:none}.comp-recursive-summary::marker{content:''}.comp-recursive-summary-title{min-width:0;overflow-wrap:anywhere}.comp-recursive-summary-title b{font-family:"Noto Serif JP","Yu Mincho",serif;color:#13c8ff;font-size:1.12em}.comp-recursive-summary-side{display:flex;align-items:center;gap:8px;flex:0 0 auto;color:#8fa9bd;font-size:12px;white-space:nowrap}.comp-recursive-chevron{width:18px;height:18px;flex:0 0 18px;display:inline-flex;align-items:center;justify-content:center;transition:transform .18s ease;transform-origin:center}.comp-recursive-chevron svg{width:14px;height:14px;display:block;overflow:visible}.comp-recursive-chevron path{fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}.comp-recursive[open]>.comp-recursive-summary .comp-recursive-chevron{transform:rotate(180deg)}.comp-recursive-body{box-sizing:border-box;padding:10px;border-top:1px solid #294158;background:#081727}.comp-recursive-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;width:100%}.comp-recursive-child{box-sizing:border-box;min-width:0;padding:11px;background:#102338;border:1px solid #294962;border-radius:12px;text-align:left}.comp-recursive-child-head{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;align-items:start}.comp-recursive-child .comp-glyph{width:72px;height:72px;flex-basis:72px;font-size:48px;border-radius:12px}.comp-recursive-child .comp-glyph img,.comp-recursive-child .comp-glyph svg{max-width:100%;max-height:100%}.comp-recursive-copy{min-width:0}.comp-recursive-copy strong,.comp-recursive-copy span,.comp-recursive-copy small{display:block;min-width:0;overflow-wrap:anywhere;word-break:break-word}.comp-recursive-copy strong{font-size:22px;line-height:1.25;color:#eef7ff}.comp-recursive-copy span{margin-top:3px;font-size:16px;line-height:1.45;color:#c4d4e2}.comp-recursive-copy small{margin-top:4px;font-size:12px;line-height:1.35;color:#13c8ff}.comp-recursive-role{color:#8fa9bd!important}.comp-recursive-mn{margin-top:9px;color:#ffe5b5;font-size:13px;line-height:1.45}.comp-recursive .comp-recursive{margin-top:10px}
+@supports (height:100dvh){.comp-modal-panel{max-height:calc(100dvh - 32px)}}
+@media(max-width:680px){.comp-modal-overlay{padding:9px}.comp-modal-panel{max-height:calc(100vh - 18px);border-radius:14px}.comp-modal-header{min-height:56px;padding:9px 9px 9px 13px}.comp-modal-title{font-size:19px}.comp-modal-close{width:40px;height:40px;flex-basis:40px}.comp-modal-body{padding:10px}.comp-modal-body>.comp-recursive-grid,.comp-recursive-grid{grid-template-columns:1fr}.comp-recursive-child{padding:9px}.comp-recursive-child-head{grid-template-columns:56px minmax(0,1fr)}.comp-recursive-child .comp-glyph{width:56px;height:56px;flex-basis:56px;font-size:38px}.comp-recursive-summary-side>span:first-child{display:none}}@media(hover:hover){.comp-modal-trigger:hover,.comp-recursive-summary:hover{background:#14334b}.comp-modal-close:hover{background:#16364e}}
+'''
+
+CSS += r'''
+/* recursive-modal-v2 */
+.comp-modal-overlay{height:100vh;max-height:100vh;overflow:hidden;touch-action:none}
+.comp-modal-panel{width:760px;max-width:calc(100vw - 24px);max-height:calc(100vh - 24px)}
+.comp-modal-body{min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y}
+@supports (height:100dvh){.comp-modal-overlay{height:100dvh;max-height:100dvh}.comp-modal-panel{max-height:calc(100dvh - 24px)}}
+@media(max-width:680px){.comp-modal-panel{max-width:calc(100vw - 12px);max-height:calc(100vh - 12px)}@supports (height:100dvh){.comp-modal-panel{max-height:calc(100dvh - 12px)}}}
+'''
+
+CSS += r'''
+/* ipad-interaction-polish-v1 */
+#ht-write-root,#ht-write-root *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
+.writer-box,.writer-box *{touch-action:none!important;-webkit-user-drag:none!important}
+.writer-tools button{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.comp-modal-overlay{display:flex!important;visibility:hidden;opacity:0;pointer-events:none;-webkit-backface-visibility:hidden;backface-visibility:hidden;transform:translateZ(0)}
+.comp-modal-overlay.is-open{visibility:visible;opacity:1;pointer-events:auto}
+.comp-modal-panel{-webkit-backface-visibility:hidden;backface-visibility:hidden;transform:translateZ(0)}
 '''
 
 STROKE_BACK = r'''
@@ -123,6 +143,38 @@ setTimeout(init,20);setTimeout(init,240);
 </script>
 '''
 
+COMPONENT_MODAL_JS = r'''
+<script>
+(function(){'use strict';
+function ancestorWithClass(node,name){while(node&&node!==document){if(node.classList&&node.classList.contains(name))return node;node=node.parentNode}return null}
+function initComponentModal(){
+  if(document.getElementById('ht-component-modal-overlay'))return;
+  var overlay=document.createElement('div');
+  overlay.id='ht-component-modal-overlay';
+  overlay.className='comp-modal-overlay';
+  overlay.setAttribute('aria-hidden','true');
+  overlay.innerHTML='<div class="comp-modal-panel" role="dialog" aria-modal="true" aria-labelledby="ht-component-modal-title"><div class="comp-modal-header"><div class="comp-modal-title" id="ht-component-modal-title">Cấu tạo</div><button type="button" class="comp-modal-close" aria-label="Đóng">×</button></div><div class="comp-modal-body"></div></div>';
+  /* Keep the fixed modal outside the body: on iOS/WKWebView the body is locked with position:fixed, and a body child can be shifted off-screen. */
+  document.documentElement.appendChild(overlay);
+  var title=overlay.querySelector('.comp-modal-title'),body=overlay.querySelector('.comp-modal-body'),closeBtn=overlay.querySelector('.comp-modal-close'),lastTrigger=null,pageLocked=false,lockedY=0,oldBodyStyle='',oldHtmlStyle='',activeContent=null,activeSource=null;
+  function lockPage(){if(pageLocked)return;lockedY=window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop||0;oldBodyStyle=document.body.getAttribute('style')||'';oldHtmlStyle=document.documentElement.getAttribute('style')||'';document.documentElement.style.overflow='hidden';document.body.style.position='fixed';document.body.style.top=(-lockedY)+'px';document.body.style.left='0';document.body.style.right='0';document.body.style.width='100%';document.body.style.overflow='hidden';pageLocked=true}
+  function unlockPage(){if(!pageLocked)return;if(oldBodyStyle)document.body.setAttribute('style',oldBodyStyle);else document.body.removeAttribute('style');if(oldHtmlStyle)document.documentElement.setAttribute('style',oldHtmlStyle);else document.documentElement.removeAttribute('style');pageLocked=false;try{window.scrollTo(0,lockedY)}catch(e){}}
+  function restoreModalContent(){if(activeContent&&activeSource){try{activeSource.appendChild(activeContent)}catch(e){}}activeContent=null;activeSource=null;while(body.firstChild){body.removeChild(body.firstChild)}}
+  function closeModal(){overlay.classList.remove('is-open');overlay.setAttribute('aria-hidden','true');restoreModalContent();unlockPage();lastTrigger=null}
+  function openModal(trigger){
+    var id=trigger&&trigger.getAttribute('data-comp-modal'),source=id&&document.getElementById(id);if(!source)return;
+    var sourceTitle=source.querySelector('.comp-modal-source-title'),sourceContent=source.querySelector('.comp-modal-source-content');if(!sourceTitle||!sourceContent)return;
+    lastTrigger=trigger;restoreModalContent();title.innerHTML=sourceTitle.innerHTML;activeSource=sourceContent;activeContent=sourceContent.firstElementChild;if(!activeContent)return;body.appendChild(activeContent);body.scrollTop=0;overlay.classList.add('is-open');overlay.setAttribute('aria-hidden','false');
+    requestAnimationFrame(function(){if(overlay.classList.contains('is-open'))lockPage()})
+  }
+  document.addEventListener('click',function(ev){var trigger=ancestorWithClass(ev.target,'comp-modal-trigger');if(trigger){ev.preventDefault();ev.stopPropagation();openModal(trigger);return}var close=ancestorWithClass(ev.target,'comp-modal-close');if(close){ev.preventDefault();ev.stopPropagation();closeModal();return}if(ev.target===overlay){ev.preventDefault();closeModal()}},false);
+  document.addEventListener('keydown',function(ev){if((ev.key==='Escape'||ev.keyCode===27)&&overlay.classList.contains('is-open'))closeModal()},false);
+}
+setTimeout(initComponentModal,0);setTimeout(initComponentModal,180);
+})();
+</script>
+'''
+
 COMMON_BACK = r'''
 <div class="ht-card">
   <div class="eyebrow">Đáp án</div>
@@ -139,7 +191,7 @@ COMMON_BACK = r'''
   <div class="detail-section"><div class="section-title">Thành phần</div><div class="comp-grid">{{ComponentsHTML}}</div></div>
 ''' + STROKE_BACK + r'''
 </div>
-'''
+''' + COMPONENT_MODAL_JS
 
 Q_K2HV = r'''<div class="ht-card"><div class="eyebrow">Kanji → Hán Việt</div><div class="kanji">{{Kanji}}</div><div class="small">Nhớ âm Hán Việt rồi lật thẻ</div></div>'''
 A_K2HV = COMMON_BACK
@@ -167,7 +219,13 @@ function msg(t,c){status.textContent=t;status.className='writer-status '+(c||'')
 function decode(){try{var x=JSON.parse(atob(embedded));if(Array.isArray(x))return x;if(x&&Array.isArray(x.p)){strokeNorm=!!x.z;return x.p}}catch(e){}return []}
 function E(n,a){var e=document.createElementNS(NS,n);if(a)Object.keys(a).forEach(function(k){e.setAttribute(k,a[k])});return e}
 var svg=E('svg',{viewBox:'0 0 109 109','class':'tappable'}),bg=E('g'),done=E('g'),live=E('g'),hints=E('g');
-svg.style.touchAction='none';svg.style.userSelect='none';svg.style.webkitUserSelect='none';
+svg.style.touchAction='none';svg.style.userSelect='none';svg.style.webkitUserSelect='none';svg.style.webkitTouchCallout='none';
+function writerNode(n){if(!n)return false;var e=n.nodeType===1?n:n.parentNode;return !!(e&&root.contains(e))}
+function clearWriterSelection(){try{var sel=window.getSelection&&window.getSelection();if(sel&&sel.rangeCount&&(writerNode(sel.anchorNode)||writerNode(sel.focusNode)))sel.removeAllRanges()}catch(e){}}
+root.addEventListener('selectstart',function(ev){ev.preventDefault();clearWriterSelection()},{capture:true,passive:false});
+root.addEventListener('dragstart',function(ev){ev.preventDefault()},{capture:true,passive:false});
+root.addEventListener('contextmenu',function(ev){if(writerNode(ev.target))ev.preventDefault()},{capture:true,passive:false});
+document.addEventListener('selectionchange',clearWriterSelection,false);
 svg.appendChild(E('rect',{x:'0',y:'0',width:'109',height:'109',fill:'#13243a'}));svg.appendChild(bg);svg.appendChild(hints);svg.appendChild(done);svg.appendChild(live);box.appendChild(svg);
 [['0','54.5','109','54.5'],['54.5','0','54.5','109']].forEach(function(v){bg.appendChild(E('line',{x1:v[0],y1:v[1],x2:v[2],y2:v[3],stroke:'#60738c','stroke-width':'.65','stroke-dasharray':'4 3','stroke-opacity':'.7'}))});
 var measure=E('path',{fill:'none',stroke:'none'});measure.style.visibility='hidden';svg.appendChild(measure);
@@ -205,9 +263,9 @@ function scheduleRender(){if(!raf)raf=requestAnimationFrame(renderLive)}
 function releaseCapture(){if(activePointer!==null){try{if(svg.hasPointerCapture&&svg.hasPointerCapture(activePointer))svg.releasePointerCapture(activePointer)}catch(e){}}}
 function clearActiveNow(){cancelRAF();cancelWatchdog();releaseCapture();drawing=false;activePointer=null;pts=[];liveD='';renderedCount=0;if(active){try{active.remove()}catch(e){}active=null}}
 function failActive(text){cancelRAF();cancelWatchdog();releaseCapture();drawing=false;activePointer=null;if(active){var bad=active;try{bad.setAttribute('stroke','#ff334e');bad.setAttribute('stroke-width','4.8');bad.style.opacity='1';bad.style.transition='opacity .32s ease'}catch(e){}setTimeout(function(){try{bad.style.opacity='0'}catch(e){}},360);setTimeout(function(){try{bad.remove()}catch(e){}},720)}active=null;pts=[];liveD='';renderedCount=0;msg(text||('Sai nét — viết lại nét '+(idx+1)),'bad')}
-function begin(ev){if(idx>=paths.length)return;if(ev.isPrimary===false)return;ev.preventDefault();if(drawing||active)failActive('Sai nét — nét trước bị ngắt, viết lại nét '+(idx+1));drawing=true;activePointer=(typeof ev.pointerId==='number'?ev.pointerId:null);pts=[];liveD='';renderedCount=0;var p=pos(ev);appendPoint(p);active=E('path',{fill:'none',stroke:P[idx%P.length],'stroke-width':'4.4','stroke-linecap':'round','stroke-linejoin':'round',d:'M '+p.x+' '+p.y});live.appendChild(active);if(activePointer!==null)try{svg.setPointerCapture(activePointer)}catch(e){}armWatchdog()}
-function move(ev){if(!drawing)return;if(activePointer!==null&&typeof ev.pointerId==='number'&&ev.pointerId!==activePointer)return;ev.preventDefault();var list=(typeof ev.getCoalescedEvents==='function'?ev.getCoalescedEvents():null);if(list&&list.length){for(var i=0;i<list.length;i++)appendPoint(pos(list[i]))}else appendPoint(pos(ev));scheduleRender();armWatchdog()}
-function end(ev){if(!drawing)return;if(ev&&activePointer!==null&&typeof ev.pointerId==='number'&&ev.pointerId!==activePointer)return;if(ev)ev.preventDefault();if(ev)appendPoint(pos(ev));renderLive();cancelRAF();cancelWatchdog();releaseCapture();drawing=false;activePointer=null;var ok=false;try{ok=evalStroke(pts,paths[idx])}catch(e){ok=false}if(ok){if(active)active.remove();active=null;var col=P[idx%P.length];done.appendChild(E('path',pathAttrs(paths[idx],idx)));idx++;saveProgress();pts=[];liveD='';renderedCount=0;if(idx>=paths.length){finish()}else msg('✓ Đúng nét '+idx+'/'+paths.length+' · tiếp nét '+(idx+1),'ok')}else failActive('Sai nét — viết lại nét '+(idx+1))}
+function begin(ev){if(idx>=paths.length)return;if(ev.isPrimary===false)return;ev.preventDefault();ev.stopPropagation();clearWriterSelection();if(drawing||active)failActive('Sai nét — nét trước bị ngắt, viết lại nét '+(idx+1));drawing=true;activePointer=(typeof ev.pointerId==='number'?ev.pointerId:null);pts=[];liveD='';renderedCount=0;var p=pos(ev);appendPoint(p);active=E('path',{fill:'none',stroke:P[idx%P.length],'stroke-width':'4.4','stroke-linecap':'round','stroke-linejoin':'round',d:'M '+p.x+' '+p.y});live.appendChild(active);if(activePointer!==null)try{svg.setPointerCapture(activePointer)}catch(e){}armWatchdog()}
+function move(ev){if(!drawing)return;if(activePointer!==null&&typeof ev.pointerId==='number'&&ev.pointerId!==activePointer)return;ev.preventDefault();ev.stopPropagation();var list=(typeof ev.getCoalescedEvents==='function'?ev.getCoalescedEvents():null);if(list&&list.length){for(var i=0;i<list.length;i++)appendPoint(pos(list[i]))}else appendPoint(pos(ev));scheduleRender();armWatchdog()}
+function end(ev){if(!drawing)return;if(ev&&activePointer!==null&&typeof ev.pointerId==='number'&&ev.pointerId!==activePointer)return;if(ev){ev.preventDefault();ev.stopPropagation()}if(ev)appendPoint(pos(ev));renderLive();cancelRAF();cancelWatchdog();releaseCapture();drawing=false;activePointer=null;var ok=false;try{ok=evalStroke(pts,paths[idx])}catch(e){ok=false}if(ok){if(active)active.remove();active=null;var col=P[idx%P.length];done.appendChild(E('path',pathAttrs(paths[idx],idx)));idx++;saveProgress();pts=[];liveD='';renderedCount=0;if(idx>=paths.length){finish()}else msg('✓ Đúng nét '+idx+'/'+paths.length+' · tiếp nét '+(idx+1),'ok')}else failActive('Sai nét — viết lại nét '+(idx+1))}
 function cancelGesture(ev){if(!drawing)return;if(ev&&activePointer!==null&&typeof ev.pointerId==='number'&&ev.pointerId!==activePointer)return;failActive('Sai nét — thao tác bị ngắt, viết lại nét '+(idx+1))}
 svg.addEventListener('pointerdown',begin,{passive:false});svg.addEventListener('pointermove',move,{passive:false});svg.addEventListener('pointerup',end,{passive:false});svg.addEventListener('pointercancel',cancelGesture,{passive:false});svg.addEventListener('lostpointercapture',function(){if(drawing)setTimeout(function(){if(drawing)failActive('Sai nét — thao tác bị ngắt, viết lại nét '+(idx+1))},0)});
 resetBtn.addEventListener('click',function(){clearActiveNow();idx=0;done.innerHTML='';live.innerHTML='';hints.innerHTML='';clearProgress();clearGate();msg('Viết từ nét 1/'+paths.length,'')});
@@ -486,7 +544,7 @@ def _recursive_child_html(child, glyph_renderer, depth=2):
     pos = child.get('position_vi') or POS_VI.get(child.get('position', ''), str(child.get('position') or 'thành phần'))
     role = ROLE_VI.get(child.get('role'), str(child.get('role') or 'thành phần hình thể'))
     attr_key = html.escape(str(child.get('key') or ''), quote=True)
-    nested = _recursive_block_html(child, child.get('children') or [], glyph_renderer, depth + 1) if child.get('children') else ''
+    nested = (_recursive_modal_html(child, child.get('children') or [], glyph_renderer, depth + 1) if depth == 2 else _recursive_block_html(child, child.get('children') or [], glyph_renderer, depth + 1)) if child.get('children') else ''
     mnemonic = child.get('mnemonic') or '—'
     return (
         '<article class="comp-recursive-child" data-recursive-child="' + attr_key + '">'
@@ -508,6 +566,23 @@ def _recursive_block_html(parent, children, glyph_renderer, depth=2):
         '<summary class="comp-recursive-summary"><span class="comp-recursive-summary-title">Cấu tạo của <b>' + render_inline_glyphs(root_key, glyph_renderer) + '</b></span>'
         '<span class="comp-recursive-summary-side"><span>' + str(len(children)) + ' phần</span><span class="comp-recursive-chevron" aria-hidden="true"><svg viewBox="0 0 16 16" focusable="false" aria-hidden="true"><path d="M3 5.5L8 10.5L13 5.5"/></svg></span></span></summary>'
         '<div class="comp-recursive-body"><div class="comp-recursive-grid">' + child_html + '</div></div></details>'
+    )
+
+
+def _recursive_modal_html(parent, children, glyph_renderer, depth=2):
+    if not children:
+        return ''
+    root_key = str(parent.get('key') or '')
+    attr_root = html.escape(root_key, quote=True)
+    modal_seed = root_key + '|' + str(depth) + '|' + '|'.join(str(child.get('key') or '') for child in children)
+    modal_id = 'ht-comp-modal-' + hashlib.sha1(modal_seed.encode('utf-8')).hexdigest()[:12]
+    child_html = ''.join(_recursive_child_html(child, glyph_renderer, depth) for child in children)
+    return (
+        '<button type="button" class="comp-modal-trigger" data-comp-modal="' + modal_id + '" aria-haspopup="dialog">'
+        '<span>Cấu tạo</span><span class="comp-modal-trigger-side">' + str(len(children)) + ' phần&nbsp;›</span></button>'
+        '<div class="comp-modal-source" id="' + modal_id + '" aria-hidden="true">'
+        '<div class="comp-modal-source-title">Cấu tạo của <span class="comp-modal-root-glyph">' + render_inline_glyphs(root_key, glyph_renderer) + '</span></div>'
+        '<div class="comp-modal-source-content"><div class="comp-recursive-grid" data-recursive-depth="' + str(depth) + '" data-recursive-root="' + attr_root + '">' + child_html + '</div></div></div>'
     )
 
 
@@ -539,6 +614,21 @@ def components_html(ch, learner_decomp, row=None, glyph_renderer=None):
         missing = [marker for marker in regressions[ch] if marker not in rendered]
         if missing:
             raise RuntimeError(ch + ' learner decomposition QA failed: ' + ', '.join(missing))
+    for item in items:
+        children = item.get('children') or []
+        if children:
+            key_attr = html.escape(str(item.get('key') or ''), quote=True)
+            card_start = rendered.find('data-component="' + key_attr + '"')
+            details_start = rendered.find('<details class="comp-recursive"', card_start)
+            if card_start < 0 or details_start < 0:
+                raise RuntimeError(ch + ' first-level recursive block QA failed for: ' + str(item.get('key') or ''))
+        for child in children:
+            if child.get('children'):
+                child_attr = html.escape(str(child.get('key') or ''), quote=True)
+                child_start = rendered.find('data-recursive-child="' + child_attr + '"')
+                modal_start = rendered.find('class="comp-modal-trigger"', child_start)
+                if child_start < 0 or modal_start < 0:
+                    raise RuntimeError(ch + ' second-level modal QA failed for: ' + str(child.get('key') or ''))
     return rendered
 
 VARIANT_FALLBACK={
