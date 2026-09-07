@@ -86,6 +86,15 @@ CSS += r'''
 @media(max-width:680px){.comp-modal-overlay{padding:9px}.comp-modal-panel{max-height:calc(100vh - 18px);border-radius:14px}.comp-modal-header{min-height:56px;padding:9px 9px 9px 13px}.comp-modal-title{font-size:19px}.comp-modal-close{width:40px;height:40px;flex-basis:40px}.comp-modal-body{padding:10px}.comp-modal-body>.comp-recursive-grid,.comp-recursive-grid{grid-template-columns:1fr}.comp-recursive-child{padding:9px}.comp-recursive-child-head{grid-template-columns:56px minmax(0,1fr)}.comp-recursive-child .comp-glyph{width:56px;height:56px;flex-basis:56px;font-size:38px}.comp-recursive-summary-side>span:first-child{display:none}}@media(hover:hover){.comp-modal-trigger:hover,.comp-recursive-summary:hover{background:#14334b}.comp-modal-close:hover{background:#16364e}}
 '''
 
+CSS += r'''
+/* recursive-modal-v2 */
+.comp-modal-overlay{height:100vh;max-height:100vh;overflow:hidden;touch-action:none}
+.comp-modal-panel{width:760px;max-width:calc(100vw - 24px);max-height:calc(100vh - 24px)}
+.comp-modal-body{min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y}
+@supports (height:100dvh){.comp-modal-overlay{height:100dvh;max-height:100dvh}.comp-modal-panel{max-height:calc(100dvh - 24px)}}
+@media(max-width:680px){.comp-modal-panel{max-width:calc(100vw - 12px);max-height:calc(100vh - 12px)}@supports (height:100dvh){.comp-modal-panel{max-height:calc(100dvh - 12px)}}}
+'''
+
 STROKE_BACK = r'''
 <div class="detail-section">
   <div class="section-title">Thứ tự nét</div>
@@ -136,12 +145,14 @@ function initComponentModal(){
   overlay.setAttribute('aria-hidden','true');
   overlay.innerHTML='<div class="comp-modal-panel" role="dialog" aria-modal="true" aria-labelledby="ht-component-modal-title"><div class="comp-modal-header"><div class="comp-modal-title" id="ht-component-modal-title">Cấu tạo</div><button type="button" class="comp-modal-close" aria-label="Đóng">×</button></div><div class="comp-modal-body"></div></div>';
   document.body.appendChild(overlay);
-  var title=overlay.querySelector('.comp-modal-title'),body=overlay.querySelector('.comp-modal-body'),closeBtn=overlay.querySelector('.comp-modal-close'),lastTrigger=null;
-  function closeModal(){overlay.classList.remove('is-open');overlay.setAttribute('aria-hidden','true');body.innerHTML='';if(lastTrigger&&lastTrigger.focus){try{lastTrigger.focus()}catch(e){}}lastTrigger=null}
+  var title=overlay.querySelector('.comp-modal-title'),body=overlay.querySelector('.comp-modal-body'),closeBtn=overlay.querySelector('.comp-modal-close'),lastTrigger=null,pageLocked=false,lockedY=0,oldBodyStyle='',oldHtmlStyle='';
+  function lockPage(){if(pageLocked)return;lockedY=window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop||0;oldBodyStyle=document.body.getAttribute('style')||'';oldHtmlStyle=document.documentElement.getAttribute('style')||'';document.documentElement.style.overflow='hidden';document.body.style.position='fixed';document.body.style.top=(-lockedY)+'px';document.body.style.left='0';document.body.style.right='0';document.body.style.width='100%';document.body.style.overflow='hidden';pageLocked=true}
+  function unlockPage(){if(!pageLocked)return;if(oldBodyStyle)document.body.setAttribute('style',oldBodyStyle);else document.body.removeAttribute('style');if(oldHtmlStyle)document.documentElement.setAttribute('style',oldHtmlStyle);else document.documentElement.removeAttribute('style');pageLocked=false;try{window.scrollTo(0,lockedY)}catch(e){}}
+  function closeModal(){overlay.classList.remove('is-open');overlay.setAttribute('aria-hidden','true');body.innerHTML='';unlockPage();if(lastTrigger&&lastTrigger.focus){try{lastTrigger.focus()}catch(e){}}lastTrigger=null}
   function openModal(trigger){
     var id=trigger&&trigger.getAttribute('data-comp-modal'),source=id&&document.getElementById(id);if(!source)return;
     var sourceTitle=source.querySelector('.comp-modal-source-title'),sourceContent=source.querySelector('.comp-modal-source-content');if(!sourceTitle||!sourceContent)return;
-    lastTrigger=trigger;title.innerHTML=sourceTitle.innerHTML;body.innerHTML=sourceContent.innerHTML;body.scrollTop=0;overlay.classList.add('is-open');overlay.setAttribute('aria-hidden','false');
+    lastTrigger=trigger;lockPage();title.innerHTML=sourceTitle.innerHTML;body.innerHTML=sourceContent.innerHTML;body.scrollTop=0;overlay.classList.add('is-open');overlay.setAttribute('aria-hidden','false');
     try{closeBtn.focus()}catch(e){}
   }
   document.addEventListener('click',function(ev){var trigger=ancestorWithClass(ev.target,'comp-modal-trigger');if(trigger){ev.preventDefault();ev.stopPropagation();openModal(trigger);return}var close=ancestorWithClass(ev.target,'comp-modal-close');if(close){ev.preventDefault();ev.stopPropagation();closeModal();return}if(ev.target===overlay){ev.preventDefault();closeModal()}},false);
@@ -515,7 +526,7 @@ def _recursive_child_html(child, glyph_renderer, depth=2):
     pos = child.get('position_vi') or POS_VI.get(child.get('position', ''), str(child.get('position') or 'thành phần'))
     role = ROLE_VI.get(child.get('role'), str(child.get('role') or 'thành phần hình thể'))
     attr_key = html.escape(str(child.get('key') or ''), quote=True)
-    nested = _recursive_block_html(child, child.get('children') or [], glyph_renderer, depth + 1) if child.get('children') else ''
+    nested = (_recursive_modal_html(child, child.get('children') or [], glyph_renderer, depth + 1) if depth == 2 else _recursive_block_html(child, child.get('children') or [], glyph_renderer, depth + 1)) if child.get('children') else ''
     mnemonic = child.get('mnemonic') or '—'
     return (
         '<article class="comp-recursive-child" data-recursive-child="' + attr_key + '">'
@@ -566,7 +577,7 @@ def components_html(ch, learner_decomp, row=None, glyph_renderer=None):
         title = cap_hv(item.get('han_viet')) if item.get('han_viet') else '—'
         pos = item.get('position_vi') or POS_VI.get(item.get('position', ''), str(item.get('position') or 'thành phần hình thể'))
         role = ROLE_VI.get(item.get('role'), str(item.get('role') or 'thành phần hình thể'))
-        recursive = _recursive_modal_html(item, item.get('children') or [], glyph_renderer, 2)
+        recursive = _recursive_block_html(item, item.get('children') or [], glyph_renderer, 2)
         cards.append(
             '<div class="comp-card" data-component="' + html.escape(str(item.get('key') or ''), quote=True) + '">'
             '<div class="comp-head"><div class="comp-glyph">' + glyph_html(item['key'], item['meta'], glyph_renderer) + '</div>'
@@ -579,20 +590,27 @@ def components_html(ch, learner_decomp, row=None, glyph_renderer=None):
     regressions = {
         '調': ('data-component="言"', 'data-component="周"', 'data-recursive-root="周"', 'data-recursive-child="用"', 'data-recursive-child="口"'),
         '三': ('data-component="一"', 'data-component="𠄞"', 'data-recursive-root="𠄞"'),
-        '供': ('data-component="亻"', 'data-component="共"', 'class="comp-modal-trigger"', 'class="comp-modal-source"', 'data-recursive-root="共"', 'data-recursive-child="卄"', 'data-recursive-child="𬺢"'),
+        '供': ('data-component="亻"', 'data-component="共"', 'data-recursive-root="共"', 'data-recursive-child="卄"', 'data-recursive-child="𬺢"'),
     }
     if ch in regressions:
         missing = [marker for marker in regressions[ch] if marker not in rendered]
         if missing:
             raise RuntimeError(ch + ' learner decomposition QA failed: ' + ', '.join(missing))
     for item in items:
-        if item.get('children'):
+        children = item.get('children') or []
+        if children:
             key_attr = html.escape(str(item.get('key') or ''), quote=True)
             card_start = rendered.find('data-component="' + key_attr + '"')
-            modal_start = rendered.find('class="comp-modal-source"', card_start)
             details_start = rendered.find('<details class="comp-recursive"', card_start)
-            if card_start < 0 or modal_start < 0 or (details_start >= 0 and details_start < modal_start):
-                raise RuntimeError(ch + ' component modal QA failed for: ' + str(item.get('key') or ''))
+            if card_start < 0 or details_start < 0:
+                raise RuntimeError(ch + ' first-level recursive block QA failed for: ' + str(item.get('key') or ''))
+        for child in children:
+            if child.get('children'):
+                child_attr = html.escape(str(child.get('key') or ''), quote=True)
+                child_start = rendered.find('data-recursive-child="' + child_attr + '"')
+                modal_start = rendered.find('class="comp-modal-trigger"', child_start)
+                if child_start < 0 or modal_start < 0:
+                    raise RuntimeError(ch + ' second-level modal QA failed for: ' + str(child.get('key') or ''))
     return rendered
 
 VARIANT_FALLBACK={
