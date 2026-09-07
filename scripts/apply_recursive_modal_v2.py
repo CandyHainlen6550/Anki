@@ -9,8 +9,7 @@ if marker in s:
     raise SystemExit(0)
 
 old_css_anchor = "\nSTROKE_BACK = r'''"
-new_css = r'''
-
+new_css = """
 CSS += r'''
 /* recursive-modal-v2 */
 .comp-modal-overlay{height:100vh;max-height:100vh;overflow:hidden;touch-action:none}
@@ -20,7 +19,7 @@ CSS += r'''
 @media(max-width:680px){.comp-modal-panel{max-width:calc(100vw - 12px);max-height:calc(100vh - 12px)}@supports (height:100dvh){.comp-modal-panel{max-height:calc(100dvh - 12px)}}}
 '''
 
-STROKE_BACK = r'''"'''
+STROKE_BACK = r'''"""
 if old_css_anchor not in s:
     raise SystemExit('CSS anchor changed; refusing unsafe patch')
 s = s.replace(old_css_anchor, new_css, 1)
