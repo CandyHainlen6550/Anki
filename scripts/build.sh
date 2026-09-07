@@ -6,11 +6,7 @@ cd "$ROOT"
 mkdir -p dist
 rm -f dist/*.apkg
 
-# One-time migration for iPad modal/pencil interaction polish. The verified workflow
-# will commit the resulting builder, then this helper is removed and CI reruns clean.
-python3 scripts/apply_ipad_interaction_polish.py
-python3 -m py_compile builder/build_anki.py
-
+# Build directly from the committed renderer; no migration or source rewriting is allowed.
 bash scripts/fetch_sources.sh
 
 SC1=data/ht/sc1.json
