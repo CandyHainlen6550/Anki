@@ -7,17 +7,7 @@ s = p.read_text(encoding='utf-8')
 marker = "CSS += r'''\n/* ipad-interaction-polish-v1 */"
 if marker not in s:
     insert_at = "STROKE_BACK = r'''"
-    css = r'''CSS += r'''
-/* ipad-interaction-polish-v1 */
-#ht-write-root,#ht-write-root *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
-.writer-box,.writer-box *{touch-action:none!important;-webkit-user-drag:none!important}
-.writer-tools button{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-.comp-modal-overlay{display:flex!important;visibility:hidden;opacity:0;pointer-events:none;-webkit-backface-visibility:hidden;backface-visibility:hidden;transform:translateZ(0)}
-.comp-modal-overlay.is-open{visibility:visible;opacity:1;pointer-events:auto}
-.comp-modal-panel{-webkit-backface-visibility:hidden;backface-visibility:hidden;transform:translateZ(0)}
-'''
-
-'''
+    css = """CSS += r'''\n/* ipad-interaction-polish-v1 */\n#ht-write-root,#ht-write-root *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}\n.writer-box,.writer-box *{touch-action:none!important;-webkit-user-drag:none!important}\n.writer-tools button{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-tap-highlight-color:transparent;touch-action:manipulation}\n.comp-modal-overlay{display:flex!important;visibility:hidden;opacity:0;pointer-events:none;-webkit-backface-visibility:hidden;backface-visibility:hidden;transform:translateZ(0)}\n.comp-modal-overlay.is-open{visibility:visible;opacity:1;pointer-events:auto}\n.comp-modal-panel{-webkit-backface-visibility:hidden;backface-visibility:hidden;transform:translateZ(0)}\n'''\n\n"""
     if insert_at not in s:
         raise SystemExit('CSS insertion anchor changed')
     s = s.replace(insert_at, css + insert_at, 1)
