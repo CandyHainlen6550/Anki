@@ -144,7 +144,8 @@ function initComponentModal(){
   overlay.className='comp-modal-overlay';
   overlay.setAttribute('aria-hidden','true');
   overlay.innerHTML='<div class="comp-modal-panel" role="dialog" aria-modal="true" aria-labelledby="ht-component-modal-title"><div class="comp-modal-header"><div class="comp-modal-title" id="ht-component-modal-title">Cấu tạo</div><button type="button" class="comp-modal-close" aria-label="Đóng">×</button></div><div class="comp-modal-body"></div></div>';
-  document.body.appendChild(overlay);
+  /* Keep the fixed modal outside the body: on iOS/WKWebView the body is locked with position:fixed, and a body child can be shifted off-screen. */
+  document.documentElement.appendChild(overlay);
   var title=overlay.querySelector('.comp-modal-title'),body=overlay.querySelector('.comp-modal-body'),closeBtn=overlay.querySelector('.comp-modal-close'),lastTrigger=null,pageLocked=false,lockedY=0,oldBodyStyle='',oldHtmlStyle='';
   function lockPage(){if(pageLocked)return;lockedY=window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop||0;oldBodyStyle=document.body.getAttribute('style')||'';oldHtmlStyle=document.documentElement.getAttribute('style')||'';document.documentElement.style.overflow='hidden';document.body.style.position='fixed';document.body.style.top=(-lockedY)+'px';document.body.style.left='0';document.body.style.right='0';document.body.style.width='100%';document.body.style.overflow='hidden';pageLocked=true}
   function unlockPage(){if(!pageLocked)return;if(oldBodyStyle)document.body.setAttribute('style',oldBodyStyle);else document.body.removeAttribute('style');if(oldHtmlStyle)document.documentElement.setAttribute('style',oldHtmlStyle);else document.documentElement.removeAttribute('style');pageLocked=false;try{window.scrollTo(0,lockedY)}catch(e){}}
