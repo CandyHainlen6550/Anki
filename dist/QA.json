@@ -17,7 +17,7 @@
     "sc1_count": 400,
     "sc2_count": 844,
     "sc1_sha256": "40a7a19ad0fcfb1cd71f3b3b57f18a7a6f1e48074ff81798e90360fc60edb1c0",
-    "sc2_sha256": "961b08f01dce5c50295e69d0172fbd3f5d8733a99afb5536fbc531247d552e94"
+    "sc2_sha256": "edbcae4ac7b7214bcf2a14ff66f412bb25b7596682fc5f82d513a797d3a55a18"
   },
   "sc2_canonical_source": {
     "ok": true,
@@ -34,8 +34,8 @@
       "8": 100,
       "9": 44
     },
-    "sequence_sha256": "961b08f01dce5c50295e69d0172fbd3f5d8733a99afb5536fbc531247d552e94",
-    "boxed_sha256": "b50cb31037d4221afd6bb05d24b872262710d68a6255962ac0ed39f61364cd21",
+    "sequence_sha256": "edbcae4ac7b7214bcf2a14ff66f412bb25b7596682fc5f82d513a797d3a55a18",
+    "boxed_sha256": "75c840c2ae819289fcc2b0d41ded2e1f2e6b9044abb34e0fa549e7d0567475af",
     "right_radical_marker": "~阝",
     "left_radical_marker": "阝~"
   },
@@ -164,7 +164,7 @@
   },
   "learning_sources": {
     "split_source_ok": true,
-    "centralized_mnemonics": 2189,
+    "centralized_mnemonics": 2190,
     "decomposable_roots": 1955,
     "mnemonic_mismatch_count": 0,
     "mnemonic_mismatches": [],

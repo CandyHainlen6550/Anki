@@ -2,7 +2,7 @@
   "notes": 3380,
   "cards": 10140,
   "source_schema": "split-centralized-v1",
-  "centralized_mnemonics": 2189,
+  "centralized_mnemonics": 2190,
   "learner_decomp_roots": 1955,
   "subsets": {
     "sc1": {
@@ -73,5 +73,5 @@
   "missing_embedded_strokes": 0,
   "missing": [],
   "output": "dist/HT Joyo 2136.apkg",
-  "size_bytes": 6115310
+  "size_bytes": 6117051
 }
