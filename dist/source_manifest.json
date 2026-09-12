@@ -11,9 +11,9 @@
     "data/master/kanji.json": "c371735ab6cdb41923ed8782c3f9da22d8199522d9ef83d82f6e633b60a09f83",
     "data/ht/sc1.json": "760d049fd4e3572e239ed2b2e6cdffce996deb4101fe8fe0417904948c969ddf",
     "data/ht/sc2.json": "9168b16dad7128decf79550518dd44b00fb960e2ac80bc4771dfeba0b5cce941",
-    "data/ht/mnemonics.json": "fe2c585d36c7dcfe96da3acb7a7dc60dcc0354c44cce11295d655959d09d45db",
-    "data/ht/learner_decomp.json": "dde851ee08574481ab40d7629294980779180140a2ba14b1a390b5a627c67c5c",
-    "data/ht/SOURCE.json": "b3ddbb98ec51b8385c021e013d43093148c81b9ce1b08718da8a0f01d77798a7"
+    "data/ht/mnemonics.json": "e9abb47b0a427fffbefdd7baad4ee86789d73b3789b370a05aa46d1d76950180",
+    "data/ht/learner_decomp.json": "009ef009b05d4b11e93c5139a663a2bb9db997a67dfb0816f2959af7dc054559",
+    "data/ht/SOURCE.json": "7ebcd886dd376b391d26a7e51c4a3f5400dca0cd82b48199d3a291ebb09183cd"
   },
   "glyphwiki": {
     "&A-CDP-i001-88BA;": {
@@ -271,7 +271,7 @@
       "name": "cdp-89ed",
       "file": "4fb58af5a8245842.svg",
       "url": "https://glyphwiki.org/glyph/cdp-89ed.svg",
-      "sha256": "bcd3dfddf5efec081f16048b404132f258cb32f6ac7c6545c61c121b379386f6"
+      "sha256": "fd8ba3a5f7427c7013fd28836481b4265b4b85e50fb8a0dad3f62fe0282b9eda"
     },
     "&CDP-89EF;": {
       "status": "ok",
