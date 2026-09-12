@@ -1,5 +1,5 @@
 {
-  "source": "HT clean snapshot",
+  "source": "HT V4.1 integrated snapshot",
   "files": {
     "sc1.json": {
       "sha256": "760d049fd4e3572e239ed2b2e6cdffce996deb4101fe8fe0417904948c969ddf",
@@ -10,12 +10,12 @@
       "bytes": 2224527
     },
     "mnemonics.json": {
-      "sha256": "fe2c585d36c7dcfe96da3acb7a7dc60dcc0354c44cce11295d655959d09d45db",
-      "bytes": 417913
+      "sha256": "e9abb47b0a427fffbefdd7baad4ee86789d73b3789b370a05aa46d1d76950180",
+      "bytes": 417503
     },
     "learner_decomp.json": {
-      "sha256": "dde851ee08574481ab40d7629294980779180140a2ba14b1a390b5a627c67c5c",
-      "bytes": 651831
+      "sha256": "009ef009b05d4b11e93c5139a663a2bb9db997a67dfb0816f2959af7dc054559",
+      "bytes": 980232
     }
   }
 }
